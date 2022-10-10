@@ -1,13 +1,13 @@
-# PROJETO SGST - Sistema de gestão e saúde do trabalho
+# PROJETO SSST - Sistema de seguranÃ§a e saÃºde do trabalho
 ***
-TCC do Curso Técnico em Desenvolvimento de Sistema Projeto SGST - Sistema de gestão e saúde do trabalho
+TCC do Curso TÃ©cnico em Desenvolvimento de Sistema Projeto SSST - Sistema de seguranÃ§a e saÃºde do trabalho
  
 ## Grupo
 
 * Abner dos Santos de Oliveira
 * Aleffy Vinicios
 * Elisandra Carina Silva
-* Júlia Souza de Oliveira 
+* JÃºlia Souza de Oliveira 
 
 ## Desenvolvido em equipe
 
