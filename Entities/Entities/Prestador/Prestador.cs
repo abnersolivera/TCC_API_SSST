@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Entities
+namespace Entities.Entities.Prestador
 {
     [Table("Prestador")]
     public class Prestador : Notifies
@@ -47,7 +47,8 @@ namespace Entities.Entities
         public string EstadoPrestador { get; set; }
 
         [Column("cep_Prestador")]
-        public int CepPrestador { get; set; }
+        [MaxLength(10)]
+        public string CepPrestador { get; set; }
 
         [Column("atendente_Prestador")]
         public bool AtendentePrestador { get; set; }

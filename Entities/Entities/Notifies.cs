@@ -16,12 +16,7 @@ namespace Entities.Entities
         public string mensagem { get; set; }
 
         [NotMapped]
-        public List<Notifies> Notitycoes { get; set; }
-
-        public Notifies()
-        {
-            Notitycoes = new List<Notifies>();
-        }
+        public List<Notifies> Notitycoes { get; set; } = new List<Notifies>();
 
         public bool ValidarPropriedadeString(string valor, string nomePropriedade)
         {
