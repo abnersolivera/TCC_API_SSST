@@ -86,5 +86,11 @@ namespace Entities.Entities.Atendimento
 
         [Column("Status_Atendimento")]        
         public TipoAtendimento StatusAtendimento { get; set; }
+
+        [Column("dataCadastro_Atendimento")]
+        public DateTime DataCadastro { get; set; }
+
+        [Column("dataAlteracao_Atendimento")]
+        public DateTime DataAlteracao { get; set; }
     }
 }
