@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities.Risco
+namespace Entities.Entities.Riscos
 {
     [Table("Risco")]
-    public class Risco
+    public class Risco : Notifies
     {
         [Column("Id_Risco")]
         public int IdRisco { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities.Setor
+namespace Entities.Entities.Setores
 {
     [Table("Setor")]
     public class Setor : Notifies

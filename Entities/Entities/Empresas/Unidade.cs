@@ -1,8 +1,7 @@
-﻿using Entities.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Entities.Empresa
+namespace Entities.Entities.Empresas
 {
     [Table("Unidade")]
     public class Unidade : Notifies

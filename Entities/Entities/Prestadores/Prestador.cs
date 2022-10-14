@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Entities.Prestador
+namespace Entities.Entities.Prestadores
 {
     [Table("Prestador")]
     public class Prestador : Notifies
