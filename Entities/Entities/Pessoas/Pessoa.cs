@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities.Pessoa
+namespace Entities.Entities.Pessoas
 {
     [Table("Pessoa")]
     public class Pessoa : Notifies

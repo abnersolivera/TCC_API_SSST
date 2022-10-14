@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Entities.Empresa
+namespace Entities.Entities.Empresas
 {
     [Table("Empresa")]
     public class Empresa : Notifies

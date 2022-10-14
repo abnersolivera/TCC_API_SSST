@@ -1,18 +1,8 @@
-﻿using Entities.Entities.Empresa;
-using Entities.Entities.Exame;
-using Entities.Entities.Funcionario;
-using Entities.Entities.Risco;
-using Entities.Entities.Setor;
-using Entities.Enums;
-using System;
-using System.Collections.Generic;
+﻿using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities.Entities.Atendimento
+namespace Entities.Entities.Atendimentos
 {
     [Table("Atendimento")]
     public class Atendimento : Notifies

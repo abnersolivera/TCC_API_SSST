@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Entities.Funcionario
+namespace Entities.Entities.Funcionarios
 {
-    [Table("Cargo")]
+    [Table("Funcionario")]
     public class Funcionario : Notifies
     {
         [Column("Id_Funcionario")]
