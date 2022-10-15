@@ -15,86 +15,86 @@ namespace Entities.Entities.Pessoas
         [Column("id_Pessoas")]
         public int IdPessoas { get; set; }
 
-        [Column("Status_Pessoas")]
+        [Column("status_Pessoas")]
         public bool StatusPessoas { get; set; }
 
-        [Column("Nome_Pessoas")]
+        [Column("nome_Pessoas")]
         [MaxLength(100)]
         public string NomePessoas { get; set; }
 
-        [Column("Endereco_Pessoas")]
+        [Column("endereco_Pessoas")]
         [MaxLength(100)]
-        public string EnderecoPessoas { get; set; }
+        public string? EnderecoPessoas { get; set; }
 
-        [Column("Numero_Pessoas")]
+        [Column("numero_Pessoas")]
         public int NumeroPessoas { get; set; }
 
-        [Column("Complemento_Pessoas")]
+        [Column("complemento_Pessoas")]
         [MaxLength(100)]
-        public string ComplementoPessoas { get; set; }
+        public string? ComplementoPessoas { get; set; }
 
-        [Column("Bairro_Pessoas")]
+        [Column("bairro_Pessoas")]
         [MaxLength(50)]
-        public string BairroPessoas { get; set; }
+        public string? BairroPessoas { get; set; }
 
-        [Column("Cidade_Pessoas")]
+        [Column("cidade_Pessoas")]
         [MaxLength(100)]
-        public string CidadePessoas { get; set; }
+        public string? CidadePessoas { get; set; }
 
-        [Column("Estado_Pessoas")]
+        [Column("estado_Pessoas")]
         [MaxLength(50)]
-        public string Estado_Pessoas { get; set; }
+        public string? Estado_Pessoas { get; set; }
 
-        [Column("Cep_Pessoas")]
+        [Column("cep_Pessoas")]
         [MaxLength(10)]
-        public string Cep_Pessoas { get; set; }
+        public string? Cep_Pessoas { get; set; }
 
-        [Column("RG_Pessoas")]
+        [Column("rg_Pessoas")]
         [MaxLength(20)]
-        public string RG_Pessoas { get; set; }
+        public string? RG_Pessoas { get; set; }
 
-        [Column("CPF_Pessoas")]
+        [Column("cpf_Pessoas")]
         [MaxLength(15)]
-        public string CPF_Pessoas { get; set; }
+        public string? CPF_Pessoas { get; set; }
 
-        [Column("E -mail_Pessoas")]
+        [Column("email_Pessoas")]
         [MaxLength(30)]
-        public string mail_Pessoas { get; set; }
+        public string? Email_Pessoas { get; set; }
 
-        [Column("PIS_Pessoas")]
+        [Column("pis_Pessoas")]
         [MaxLength(20)]
-        public string PIS_Pessoas { get; set; }
+        public string? PIS_Pessoas { get; set; }
 
-        [Column("RQE_Pessoas")]
+        [Column("rqe_Pessoas")]
         [MaxLength(20)]
-        public string RQE_Pessoas { get; set; }
+        public string? RQE_Pessoas { get; set; }
 
-        [Column("SiglaConselhoDeClasse_Pessoas")]
+        [Column("siglaConselhoDeClasse_Pessoas")]
         [MaxLength(10)]
-        public string SiglaConselhoDeClasse_Pessoas { get; set; }
+        public string? SiglaConselhoDeClasse_Pessoas { get; set; }
 
-        [Column("ConselhoDeClasse_Pessoas")]
+        [Column("conselhoDeClasse_Pessoas")]
         [MaxLength(15)]
-        public string ConselhoDeClasse_Pessoas { get; set; }
+        public string? ConselhoDeClasse_Pessoas { get; set; }
 
-        [Column("ConselhoDeClasseEstado_Pessoas")]
+        [Column("conselhoDeClasseEstado_Pessoas")]
         [MaxLength(5)]
-        public string ConselhoDeClasseEstado_Pessoas { get; set; }
+        public string? ConselhoDeClasseEstado_Pessoas { get; set; }
 
-        [Column("Especialidade_Pessoas")]
+        [Column("especialidade_Pessoas")]
         public TipoEspecialidade? Especialidade_Pessoas { get; set; }
 
-        [Column("TelelefoneCelular_Pessoas")]
+        [Column("telelefoneCelular_Pessoas")]
         [MaxLength(15)]
-        public string TelelefoneCelular_Pessoas { get; set; }
+        public string? TelelefoneCelular_Pessoas { get; set; }
 
-        [Column("Tipo_Pessoas")]
+        [Column("tipo_Pessoas")]
         public TipoProfissional? Tipo_Pessoas { get; set; }
 
-        [Column("DataCadastro_Pessoas")]
+        [Column("dataCadastro_Pessoas")]
         public DateTime DataCadastro { get; set; }
 
-        [Column("DataAlteracao_Pessoas")]
+        [Column("dataAlteracao_Pessoas")]
         public DateTime DataAlteracao { get; set; }
 
     }

@@ -1,4 +1,6 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Cargos;
+using Entities.Entities.Setores;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +9,7 @@ namespace Entities.Entities.Funcionarios
     [Table("Funcionario")]
     public class Funcionario : Notifies
     {
-        [Column("Id_Funcionario")]
+        [Column("id_Funcionario")]
         public int IdFuncionario { get; set; }
 
         [Column("situacao_Funcionario")]
@@ -41,7 +43,6 @@ namespace Entities.Entities.Funcionarios
         public string? EmailFuncionario { get; set; }
 
         [Column("sexo_Funcionario")]
-        [MaxLength(20)]
         public TipoSexo SexoFuncionario { get; set; }
 
         [Column("dataCadastro_Funcionario")]
@@ -50,10 +51,18 @@ namespace Entities.Entities.Funcionarios
         [Column("dataAlteracao_Funcionario")]
         public DateTime DataAlteracao { get; set; }
 
+        [ForeignKey("Cargo")]
+        public int IdCargo { get; set; }
+        public virtual Cargo Cargo { get; set; }
+
+        [ForeignKey("Setor")]
+        public int IdSetor { get; set; }
+        public virtual Setor Setor { get; set; }
+
         [Column("dataAdmissao_Funcionario")]
         public DateTime DataAdmissao { get; set; }
 
         [Column("dataDemissao_Funcionario")]
-        public DateTime DataDemissao { get; set; }
+        public DateTime? DataDemissao { get; set; }
     }
 }

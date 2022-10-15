@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Exames
 {
+    [Table(" FuncionarioExames")]
     public class FuncionarioExames : Notifies
     {
         [Column("id_FuncionarioExames")]

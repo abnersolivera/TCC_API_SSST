@@ -14,7 +14,7 @@ namespace Entities.Entities.Empresas
         public bool SituacaoEmpresa { get; set; }
 
         [Column("tipoCliente_Empresa")]
-        public TipoCliente TipoCliente { get; set; }
+        public TipoCliente? TipoCliente { get; set; }
 
         [Column("nomeAbreviado_Empresa")]
         [MaxLength(255)]
@@ -26,26 +26,26 @@ namespace Entities.Entities.Empresas
 
         [Column("cnpj_Empresa")]
         [MaxLength(20)]
-        public string CnpjEmpresa { get; set; }
+        public string? CnpjEmpresa { get; set; }
 
         [Column("cpf_Empresa")]
         [MaxLength(15)]
-        public string CpfEmpresa { get; set; }
+        public string? CpfEmpresa { get; set; }
 
         [Column("inscricaoEstadual_Empresa")]
         [MaxLength(20)]
-        public string InscricaoEstadualEmpresa { get; set; }
+        public string? InscricaoEstadualEmpresa { get; set; }
 
         [Column("inscricaoMunicipal_Empresa")]
         [MaxLength(20)]
-        public string InscricaoMunicipalEmpresa { get; set; }
+        public string? InscricaoMunicipalEmpresa { get; set; }
 
         [Column("dataContrato_Empresa")]
-        public DateTime DataContratoEmpresa { get; set; }
+        public DateTime? DataContratoEmpresa { get; set; }
 
         [Column("numeroContrato_Empresa")]
         [MaxLength(20)]
-        public string NumeroContratoEmpresa { get; set; }
+        public string? NumeroContratoEmpresa { get; set; }
 
         [Column("dataCadastro_Empresa")]
         public DateTime DataCadastro { get; set; }

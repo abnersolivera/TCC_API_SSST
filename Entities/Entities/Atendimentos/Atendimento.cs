@@ -10,71 +10,65 @@ namespace Entities.Entities.Atendimentos
         [Column("id_Atendimento")]
         public int IdAtendimento { get; set; }
 
-        [Column("Data_Atendimento")]
+        [Column("data_Atendimento")]
         public DateTime DataAtendimento { get; set; }
 
-        [Column("HoraInicial_Atendimento")]
+        [Column("horaInicial_Atendimento")]
         public DateTime HoraInicialAtendimento { get; set; }
 
-        [Column("HoraFinal_Atendimento")]
-        public DateTime HoraFinalAtendimento { get; set; }
+        [Column("horaFinal_Atendimento")]
+        public DateTime? HoraFinalAtendimento { get; set; }
 
-        [Column("HoraChegada_Atendimento")]
-        public DateTime HoraChegadaAtendimento { get; set; }
+        [Column("horaChegada_Atendimento")]
+        public DateTime? HoraChegadaAtendimento { get; set; }
 
-        [Column("Compromisso_Atendimento")]
+        [Column("compromisso_Atendimento")]
         public TipoExame CompromissoAtendimento { get; set; }
 
-        [Column("TipoCompromisso_Atendimento")]
+        [Column("tipoCompromisso_Atendimento")]
         public TipoCompromisso TipoCompromissoAtendimento { get; set; }
 
-        [Column("RazaoSocial_Atendimento")]
+        [Column("razaoSocial_Atendimento")]
         [MaxLength(250)]
         public string RazaoSocialAtendimento { get; set; }
 
-        [Column("Funcionario_Atendimento")]
+        [Column("funcionario_Atendimento")]
         [MaxLength(100)]
         public string FuncionarioAtendimento { get; set; }
 
-        [Column("RG_Atendimento")]
+        [Column("rg_Atendimento")]
         [MaxLength(20)]
         public string RGAtendimento { get; set; }
 
-        [Column("CPF_Atendimento")]
+        [Column("cpf_Atendimento")]
         [MaxLength(20)]
         public string CPFAtendimento { get; set; }
 
-        [Column("Matricula_Atendimento")]
+        [Column("matricula_Atendimento")]
         [MaxLength(30)]
         public string? MatriculaAtendimento { get; set; }
 
-        [Column("Unidade_Atendimento")]
+        [Column("unidade_Atendimento")]
         [MaxLength(250)]
         public string UnidadeAtendimento { get; set; }
 
-        [Column("Setor_Atendimento")]
+        [Column("setor_Atendimento")]
         [MaxLength(100)]
         public string SetorAtendimento { get; set; }
 
-        [Column("Cargo_Atendimento")]
+        [Column("cargo_Atendimento")]
         [MaxLength(100)]
         public string CargoAtendimento { get; set; }
 
-        [Column("Atendimento_Atendimento")]
+        [Column("atendimento_Atendimento")]
         [MaxLength(50)]
-        public string AtendimentoAtendimento { get; set; }
+        public string? AtendimentoAtendimento { get; set; }
 
-        [Column("NomeUsuario_Atendimento")]
-        [MaxLength(50)]
-        public string NomeUsuarioAtendimento { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string IdUsuarioAtendimento { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
-        [Column("Exames_Atendimento")]
-        public string ExamesAtendimento { get; set; }
-
-        [Column("Riscos_Atendimento")]
-        public string RiscosAtendimento { get; set; }
-
-        [Column("Status_Atendimento")]        
+        [Column("status_Atendimento")]        
         public TipoAtendimento StatusAtendimento { get; set; }
 
         [Column("dataCadastro_Atendimento")]

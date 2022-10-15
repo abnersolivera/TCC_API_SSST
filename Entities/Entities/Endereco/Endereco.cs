@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Entities.Entities.Endereco
 {
     [Table("Endereco")]
-    public class Endereco
+    public class Endereco : Notifies
     {
         [Column("id_Endereco")]
         public int IdEndereco { get; set; }
@@ -30,7 +30,7 @@ namespace Entities.Entities.Endereco
 
         [Column("complemento_Endereco")]
         [MaxLength(100)]
-        public string ComplementoEndereco { get; set; }
+        public string? ComplementoEndereco { get; set; }
 
         [Column("cidade_Endereco")]
         [MaxLength(100)]
@@ -46,7 +46,7 @@ namespace Entities.Entities.Endereco
 
         [Column("codigoMunicipio_Endereco")]
         [MaxLength(20)]
-        public string CodigoMunicipioEndereco { get; set; }
+        public string? CodigoMunicipioEndereco { get; set; }
 
         [Column("telefone_Endereco")]
         [MaxLength(15)]
