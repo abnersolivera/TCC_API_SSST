@@ -11,7 +11,7 @@ namespace Entities.Entities.Exames
     [Table("Exame")]
     public class Exame : Notifies
     {
-        [Column("Id_Exame")]
+        [Column("id_Exame")]
         public int IdExame { get; set; }
 
         [Column("situacao_Exame")]

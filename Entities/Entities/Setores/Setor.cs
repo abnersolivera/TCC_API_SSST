@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Entities.Empresas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +12,7 @@ namespace Entities.Entities.Setores
     [Table("Setor")]
     public class Setor : Notifies
     {
-        [Column("Id_Setor")]
+        [Column("id_Setor")]
         public int IdSetor { get; set; }
 
         [Column("situacao_Setor")]
@@ -23,7 +24,11 @@ namespace Entities.Entities.Setores
 
         [Column("descricao_Setor")]
         [MaxLength(255)]
-        public string DescricaoSetor { get; set; }
+        public string? DescricaoSetor { get; set; }
+
+        [ForeignKey("Empresa")]
+        public int IdEmpresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
 
         [Column("dataCadastro_Setor")]
         public DateTime DataCadastro { get; set; }

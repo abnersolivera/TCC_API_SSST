@@ -11,7 +11,7 @@ namespace Entities.Entities.Riscos
     [Table("Risco")]
     public class Risco : Notifies
     {
-        [Column("Id_Risco")]
+        [Column("id_Risco")]
         public int IdRisco { get; set; }
 
         [Column("situacao_Risco")]

@@ -18,6 +18,6 @@ namespace Entities.Entities
         public TipoUsuario? Tipo { get; set; }
 
         [Column("UltimoAcesso_Usuario")]
-        public DateTime UltimoAcesso { get; set; }
+        public DateTime? UltimoAcesso { get; set; }
     }
 }
