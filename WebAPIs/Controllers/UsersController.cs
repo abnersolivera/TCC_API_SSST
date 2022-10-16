@@ -43,10 +43,10 @@ namespace WebAPIs.Controllers
                 var userCurrent = await _userManger.FindByEmailAsync(login.Email);
                 var IdUser = userCurrent.Id;
 
-                var token = new TokenJWTBuilder().AddSecurityKey(JwtSecurityKey.Create("Secret_Key-12345678"))
-                    .AddSubject("Empresa")
-                    .AddIssuer("Teste.Securiry.Bearer")
-                    .AddAudience("Teste.Securiry.Bearer")
+                var token = new TokenJWTBuilder().AddSecurityKey(JwtSecurityKey.Create("G4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"))
+                    .AddSubject("SSST")
+                    .AddIssuer("SSST.Securiry.Bearer")
+                    .AddAudience("SSST.Securiry.Bearer")
                     .AddClaim("idUsuario", IdUser)
                     .AddExpiry(5)
                     .Builder();
