@@ -86,11 +86,11 @@ builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 //var urlDev = "https://dominiodocliente.com.br";
 //var urlHML = "https://dominiodocliente2.com.br";
@@ -98,7 +98,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseCors(b => b.WithOrigins(urlDev, urlHML, urlPROD));
 
-var devClient = "https://localhost:7207";
+var devClient = "https://ssstdev.azurewebsites.net";
 
 app.UseCors(x => x
     .AllowAnyOrigin()
