@@ -14,14 +14,14 @@ namespace WebAPIs.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManger;
+        private readonly UserManager<ApplicationUser> _UserManger;
 
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _SignInManager;
 
         public UsersController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManager)
         {
-            _userManger = userManger;
-            _signInManager = signInManager;
+            _UserManger = userManger;
+            _SignInManager = signInManager;
         }
 
         [AllowAnonymous]
@@ -35,19 +35,19 @@ namespace WebAPIs.Controllers
             }
 
             var resultado =
-                await _signInManager.PasswordSignInAsync(login.Email, login.Senha, false, lockoutOnFailure: false);
+                await _SignInManager.PasswordSignInAsync(login.Email, login.Senha, false, lockoutOnFailure: false);
 
             if (resultado.Succeeded)
             {
                 //Recuperar Usuario Logado
-                var userCurrent = await _userManger.FindByEmailAsync(login.Email);
-                var IdUser = userCurrent.Id;
+                var userCurrent = await _UserManger.FindByEmailAsync(login.Email);
+                var idUsuario = userCurrent.Id;
 
                 var token = new TokenJWTBuilder().AddSecurityKey(JwtSecurityKey.Create("G4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"))
                     .AddSubject("SSST")
                     .AddIssuer("SSST.Securiry.Bearer")
                     .AddAudience("SSST.Securiry.Bearer")
-                    .AddClaim("idUsuario", IdUser)
+                    .AddClaim("idUsuario", idUsuario)
                     .AddExpiry(5)
                     .Builder();
 
@@ -74,7 +74,7 @@ namespace WebAPIs.Controllers
                 Tipo = TipoUsuario.Comum,
             };
 
-            var resultado = await _userManger.CreateAsync(user, login.Senha);
+            var resultado = await _UserManger.CreateAsync(user, login.Senha);
 
             if (resultado.Errors.Any())
             {
@@ -82,13 +82,13 @@ namespace WebAPIs.Controllers
             }
 
             //Geração de Confirmação caso precise
-            var userId = await _userManger.GetUserIdAsync(user);
-            var code = await _userManger.GenerateEmailConfirmationTokenAsync(user);
+            var userId = await _UserManger.GetUserIdAsync(user);
+            var code = await _UserManger.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
             // retorno email
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var resultado2 = await _userManger.ConfirmEmailAsync(user, code);
+            var resultado2 = await _UserManger.ConfirmEmailAsync(user, code);
 
             if (resultado2.Succeeded)
                 return Ok("Usuário Adicionado com Sucesso");

@@ -7,6 +7,7 @@ namespace Entities.Entities.Pessoas
     [Table("Pessoa")]
     public class Pessoa : Notifies
     {
+        [Key()]
         [Column("id_Pessoas")]
         public int IdPessoas { get; set; }
 
@@ -38,53 +39,53 @@ namespace Entities.Entities.Pessoas
 
         [Column("estado_Pessoas")]
         [MaxLength(50)]
-        public string? Estado_Pessoas { get; set; }
+        public string? EstadoPessoas { get; set; }
 
         [Column("cep_Pessoas")]
         [MaxLength(10)]
-        public string? Cep_Pessoas { get; set; }
+        public string? CepPessoas { get; set; }
 
         [Column("rg_Pessoas")]
         [MaxLength(20)]
-        public string? RG_Pessoas { get; set; }
+        public string? RGPessoas { get; set; }
 
         [Column("cpf_Pessoas")]
         [MaxLength(15)]
-        public string? CPF_Pessoas { get; set; }
+        public string? CPFPessoas { get; set; }
 
         [Column("email_Pessoas")]
         [MaxLength(30)]
-        public string? Email_Pessoas { get; set; }
+        public string? EmailPessoas { get; set; }
 
         [Column("pis_Pessoas")]
         [MaxLength(20)]
-        public string? PIS_Pessoas { get; set; }
+        public string? PISPessoas { get; set; }
 
         [Column("rqe_Pessoas")]
         [MaxLength(20)]
-        public string? RQE_Pessoas { get; set; }
+        public string? RQEPessoas { get; set; }
 
         [Column("siglaConselhoDeClasse_Pessoas")]
         [MaxLength(10)]
-        public string? SiglaConselhoDeClasse_Pessoas { get; set; }
+        public string? SiglaConselhoDeClassePessoas { get; set; }
 
         [Column("conselhoDeClasse_Pessoas")]
         [MaxLength(15)]
-        public string? ConselhoDeClasse_Pessoas { get; set; }
+        public string? ConselhoDeClassePessoas { get; set; }
 
         [Column("conselhoDeClasseEstado_Pessoas")]
         [MaxLength(5)]
-        public string? ConselhoDeClasseEstado_Pessoas { get; set; }
+        public string? ConselhoDeClasseEstadoPessoas { get; set; }
 
         [Column("especialidade_Pessoas")]
-        public TipoEspecialidade? Especialidade_Pessoas { get; set; }
+        public TipoEspecialidade? EspecialidadePessoas { get; set; }
 
         [Column("telelefoneCelular_Pessoas")]
         [MaxLength(15)]
-        public string? TelelefoneCelular_Pessoas { get; set; }
+        public string? TelelefoneCelularPessoas { get; set; }
 
         [Column("tipo_Pessoas")]
-        public TipoProfissional? Tipo_Pessoas { get; set; }
+        public TipoProfissional? TipoPessoas { get; set; }
 
         [Column("dataCadastro_Pessoas")]
         public DateTime DataCadastro { get; set; }

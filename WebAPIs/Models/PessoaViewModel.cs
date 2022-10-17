@@ -4,47 +4,47 @@ namespace WebAPIs.Models
 {
     public class PessoaViewModel
     {
-        public int Id { get; set; }
+        public int IdPessoas { get; set; }
 
-        public string Nome { get; set; }
+        public bool StatusPessoas { get; set; }
 
-        public bool Status { get; set; }
+        public string NomePessoas { get; set; }
 
-        public string? Endereco { get; set; }
+        public string? EnderecoPessoas { get; set; }
 
-        public int? Numero { get; set; }
+        public int? NumeroPessoas { get; set; }
 
-        public string? Complemento { get; set; }
+        public string? ComplementoPessoas { get; set; }
 
-        public string? Bairro { get; set; }
+        public string? BairroPessoas { get; set; }
 
-        public string? Cidade { get; set; }
+        public string? CidadePessoas { get; set; }
 
-        public string? Estado { get; set; }
+        public string? EstadoPessoas { get; set; }
 
-        public string? Cep { get; set; }
+        public string? CepPessoas { get; set; }
 
-        public string? RG { get; set; }
+        public string? RGPessoas { get; set; }
 
-        public string? CPF { get; set; }
+        public string? CPFPessoas { get; set; }
 
-        public string? Email { get; set; }
+        public string? EmailPessoas { get; set; }
 
-        public string? PIS { get; set; }
+        public string? PISPessoas { get; set; }
 
-        public string? RQE { get; set; }
+        public string? RQEPessoas { get; set; }
 
-        public string? SiglaConselhoDeClasse { get; set; }
+        public string? SiglaConselhoDeClassePessoas { get; set; }
 
-        public string? ConselhoDeClasse { get; set; }
+        public string? ConselhoDeClassePessoas { get; set; }
 
-        public string? ConselhoDeClasseEstado { get; set; }
+        public string? ConselhoDeClasseEstadoPessoas { get; set; }
 
-        public TipoEspecialidade? Especialidade { get; set; }
+        public TipoEspecialidade? EspecialidadePessoas { get; set; }
 
-        public string? TelelefoneCelular { get; set; }
+        public string? TelelefoneCelularPessoas { get; set; }
 
-        public TipoProfissional? Tipo { get; set; }
+        public TipoProfissional? TipoPessoas { get; set; }
 
         public DateTime DataCadastro { get; set; }
 
