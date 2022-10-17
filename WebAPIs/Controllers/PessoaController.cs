@@ -16,13 +16,13 @@ namespace WebAPIs.Controllers
         private readonly IMapper _Imapper;
 
         private readonly IPessoa _Ipessoa;
-        private readonly IServicePessoa _ServicePessoa;
+        private readonly IServicePessoa _IServicePessoa;
 
-        public PessoaController(IMapper imapper, IPessoa ipessoa, IServicePessoa servicePessoa)
+        public PessoaController(IMapper imapper, IPessoa ipessoa, IServicePessoa iservicePessoa)
         {
             _Imapper = imapper;
             _Ipessoa = ipessoa;
-            _ServicePessoa = servicePessoa;
+            _IServicePessoa = iservicePessoa;
         }
 
         private async Task<string> RetornaIdUsuarioLogado()
@@ -38,27 +38,27 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Add")]
+        [HttpPost("/api/Pessoa/Add")]
         public async Task<List<Notifies>> Add(PessoaViewModel pessoa)
-        { 
+        {
             var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
-            await _ServicePessoa.Adicionar(pessoaMap);
+            await _IServicePessoa.Adicionar(pessoaMap);
             return pessoaMap.Notitycoes;
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Update")]
+        [HttpPatch("/api/Pessoa/Update")]
         public async Task<List<Notifies>> Update(PessoaViewModel pessoa)
         {
             var pessoaMap = _Imapper.Map<Pessoa>(pessoa);            
-            await _ServicePessoa.Atualizar(pessoaMap);
+            await _IServicePessoa.Atualizar(pessoaMap);
             return pessoaMap.Notitycoes;
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Delete")]
+        [HttpDelete("/api/Pessoa/Delete")]
         public async Task<List<Notifies>> Delete(PessoaViewModel pessoa)
         {
             var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
@@ -68,17 +68,17 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/GetEntityById")]
-        public async Task<PessoaViewModel> GetEntityById(Pessoa pessoa)
+        [HttpPost("/api/Pessoa/GetEntityById")]
+        public async Task<PessoaViewModel> GetEntityById(PessoaViewModel pessoa)
         {
-            pessoa = await _Ipessoa.GetEntityById(pessoa.IdPessoas);
-            var pessoaMap = _Imapper.Map<PessoaViewModel>(pessoa);
+            var pessoas = await _Ipessoa.GetEntityById(pessoa.IdPessoas);
+            var pessoaMap = _Imapper.Map<PessoaViewModel>(pessoas);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/List")]
+        [HttpGet("/api/Pessoa/List")]
         public async Task<List<PessoaViewModel>> List()
         {
             var pessoa = await _Ipessoa.List();
@@ -88,10 +88,10 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/ListarPessoasAtivas")]
+        [HttpGet("/api/Pessoa/ListarPessoasAtivas")]
         public async Task<List<PessoaViewModel>> ListarMessageAtivas()
         {
-            var pessoa = await _ServicePessoa.ListarPessoaAtivas();
+            var pessoa = await _IServicePessoa.ListarPessoaAtivas();
             var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);
             return pessoaMap;
         }
