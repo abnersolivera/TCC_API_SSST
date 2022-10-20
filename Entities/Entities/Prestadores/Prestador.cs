@@ -7,6 +7,7 @@ namespace Entities.Entities.Prestadores
     [Table("Prestador")]
     public class Prestador : Notifies
     {
+        [Key()]
         [Column("id_Prestador")]
         public int IdPrestador { get; set; }
 
@@ -21,7 +22,7 @@ namespace Entities.Entities.Prestadores
 
         [Column("nome_Prestador")]
         [MaxLength(255)]
-        public string MomePrestador { get; set; }
+        public string NomePrestador { get; set; }
 
         [Column("razaoSocial_Prestador")]
         [MaxLength(255)]

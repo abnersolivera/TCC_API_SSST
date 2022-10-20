@@ -5,6 +5,7 @@ using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Entities.Entities;
 using Entities.Entities.Pessoas;
+using Entities.Entities.Prestadores;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
@@ -37,9 +38,11 @@ builder.Services.AddRazorPages();
 //Interface e Repositorio
 builder.Services.AddSingleton(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
 builder.Services.AddSingleton<IPessoa, RepositoryPessoa>();
+builder.Services.AddSingleton<IPrestador, RepositoryPrestador>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
+builder.Services.AddSingleton<IServicePrestador, ServicePrestador>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,6 +80,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
 {
     cfg.CreateMap<PessoaViewModel, Pessoa>();
     cfg.CreateMap<Pessoa, PessoaViewModel>();
+    cfg.CreateMap<Prestador, PrestadorViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();
