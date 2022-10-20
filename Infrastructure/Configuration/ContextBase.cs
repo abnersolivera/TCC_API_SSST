@@ -1,5 +1,6 @@
 ﻿using Entities.Entities;
 using Entities.Entities.Pessoas;
+using Entities.Entities.Prestadores;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+        public DbSet<Prestador> Prestador { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
