@@ -80,6 +80,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
 {
     cfg.CreateMap<PessoaViewModel, Pessoa>();
     cfg.CreateMap<Pessoa, PessoaViewModel>();
+    cfg.CreateMap<PrestadorViewModel, Prestador>();
     cfg.CreateMap<Prestador, PrestadorViewModel>();
 });
 
