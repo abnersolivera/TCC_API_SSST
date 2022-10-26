@@ -2,8 +2,6 @@
 using Domain.Interfaces.InterfaceServices;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Domain.Services;
-using Entities.Entities.Pessoas;
 using Entities.Entities;
 using Microsoft.AspNetCore.Authorization;
 using WebAPIs.Models;

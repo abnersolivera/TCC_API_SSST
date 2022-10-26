@@ -1,17 +1,13 @@
 ﻿using Entities.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities.Entities.Endereco
 {
     [Table("Endereco")]
     public class Endereco : Notifies
     {
+        [Key()]
         [Column("id_Endereco")]
         public int IdEndereco { get; set; }
 
