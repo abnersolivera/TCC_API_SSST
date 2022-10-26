@@ -6,6 +6,7 @@ namespace Entities.Entities.Empresas
     [Table("Unidade")]
     public class Unidade : Notifies
     {
+        [Key()]
         [Column("id_Unidade")]
         public int IdUnidade { get; set; }
 
