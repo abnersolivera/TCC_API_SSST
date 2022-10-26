@@ -43,12 +43,14 @@ builder.Services.AddSingleton<IPessoa, RepositoryPessoa>();
 builder.Services.AddSingleton<IPrestador, RepositoryPrestador>();
 builder.Services.AddSingleton<IEmpresa, RepositoryEmpresa>();
 builder.Services.AddSingleton<IEndereco, RepositoryEndereco>();
+builder.Services.AddSingleton<IUnidade, RepositoryUnidade>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
 builder.Services.AddSingleton<IServicePrestador, ServicePrestador>();
 builder.Services.AddSingleton<IServiceEmpresa, ServiceEmpresa>();
 builder.Services.AddSingleton<IServiceEndereco, ServiceEndereco>();
+builder.Services.AddSingleton<IServiceUnidade, ServiceUnidade>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -92,6 +94,8 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Empresa, EmpresaViewModel>();
     cfg.CreateMap<EnderecoViewModel, Endereco>();
     cfg.CreateMap<Endereco, EnderecoViewModel>();
+    cfg.CreateMap<UnidadeViewModel, Unidade>();
+    cfg.CreateMap<Unidade, UnidadeViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();
