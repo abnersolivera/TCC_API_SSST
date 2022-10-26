@@ -1,5 +1,6 @@
 ﻿using Entities.Entities;
 using Entities.Entities.Empresas;
+using Entities.Entities.Endereco;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+        public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Prestador> Prestador { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
