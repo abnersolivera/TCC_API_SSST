@@ -13,7 +13,9 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+
         public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Unidade> Unidade { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Prestador> Prestador { get; set; }
