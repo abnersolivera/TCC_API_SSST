@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Empresas;
+using Entities.Entities.Funcionarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace Entities.Entities.Setores
     [Table("Setor")]
     public class Setor : Notifies
     {
+        [Key()]
         [Column("id_Setor")]
         public int IdSetor { get; set; }
 
@@ -26,14 +28,15 @@ namespace Entities.Entities.Setores
         [MaxLength(255)]
         public string? DescricaoSetor { get; set; }
 
-        [ForeignKey("Empresa")]
-        public int IdEmpresa { get; set; }
-        public virtual Empresa Empresa { get; set; }
-
         [Column("dataCadastro_Setor")]
         public DateTime DataCadastro { get; set; }
 
         [Column("dataAlteracao_Setor")]
         public DateTime DataAlteracao { get; set; }
+
+        [ForeignKey("Funcionario")]
+        public int IdFuncionario { get; set; }
+        public virtual Funcionario Funcionario { get; set; }
+
     }
 }
