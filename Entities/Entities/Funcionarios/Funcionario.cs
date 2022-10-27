@@ -9,6 +9,7 @@ namespace Entities.Entities.Funcionarios
     [Table("Funcionario")]
     public class Funcionario : Notifies
     {
+        [Key()]
         [Column("id_Funcionario")]
         public int IdFuncionario { get; set; }
 

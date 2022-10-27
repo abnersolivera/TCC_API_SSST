@@ -6,6 +6,7 @@ using Domain.Services;
 using Entities.Entities;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
+using Entities.Entities.Funcionarios;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
 using Infrastructure.Configuration;
@@ -44,6 +45,7 @@ builder.Services.AddSingleton<IPrestador, RepositoryPrestador>();
 builder.Services.AddSingleton<IEmpresa, RepositoryEmpresa>();
 builder.Services.AddSingleton<IEndereco, RepositoryEndereco>();
 builder.Services.AddSingleton<IUnidade, RepositoryUnidade>();
+builder.Services.AddSingleton<IFuncionario, RepositoryFuncionario>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -51,6 +53,7 @@ builder.Services.AddSingleton<IServicePrestador, ServicePrestador>();
 builder.Services.AddSingleton<IServiceEmpresa, ServiceEmpresa>();
 builder.Services.AddSingleton<IServiceEndereco, ServiceEndereco>();
 builder.Services.AddSingleton<IServiceUnidade, ServiceUnidade>();
+builder.Services.AddSingleton<IServiceFuncionario, ServiceFuncionario>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -96,6 +99,8 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Endereco, EnderecoViewModel>();
     cfg.CreateMap<UnidadeViewModel, Unidade>();
     cfg.CreateMap<Unidade, UnidadeViewModel>();
+    cfg.CreateMap<FuncionarioViewModel, Funcionario>();
+    cfg.CreateMap<Funcionario, FuncionarioViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();
