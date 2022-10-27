@@ -52,18 +52,11 @@ namespace Entities.Entities.Funcionarios
         [Column("dataAlteracao_Funcionario")]
         public DateTime DataAlteracao { get; set; }
 
-        [ForeignKey("Cargo")]
-        public int IdCargo { get; set; }
-        public virtual Cargo Cargo { get; set; }
-
-        [ForeignKey("Setor")]
-        public int IdSetor { get; set; }
-        public virtual Setor Setor { get; set; }
-
         [Column("dataAdmissao_Funcionario")]
         public DateTime DataAdmissao { get; set; }
 
         [Column("dataDemissao_Funcionario")]
         public DateTime? DataDemissao { get; set; }
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Entities.Entities;
+using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
 using Entities.Entities.Funcionarios;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
+using Entities.Entities.Setores;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,8 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+        public DbSet<Setor> Setor { get; set; }
+        public DbSet<Cargo> Cargo { get; set; }
         public DbSet<Funcionario> Funcionario { get; set; }
         public DbSet<Unidade> Unidade { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
