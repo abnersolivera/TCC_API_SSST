@@ -4,11 +4,13 @@ using Domain.Interfaces.Generics;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Entities.Entities;
+using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
 using Entities.Entities.Funcionarios;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
+using Entities.Entities.Setores;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
@@ -46,6 +48,8 @@ builder.Services.AddSingleton<IEmpresa, RepositoryEmpresa>();
 builder.Services.AddSingleton<IEndereco, RepositoryEndereco>();
 builder.Services.AddSingleton<IUnidade, RepositoryUnidade>();
 builder.Services.AddSingleton<IFuncionario, RepositoryFuncionario>();
+builder.Services.AddSingleton<ICargo, RepositoryCargo>();
+builder.Services.AddSingleton<ISetor, RepositorySetor>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -54,6 +58,8 @@ builder.Services.AddSingleton<IServiceEmpresa, ServiceEmpresa>();
 builder.Services.AddSingleton<IServiceEndereco, ServiceEndereco>();
 builder.Services.AddSingleton<IServiceUnidade, ServiceUnidade>();
 builder.Services.AddSingleton<IServiceFuncionario, ServiceFuncionario>();
+builder.Services.AddSingleton<IServiceCargo, ServiceCargo>();
+builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -101,6 +107,10 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Unidade, UnidadeViewModel>();
     cfg.CreateMap<FuncionarioViewModel, Funcionario>();
     cfg.CreateMap<Funcionario, FuncionarioViewModel>();
+    cfg.CreateMap<SetorViewModel, Setor>();
+    cfg.CreateMap<Setor, SetorViewModel>();
+    cfg.CreateMap<CargoViewModel, Cargo>();
+    cfg.CreateMap<Cargo, CargoViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();

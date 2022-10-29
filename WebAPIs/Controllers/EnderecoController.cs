@@ -77,8 +77,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/Endereco/ListarPessoasAtivas")]
-        public async Task<List<EnderecoViewModel>> ListarMPessoaAtivas()
+        [HttpGet("/api/Endereco/ListarEnderecoAtivos")]
+        public async Task<List<EnderecoViewModel>> ListarEnderecoAtivos()
         {
             var endereco = await _IServiceEndereco.ListarEnderecoAtivas();
             var enderecoMap = _Imapper.Map<List<EnderecoViewModel>>(endereco);

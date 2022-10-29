@@ -34,9 +34,11 @@ namespace Entities.Entities.Setores
         [Column("dataAlteracao_Setor")]
         public DateTime DataAlteracao { get; set; }
 
-        [ForeignKey("Funcionario")]
-        public int IdFuncionario { get; set; }
-        public virtual Funcionario Funcionario { get; set; }
+        [ForeignKey("Empresa")]
+        public int IdEmpresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
+
+        public ICollection<Funcionario> Funcionario { get; set; }
 
     }
 }

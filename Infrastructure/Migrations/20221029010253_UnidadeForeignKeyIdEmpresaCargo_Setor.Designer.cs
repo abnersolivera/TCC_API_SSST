@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    [Migration("20221026231947_Unidade_dev_net")]
-    partial class Unidade_dev_net
+    [Migration("20221029010253_UnidadeForeignKeyIdEmpresaCargo_Setor")]
+    partial class UnidadeForeignKeyIdEmpresaCargo_Setor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,6 +104,48 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Entities.Cargos.Cargo", b =>
+                {
+                    b.Property<int>("IdCargo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_Cargo");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCargo"), 1L, 1);
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataAlteracao_Cargo");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataCadastro_Cargo");
+
+                    b.Property<string>("DescricaoCargo")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("descricao_Cargo");
+
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomeCargo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("nome_Cargo");
+
+                    b.Property<bool>("SituacaoCargo")
+                        .HasColumnType("bit")
+                        .HasColumnName("situacao_Cargo");
+
+                    b.HasKey("IdCargo");
+
+                    b.HasIndex("IdEmpresa");
+
+                    b.ToTable("Cargo");
                 });
 
             modelBuilder.Entity("Entities.Entities.Empresas.Empresa", b =>
@@ -354,6 +396,88 @@ namespace Infrastructure.Migrations
                     b.ToTable("Endereco");
                 });
 
+            modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
+                {
+                    b.Property<int>("IdFuncionario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_Funcionario");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFuncionario"), 1L, 1);
+
+                    b.Property<string>("CpfFuncionario")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("cpf_Funcionario");
+
+                    b.Property<DateTime>("DataAdmissao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataAdmissao_Funcionario");
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataAlteracao_Funcionario");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataCadastro_Funcionario");
+
+                    b.Property<DateTime?>("DataDemissao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataDemissao_Funcionario");
+
+                    b.Property<DateTime>("DataNascimentoFuncionario")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataNascimento_Funcionario");
+
+                    b.Property<string>("EmailFuncionario")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("email_Funcionario");
+
+                    b.Property<int>("IdCargo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSetor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomeFuncionario")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("nome_Funcionario");
+
+                    b.Property<string>("PisFuncionario")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("pis_Funcionario");
+
+                    b.Property<string>("RgFuncionario")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("rg_Funcionario");
+
+                    b.Property<int>("SexoFuncionario")
+                        .HasColumnType("int")
+                        .HasColumnName("sexo_Funcionario");
+
+                    b.Property<bool>("SituacaoFuncionario")
+                        .HasColumnType("bit")
+                        .HasColumnName("situacao_Funcionario");
+
+                    b.Property<string>("TelefoneFuncionario")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("telefone_Funcionario");
+
+                    b.HasKey("IdFuncionario");
+
+                    b.HasIndex("IdCargo");
+
+                    b.HasIndex("IdSetor");
+
+                    b.ToTable("Funcionario");
+                });
+
             modelBuilder.Entity("Entities.Entities.Pessoas.Pessoa", b =>
                 {
                     b.Property<int>("IdPessoas")
@@ -576,6 +700,48 @@ namespace Infrastructure.Migrations
                     b.ToTable("Prestador");
                 });
 
+            modelBuilder.Entity("Entities.Entities.Setores.Setor", b =>
+                {
+                    b.Property<int>("IdSetor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_Setor");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSetor"), 1L, 1);
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataAlteracao_Setor");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("dataCadastro_Setor");
+
+                    b.Property<string>("DescricaoSetor")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("descricao_Setor");
+
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomeSetor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("nome_Setor");
+
+                    b.Property<bool>("SituacaoSetor")
+                        .HasColumnType("bit")
+                        .HasColumnName("situacao_Setor");
+
+                    b.HasKey("IdSetor");
+
+                    b.HasIndex("IdEmpresa");
+
+                    b.ToTable("Setor");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -713,6 +879,47 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Entities.Cargos.Cargo", b =>
+                {
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Cargo")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
+                {
+                    b.HasOne("Entities.Entities.Cargos.Cargo", "Cargo")
+                        .WithMany("Funcionario")
+                        .HasForeignKey("IdCargo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Entities.Setores.Setor", "Setor")
+                        .WithMany("Funcionario")
+                        .HasForeignKey("IdSetor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cargo");
+
+                    b.Navigation("Setor");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Setores.Setor", b =>
+                {
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Setor")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -762,6 +969,23 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Entities.Cargos.Cargo", b =>
+                {
+                    b.Navigation("Funcionario");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Empresas.Empresa", b =>
+                {
+                    b.Navigation("Cargo");
+
+                    b.Navigation("Setor");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Setores.Setor", b =>
+                {
+                    b.Navigation("Funcionario");
                 });
 #pragma warning restore 612, 618
         }
