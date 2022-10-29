@@ -126,7 +126,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("descricao_Cargo");
 
-                    b.Property<int>("IdFuncionario")
+                    b.Property<int>("IdEmpresa")
                         .HasColumnType("int");
 
                     b.Property<string>("NomeCargo")
@@ -141,7 +141,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("IdCargo");
 
-                    b.HasIndex("IdFuncionario");
+                    b.HasIndex("IdEmpresa");
 
                     b.ToTable("Cargo");
                 });
@@ -433,6 +433,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasColumnName("email_Funcionario");
 
+                    b.Property<int>("IdCargo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSetor")
+                        .HasColumnType("int");
+
                     b.Property<string>("NomeFuncionario")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
@@ -462,6 +468,10 @@ namespace Infrastructure.Migrations
                         .HasColumnName("telefone_Funcionario");
 
                     b.HasKey("IdFuncionario");
+
+                    b.HasIndex("IdCargo");
+
+                    b.HasIndex("IdSetor");
 
                     b.ToTable("Funcionario");
                 });
@@ -710,7 +720,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("descricao_Setor");
 
-                    b.Property<int>("IdFuncionario")
+                    b.Property<int>("IdEmpresa")
                         .HasColumnType("int");
 
                     b.Property<string>("NomeSetor")
@@ -725,7 +735,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("IdSetor");
 
-                    b.HasIndex("IdFuncionario");
+                    b.HasIndex("IdEmpresa");
 
                     b.ToTable("Setor");
                 });
@@ -869,24 +879,43 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Entities.Entities.Cargos.Cargo", b =>
                 {
-                    b.HasOne("Entities.Entities.Funcionarios.Funcionario", "Funcionario")
-                        .WithMany()
-                        .HasForeignKey("IdFuncionario")
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Cargo")
+                        .HasForeignKey("IdEmpresa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("Empresa");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
+                {
+                    b.HasOne("Entities.Entities.Cargos.Cargo", "Cargo")
+                        .WithMany("Funcionario")
+                        .HasForeignKey("IdCargo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Entities.Setores.Setor", "Setor")
+                        .WithMany("Funcionario")
+                        .HasForeignKey("IdSetor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cargo");
+
+                    b.Navigation("Setor");
                 });
 
             modelBuilder.Entity("Entities.Entities.Setores.Setor", b =>
                 {
-                    b.HasOne("Entities.Entities.Funcionarios.Funcionario", "Funcionario")
-                        .WithMany()
-                        .HasForeignKey("IdFuncionario")
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Setor")
+                        .HasForeignKey("IdEmpresa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Funcionario");
+                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -938,6 +967,23 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Entities.Cargos.Cargo", b =>
+                {
+                    b.Navigation("Funcionario");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Empresas.Empresa", b =>
+                {
+                    b.Navigation("Cargo");
+
+                    b.Navigation("Setor");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Setores.Setor", b =>
+                {
+                    b.Navigation("Funcionario");
                 });
 #pragma warning restore 612, 618
         }

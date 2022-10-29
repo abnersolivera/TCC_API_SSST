@@ -1,4 +1,6 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Cargos;
+using Entities.Entities.Setores;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -53,6 +55,11 @@ namespace Entities.Entities.Empresas
 
         [Column("dataAlteracao_Empresa")]
         public DateTime DataAlteracao { get; set; }
+
+        public ICollection<Cargo> Cargo { get; set; }
+
+        public ICollection<Setor> Setor { get; set; }
+
 
     }
 }

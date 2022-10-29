@@ -4,7 +4,6 @@ namespace WebAPIs.Models
 {
     public class FuncionarioViewModel
     {
-
         public int IdFuncionario { get; set; }
 
         public bool SituacaoFuncionario { get; set; }
@@ -29,12 +28,12 @@ namespace WebAPIs.Models
 
         public DateTime DataAlteracao { get; set; }
 
-        public int IdCargo { get; set; }
-
-        public int IdSetor { get; set; }
-
         public DateTime DataAdmissao { get; set; }
 
         public DateTime? DataDemissao { get; set; }
+
+        public int IdCargo { get; set; }
+
+        public int IdSetor { get; set; }
     }
 }
