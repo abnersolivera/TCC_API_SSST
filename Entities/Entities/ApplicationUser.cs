@@ -1,4 +1,5 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Empresas;
+using Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,5 +20,7 @@ namespace Entities.Entities
 
         [Column("UltimoAcesso_Usuario")]
         public DateTime? UltimoAcesso { get; set; }
+
+        public ICollection<PessoaEmpresa> PessoaEmpresa { get; set; }
     }
 }

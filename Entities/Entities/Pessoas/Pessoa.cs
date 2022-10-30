@@ -1,4 +1,5 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Empresas;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -92,6 +93,8 @@ namespace Entities.Entities.Pessoas
 
         [Column("dataAlteracao_Pessoas")]
         public DateTime DataAlteracao { get; set; }
+
+        public ICollection<PessoaEmpresa> PessoaEmpresa { get; set; }
 
     }
 }

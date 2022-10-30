@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Entities.Entities.Empresas
     [Table("UsuarioEmpresa")]
     public class UsuarioEmpresa : Notifies
     {
+        [Key()]
         [Column("id_UsuarioEmpresa")]
         public int IdUsuarioEmpresa { get; set; }
 

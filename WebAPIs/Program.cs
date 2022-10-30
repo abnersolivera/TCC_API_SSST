@@ -54,6 +54,9 @@ builder.Services.AddSingleton<ICargo, RepositoryCargo>();
 builder.Services.AddSingleton<ISetor, RepositorySetor>();
 builder.Services.AddSingleton<IExame, RepositoryExame>();
 builder.Services.AddSingleton<IRisco, RepositoryRisco>();
+builder.Services.AddSingleton<IUsuarioEmpresa, RepositoryUsuarioEmpresa>();
+builder.Services.AddSingleton<IPessoaEmpresa, RepositoryPessoaEmpresa>();
+builder.Services.AddSingleton<IPrestadorEmpresa, RepositoryPrestadorEmpresa>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -121,6 +124,12 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Exame, ExameViewModel>();
     cfg.CreateMap<RiscoViewModel, Risco>();
     cfg.CreateMap<Risco, RiscoViewModel>();
+    cfg.CreateMap<UsuarioEmpresaViewModel, UsuarioEmpresa>();
+    cfg.CreateMap<UsuarioEmpresa, UsuarioEmpresaViewModel>();
+    cfg.CreateMap<PessoaEmpresaViewModel, PessoaEmpresa>();
+    cfg.CreateMap<PessoaEmpresa, PessoaEmpresaViewModel>();
+    cfg.CreateMap<PrestadorEmpresaViewModel, PrestadorEmpresa>();
+    cfg.CreateMap<PrestadorEmpresa, PrestadorEmpresaViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();
@@ -130,11 +139,11 @@ builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (!app.Environment.IsDevelopment() || app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 //var urlDev = "https://dominiodocliente.com.br";
 //var urlHML = "https://dominiodocliente2.com.br";

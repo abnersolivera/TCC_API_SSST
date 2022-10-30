@@ -1,4 +1,5 @@
-﻿using Entities.Entities.Exames;
+﻿using Entities.Entities.Empresas;
+using Entities.Entities.Exames;
 using Entities.Entities.Riscos;
 using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
@@ -85,5 +86,7 @@ namespace Entities.Entities.Prestadores
         public ICollection<Exame> Exame { get; set; }
 
         public ICollection<Risco> Risco { get; set; }
+
+        public ICollection<PrestadorEmpresa> PrestadorEmpresa { get; set; }
     }
 }
