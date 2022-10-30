@@ -60,6 +60,12 @@ namespace Entities.Entities.Empresas
 
         public ICollection<Setor> Setor { get; set; }
 
+        public ICollection<PrestadorEmpresa> PrestadorEmpresa { get; set; }
+
+        public ICollection<PessoaEmpresa> PessoaEmpresa { get; set; }
+
+        public ICollection<UsuarioEmpresa> UsuarioEmpresa { get; set; }
+
 
     }
 }
