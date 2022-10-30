@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Entities.Pessoas;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Empresas
@@ -73,5 +74,9 @@ namespace Entities.Entities.Empresas
         [Column("descricaoLocal_Unidade")]
         [MaxLength(255)]
         public string? DescricaoLocalUnidade { get; set; }
+
+        [ForeignKey("Empresa")]
+        public int IdEmpresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
     }
 }

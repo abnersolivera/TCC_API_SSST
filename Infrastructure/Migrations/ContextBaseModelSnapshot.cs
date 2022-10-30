@@ -331,6 +331,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasColumnName("grauRisco_Unidade");
 
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("int");
+
                     b.Property<string>("InscricaoEstadualUnidade")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)")
@@ -363,6 +366,8 @@ namespace Infrastructure.Migrations
                         .HasColumnName("situacao_Unidade");
 
                     b.HasKey("IdUnidade");
+
+                    b.HasIndex("IdEmpresa");
 
                     b.ToTable("Unidade");
                 });
@@ -1082,6 +1087,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Prestador");
                 });
 
+            modelBuilder.Entity("Entities.Entities.Empresas.Unidade", b =>
+                {
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Unidade")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+                });
+
             modelBuilder.Entity("Entities.Entities.Empresas.UsuarioEmpresa", b =>
                 {
                     b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
@@ -1223,6 +1239,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("PrestadorEmpresa");
 
                     b.Navigation("Setor");
+
+                    b.Navigation("Unidade");
 
                     b.Navigation("UsuarioEmpresa");
                 });

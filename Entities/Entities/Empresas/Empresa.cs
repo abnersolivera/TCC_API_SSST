@@ -66,6 +66,8 @@ namespace Entities.Entities.Empresas
 
         public ICollection<UsuarioEmpresa> UsuarioEmpresa { get; set; }
 
+        public ICollection<Unidade> Unidade { get; set; }
+
 
     }
 }
