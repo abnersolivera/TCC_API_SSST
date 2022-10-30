@@ -2,12 +2,15 @@
 using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
+using Entities.Entities.Exames;
 using Entities.Entities.Funcionarios;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
+using Entities.Entities.Riscos;
 using Entities.Entities.Setores;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Infrastructure.Configuration
 {
@@ -15,6 +18,8 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+        public DbSet<Risco> Risco { get; set; }
+        public DbSet<Exame> Exame { get; set; }
         public DbSet<Setor> Setor { get; set; }
         public DbSet<Cargo> Cargo { get; set; }
         public DbSet<Funcionario> Funcionario { get; set; }

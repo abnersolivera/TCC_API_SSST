@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Entities.Entities.Prestadores;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities.Entities.Riscos
 {
     [Table("Risco")]
     public class Risco : Notifies
     {
+        [Key()]
         [Column("id_Risco")]
         public int IdRisco { get; set; }
 
@@ -26,5 +23,9 @@ namespace Entities.Entities.Riscos
 
         [Column("dataAlteracao_Risco")]
         public DateTime DataAlteracao { get; set; }
+
+        [ForeignKey("Prestador")]
+        public int IdPrestador { get; set; }
+        public virtual Prestador Prestador { get; set; }
     }
 }
