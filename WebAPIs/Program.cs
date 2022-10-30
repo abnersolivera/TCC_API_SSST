@@ -7,9 +7,11 @@ using Entities.Entities;
 using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
+using Entities.Entities.Exames;
 using Entities.Entities.Funcionarios;
 using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
+using Entities.Entities.Riscos;
 using Entities.Entities.Setores;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
@@ -50,6 +52,8 @@ builder.Services.AddSingleton<IUnidade, RepositoryUnidade>();
 builder.Services.AddSingleton<IFuncionario, RepositoryFuncionario>();
 builder.Services.AddSingleton<ICargo, RepositoryCargo>();
 builder.Services.AddSingleton<ISetor, RepositorySetor>();
+builder.Services.AddSingleton<IExame, RepositoryExame>();
+builder.Services.AddSingleton<IRisco, RepositoryRisco>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -60,6 +64,8 @@ builder.Services.AddSingleton<IServiceUnidade, ServiceUnidade>();
 builder.Services.AddSingleton<IServiceFuncionario, ServiceFuncionario>();
 builder.Services.AddSingleton<IServiceCargo, ServiceCargo>();
 builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
+builder.Services.AddSingleton<IServiceExame, ServiceExame>();
+builder.Services.AddSingleton<IServiceRisco, ServiceRisco>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -111,6 +117,10 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Setor, SetorViewModel>();
     cfg.CreateMap<CargoViewModel, Cargo>();
     cfg.CreateMap<Cargo, CargoViewModel>();
+    cfg.CreateMap<ExameViewModel, Exame>();
+    cfg.CreateMap<Exame, ExameViewModel>();
+    cfg.CreateMap<RiscoViewModel, Risco>();
+    cfg.CreateMap<Risco, RiscoViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();

@@ -1,4 +1,6 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Exames;
+using Entities.Entities.Riscos;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -79,5 +81,9 @@ namespace Entities.Entities.Prestadores
 
         [Column("dataAlteracao_Prestador")]
         public DateTime DataAlteracao { get; set; }
+
+        public ICollection<Exame> Exame { get; set; }
+
+        public ICollection<Risco> Risco { get; set; }
     }
 }
