@@ -1,4 +1,5 @@
-﻿using Entities.Entities.Pessoas;
+﻿using Entities.Entities.Endereco;
+using Entities.Entities.Pessoas;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -78,5 +79,7 @@ namespace Entities.Entities.Empresas
         [ForeignKey("Empresa")]
         public int IdEmpresa { get; set; }
         public virtual Empresa Empresa { get; set; }
+
+        public ICollection<EnderecoUnidade> EnderecoUnidade { get; set; }
     }
 }

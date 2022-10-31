@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Empresas;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Endereco
@@ -6,6 +7,7 @@ namespace Entities.Entities.Endereco
     [Table("EnderecoEmpresa")]
     public class EnderecoEmpresa : Notifies
     {
+        [Key()]
         [Column("id_EnderecoEmpresa")]
         public int IdEnderecoEmpresa { get; set; }
 
