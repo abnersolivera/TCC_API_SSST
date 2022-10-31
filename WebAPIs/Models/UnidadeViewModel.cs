@@ -40,5 +40,7 @@ namespace WebAPIs.Models
         public string? GrauRiscoUnidade { get; set; }
 
         public string? DescricaoLocalUnidade { get; set; }
+
+        public int IdEmpresa { get; set; }
     }
 }

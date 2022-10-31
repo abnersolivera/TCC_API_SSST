@@ -1,6 +1,7 @@
 ﻿using Entities.Entities.Empresas;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Entities.Entities.Endereco
     [Table("EnderecoUnidade")]
     public class EnderecoUnidade : Notifies
     {
+        [Key()]
         [Column("id_EnderecoUnidade")]
         public int IdEnderecoUnidade { get; set; }
 

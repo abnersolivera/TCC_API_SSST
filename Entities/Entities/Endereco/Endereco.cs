@@ -57,5 +57,11 @@ namespace Entities.Entities.Endereco
 
         [Column("dataAlteracao_Endereco")]
         public DateTime DataAlteracao { get; set; }
+
+        public ICollection<EnderecoEmpresa> EnderecoEmpresa { get; set; }
+
+        public ICollection<EnderecoUnidade> EnderecoUnidade { get; set; }
+
+
     }
 }

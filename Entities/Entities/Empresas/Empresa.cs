@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Cargos;
+using Entities.Entities.Endereco;
 using Entities.Entities.Setores;
 using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
@@ -68,6 +69,7 @@ namespace Entities.Entities.Empresas
 
         public ICollection<Unidade> Unidade { get; set; }
 
+        public ICollection<EnderecoEmpresa> EnderecoEmpresa { get; set; }
 
     }
 }
