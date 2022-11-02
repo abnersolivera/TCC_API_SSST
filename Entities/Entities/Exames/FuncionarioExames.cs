@@ -1,11 +1,13 @@
 ﻿using Entities.Entities.Funcionarios;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Exames
 {
-    [Table(" FuncionarioExames")]
+    [Table("FuncionarioExames")]
     public class FuncionarioExames : Notifies
     {
+        [Key()]
         [Column("id_FuncionarioExames")]
         public int IdFuncionarioExames { get; set; }
 

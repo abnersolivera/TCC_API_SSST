@@ -27,5 +27,7 @@ namespace Entities.Entities.Exames
         [ForeignKey("Prestador")]
         public int IdPrestador { get; set; }
         public virtual Prestador Prestador { get; set; }
+
+        public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
     }
 }
