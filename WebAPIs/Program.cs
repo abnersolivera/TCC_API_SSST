@@ -59,6 +59,7 @@ builder.Services.AddSingleton<IPessoaEmpresa, RepositoryPessoaEmpresa>();
 builder.Services.AddSingleton<IPrestadorEmpresa, RepositoryPrestadorEmpresa>();
 builder.Services.AddSingleton<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
 builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
+builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -136,6 +137,8 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<EnderecoEmpresa, EnderecoEmpresaViewModel>();
     cfg.CreateMap<EnderecoUnidadeViewModel, EnderecoUnidade>();
     cfg.CreateMap<EnderecoUnidade, EnderecoUnidadeViewModel>();
+    cfg.CreateMap<FuncionarioExamesViewModel, FuncionarioExames>();
+    cfg.CreateMap<FuncionarioExames, FuncionarioExamesViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();
