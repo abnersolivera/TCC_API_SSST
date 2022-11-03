@@ -69,9 +69,11 @@ namespace WebAPIs.Controllers
 
             var user = new ApplicationUser
             {
+                Nome = login.Nome,
                 UserName = login.Email,
                 Email = login.Email,
                 Tipo = TipoUsuario.Comum,
+                StatusUsuario = true,
             };
 
             var resultado = await _UserManger.CreateAsync(user, login.Senha);
