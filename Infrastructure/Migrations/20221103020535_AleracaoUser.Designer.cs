@@ -4,6 +4,7 @@ using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20221103020535_AleracaoUser")]
+    partial class AleracaoUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -565,30 +567,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("IdPrestador");
 
                     b.ToTable("Exame");
-                });
-
-            modelBuilder.Entity("Entities.Entities.Exames.FuncionarioExames", b =>
-                {
-                    b.Property<int>("IdFuncionarioExames")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_FuncionarioExames");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFuncionarioExames"), 1L, 1);
-
-                    b.Property<int>("IdExame")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdFuncionario")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdFuncionarioExames");
-
-                    b.HasIndex("IdExame");
-
-                    b.HasIndex("IdFuncionario");
-
-                    b.ToTable("FuncionarioExames");
                 });
 
             modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
@@ -1243,25 +1221,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Prestador");
                 });
 
-            modelBuilder.Entity("Entities.Entities.Exames.FuncionarioExames", b =>
-                {
-                    b.HasOne("Entities.Entities.Exames.Exame", "Exame")
-                        .WithMany("FuncionarioExames")
-                        .HasForeignKey("IdExame")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Funcionarios.Funcionario", "Funcionario")
-                        .WithMany("FuncionarioExames")
-                        .HasForeignKey("IdFuncionario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exame");
-
-                    b.Navigation("Funcionario");
-                });
-
             modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
                 {
                     b.HasOne("Entities.Entities.Cargos.Cargo", "Cargo")
@@ -1391,16 +1350,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("EnderecoEmpresa");
 
                     b.Navigation("EnderecoUnidade");
-                });
-
-            modelBuilder.Entity("Entities.Entities.Exames.Exame", b =>
-                {
-                    b.Navigation("FuncionarioExames");
-                });
-
-            modelBuilder.Entity("Entities.Entities.Funcionarios.Funcionario", b =>
-                {
-                    b.Navigation("FuncionarioExames");
                 });
 
             modelBuilder.Entity("Entities.Entities.Pessoas.Pessoa", b =>

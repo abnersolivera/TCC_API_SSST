@@ -15,6 +15,10 @@ namespace Entities.Entities
         [MaxLength(100)]
         public string? CaminhoImagem { get; set; }
 
+        [Column("Nome_Usuario")]
+        [MaxLength(100)]
+        public string? Nome { get; set; }
+
         [Column("Tipo_Usuario")]
         public TipoUsuario? Tipo { get; set; }
 
