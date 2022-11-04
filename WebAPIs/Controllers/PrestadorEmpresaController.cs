@@ -5,7 +5,6 @@ using Entities.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPIs.Models;
-using Domain.Interfaces.InterfaceServices;
 
 namespace WebAPIs.Controllers
 {

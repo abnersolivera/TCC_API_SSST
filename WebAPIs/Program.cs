@@ -60,6 +60,7 @@ builder.Services.AddSingleton<IPrestadorEmpresa, RepositoryPrestadorEmpresa>();
 builder.Services.AddSingleton<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
 builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
 builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
+builder.Services.AddSingleton<IUser, RepositoryUser>();
 
 //Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
@@ -72,6 +73,7 @@ builder.Services.AddSingleton<IServiceCargo, ServiceCargo>();
 builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
 builder.Services.AddSingleton<IServiceExame, ServiceExame>();
 builder.Services.AddSingleton<IServiceRisco, ServiceRisco>();
+builder.Services.AddSingleton<IServiceUser, ServiceUser>();
 
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -139,6 +141,8 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<EnderecoUnidade, EnderecoUnidadeViewModel>();
     cfg.CreateMap<FuncionarioExamesViewModel, FuncionarioExames>();
     cfg.CreateMap<FuncionarioExames, FuncionarioExamesViewModel>();
+    cfg.CreateMap<UserViewModel, ApplicationUser>();
+    cfg.CreateMap<ApplicationUser, UserViewModel>();
 });
 
 IMapper mapper = config.CreateMapper();

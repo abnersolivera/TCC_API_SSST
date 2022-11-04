@@ -1,9 +1,13 @@
-﻿using Entities.Entities;
+﻿using AutoMapper;
+using Domain.Interfaces;
+using Entities.Entities;
+using Entities.Entities.Empresas;
 using Entities.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Linq.Expressions;
 using System.Text;
 using WebAPIs.Models;
 using WebAPIs.Token;
@@ -18,10 +22,16 @@ namespace WebAPIs.Controllers
 
         private readonly SignInManager<ApplicationUser> _SignInManager;
 
-        public UsersController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManager)
+        private readonly IMapper _Imapper;
+
+        private readonly IUser _IUser;
+
+        public UsersController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManager, IMapper iMapper, IUser iUser)
         {
             _UserManger = userManger;
             _SignInManager = signInManager;
+            _Imapper = iMapper;
+            _IUser = iUser;
         }
 
         [AllowAnonymous]
@@ -97,6 +107,38 @@ namespace WebAPIs.Controllers
             else
                 return Ok("Erro ao confirmar usuários");
 
+        }
+
+        private async Task<string> RetornaIdUsuarioLogado()
+        {
+            if (User != null)
+            {
+                var idUsuario = User.FindFirst("idUsuario");
+                return idUsuario.Value;
+            }
+
+            return string.Empty;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/User/GetIdLogado")]
+        public async Task<UserViewModel> GetIdLogado()
+        {
+            var IdLogado = RetornaIdUsuarioLogado().Result;
+            var user = await _IUser.ListarUserById(IdLogado.ToString());
+            var userMap = _Imapper.Map<UserViewModel>(user);
+            return userMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/User/List")]
+        public async Task<List<UserViewModel>> List()
+        {
+            var user = await _IUser.List();
+            var userMap = _Imapper.Map<List<UserViewModel>>(user);
+            return userMap;
         }
     }
 }
