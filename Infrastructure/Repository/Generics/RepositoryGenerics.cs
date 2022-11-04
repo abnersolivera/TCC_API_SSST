@@ -56,6 +56,7 @@ namespace Infrastructure.Repository.Generics
             }
         }
 
+
         public async Task<List<T>> List()
         {
             using (var data = new ContextBase(_OptionsBuilder))

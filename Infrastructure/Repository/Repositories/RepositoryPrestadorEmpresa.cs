@@ -1,4 +1,4 @@
-﻿using Domain.Interfaces.InterfaceServices;
+﻿using Domain.Interfaces;
 using Entities.Entities.Empresas;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
