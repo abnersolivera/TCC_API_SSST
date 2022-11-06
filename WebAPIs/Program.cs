@@ -24,14 +24,16 @@ using WebAPIs.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region ServicesContainer
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+#endregion
 
-//ConfigService
+#region ConfigService
 builder.Services.AddDbContext<ContextBase>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -41,8 +43,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+#endregion
 
-//Interface e Repositorio
+#region Interface e Repositorio
 builder.Services.AddSingleton(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
 builder.Services.AddSingleton<IPessoa, RepositoryPessoa>();
 builder.Services.AddSingleton<IPrestador, RepositoryPrestador>();
@@ -61,8 +64,9 @@ builder.Services.AddSingleton<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
 builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
 builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
 builder.Services.AddSingleton<IUser, RepositoryUser>();
+#endregion
 
-//Serviço Dominio
+#region Serviço Dominio
 builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
 builder.Services.AddSingleton<IServicePrestador, ServicePrestador>();
 builder.Services.AddSingleton<IServiceEmpresa, ServiceEmpresa>();
@@ -74,8 +78,9 @@ builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
 builder.Services.AddSingleton<IServiceExame, ServiceExame>();
 builder.Services.AddSingleton<IServiceRisco, ServiceRisco>();
 builder.Services.AddSingleton<IServiceUser, ServiceUser>();
+#endregion
 
-//JWT
+#region JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(option =>
     {
@@ -105,8 +110,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             }
         };
     });
+#endregion
 
-//AutoMapper
+#region AutoMapper
 var config = new AutoMapper.MapperConfiguration(cfg =>
 {
     cfg.CreateMap<PessoaViewModel, Pessoa>();
@@ -143,12 +149,35 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<FuncionarioExames, FuncionarioExamesViewModel>();
     cfg.CreateMap<UserViewModel, ApplicationUser>();
     cfg.CreateMap<ApplicationUser, UserViewModel>();
+    cfg.CreateMap<PessoaIdViewModel, Pessoa>();
+    cfg.CreateMap<Pessoa, PessoaIdViewModel>();
+    cfg.CreateMap<EmpresaIdViewModel, Empresa>();
+    cfg.CreateMap<Empresa, EmpresaIdViewModel>();
+    cfg.CreateMap<CargoIdViewModel, Cargo>();
+    cfg.CreateMap<Cargo, CargoIdViewModel>();
+    cfg.CreateMap<EnderecoIdViewModel, Endereco>();
+    cfg.CreateMap<Endereco, EnderecoIdViewModel>();
+    cfg.CreateMap<ExameIdViewModel, Exame>();
+    cfg.CreateMap<Exame, ExameIdViewModel>();
+    cfg.CreateMap<FuncionarioIdViewModel, Funcionario>();
+    cfg.CreateMap<Funcionario, FuncionarioIdViewModel>();
+    cfg.CreateMap<PrestadorIdViewModel, Prestador>();
+    cfg.CreateMap<Prestador, PrestadorIdViewModel>();
+    cfg.CreateMap<UnidadeIdViewModel, Unidade>();
+    cfg.CreateMap<Unidade, UnidadeIdViewModel>();
+    cfg.CreateMap<SetorIdViewModel, Setor>();
+    cfg.CreateMap<Setor, SetorIdViewModel>();
+    cfg.CreateMap<RiscoIdViewModel, Risco>();
+    cfg.CreateMap<Risco, RiscoIdViewModel>();
 });
+
 
 IMapper mapper = config.CreateMapper();
 
 builder.Services.AddSingleton(mapper);
+#endregion
 
+#region ConfigureHTTP
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -172,6 +201,7 @@ app.UseCors(x => x
     .AllowAnyHeader().WithOrigins(devClient));
 
 app.UseHttpsRedirection();
+#endregion
 
 app.UseAuthentication();
 app.UseAuthorization();

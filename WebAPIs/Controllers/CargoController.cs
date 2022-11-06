@@ -58,7 +58,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Cargo/Delete")]
-        public async Task<List<Notifies>> Delete(CargoViewModel cargo)
+        public async Task<List<Notifies>> Delete(int cargo)
         {
             var cargoMap = _Imapper.Map<Cargo>(cargo);
             await _ICargo.Delete(cargoMap);
@@ -67,8 +67,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Cargo/GetEntityById")]
-        public async Task<CargoViewModel> GetEntityById(CargoViewModel cargo)
+        [HttpGet("/api/Cargo/GetEntityById")]
+        public async Task<CargoViewModel> GetEntityById([FromQuery] CargoIdViewModel cargo)
         {
             var cargos = await _ICargo.GetEntityById(cargo.IdCargo);
             var cargoMap = _Imapper.Map<CargoViewModel>(cargos);

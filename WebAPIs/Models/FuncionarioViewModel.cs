@@ -36,4 +36,9 @@ namespace WebAPIs.Models
 
         public int IdSetor { get; set; }
     }
+
+    public class FuncionarioIdViewModel
+    {
+        public int IdFuncionario { get; set; }
+    }
 }

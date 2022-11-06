@@ -59,7 +59,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Setor/Delete")]
-        public async Task<List<Notifies>> Delete(SetorViewModel setor)
+        public async Task<List<Notifies>> Delete(int setor)
         {
             var setorMap = _Imapper.Map<Setor>(setor);
             await _ISetor.Delete(setorMap);
@@ -68,8 +68,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Setor/GetEntityById")]
-        public async Task<SetorViewModel> GetEntityById(SetorViewModel setor)
+        [HttpGet("/api/Setor/GetEntityById")]
+        public async Task<SetorViewModel> GetEntityById([FromQuery] SetorIdViewModel setor)
         {
             var setores = await _ISetor.GetEntityById(setor.IdSetor);
             var setorMap = _Imapper.Map<SetorViewModel>(setores);

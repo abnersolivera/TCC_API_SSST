@@ -18,4 +18,9 @@ namespace WebAPIs.Models
 
         public int IdPrestador { get; set; }
     }
+
+    public class ExameIdViewModel
+    {
+        public int IdExame { get; set; }
+    }
 }

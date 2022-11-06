@@ -17,4 +17,9 @@ namespace WebAPIs.Models
 
         public int IdPrestador { get; set; }
     }
+
+    public class RiscoIdViewModel
+    {
+        public int IdRisco { get; set; }
+    }
 }

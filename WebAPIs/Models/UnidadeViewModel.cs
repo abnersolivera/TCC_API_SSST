@@ -43,4 +43,9 @@ namespace WebAPIs.Models
 
         public int IdEmpresa { get; set; }
     }
+
+    public class UnidadeIdViewModel
+    {
+        public int IdUnidade { get; set; }
+    }
 }

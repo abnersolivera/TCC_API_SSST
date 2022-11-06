@@ -59,7 +59,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Risco/Delete")]
-        public async Task<List<Notifies>> Delete(RiscoViewModel risco)
+        public async Task<List<Notifies>> Delete(int risco)
         {
             var riscoMap = _IMapper.Map<Risco>(risco);
             await _IRisco.Delete(riscoMap);
@@ -68,8 +68,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Risco/GetEntityById")]
-        public async Task<RiscoViewModel> GetEntityById(RiscoViewModel risco)
+        [HttpGet("/api/Risco/GetEntityById")]
+        public async Task<RiscoViewModel> GetEntityById([FromQuery] RiscoIdViewModel risco)
         {
             var riscos = await _IRisco.GetEntityById(risco.IdRisco);
             var riscoMap = _IMapper.Map<RiscoViewModel>(riscos);
