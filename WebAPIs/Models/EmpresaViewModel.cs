@@ -33,4 +33,9 @@ namespace WebAPIs.Models
 
         public DateTime DataAlteracao { get; set; }
     }
+
+    public class EmpresaIdViewModel
+    {
+        public int IdEmpresa { get; set; }
+    }
 }

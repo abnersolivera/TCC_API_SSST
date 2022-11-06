@@ -60,7 +60,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Unidade/Delete")]
-        public async Task<List<Notifies>> Delete(UnidadeViewModel unidade)
+        public async Task<List<Notifies>> Delete(int unidade)
         {
             var unidadeMap = _IMapper.Map<Unidade>(unidade);
             await _IUnidade.Delete(unidadeMap);
@@ -69,8 +69,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Unidade/GetEntityById")]
-        public async Task<UnidadeViewModel> GetEntityById(UnidadeViewModel unidade)
+        [HttpGet("/api/Unidade/GetEntityById")]
+        public async Task<UnidadeViewModel> GetEntityById([FromQuery] UnidadeIdViewModel unidade)
         {
             var unidades = await _IUnidade.GetEntityById(unidade.IdUnidade);
             var unidadeMap = _IMapper.Map<UnidadeViewModel>(unidades);

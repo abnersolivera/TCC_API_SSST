@@ -32,4 +32,10 @@ namespace WebAPIs.Models
 
         public DateTime DataAlteracao { get; set; }
     }
+
+    public class EnderecoIdViewModel
+    {
+        public int IdEndereco { get; set; }
+    }
+
 }

@@ -21,4 +21,10 @@ namespace WebAPIs.Models
         public int IdEmpresa { get; set; }
 
     }
+
+    public class CargoIdViewModel
+    {
+        public int IdCargo { get; set; }
+    }
+
 }

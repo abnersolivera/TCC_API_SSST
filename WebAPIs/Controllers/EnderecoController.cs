@@ -48,7 +48,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Endereco/Delete")]
-        public async Task<List<Notifies>> Delete(EnderecoViewModel endereco)
+        public async Task<List<Notifies>> Delete(int endereco)
         {
             var enderecoMap = _Imapper.Map<Endereco>(endereco);
             await _IEndereco.Delete(enderecoMap);
@@ -57,8 +57,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Endereco/GetEntityById")]
-        public async Task<EnderecoViewModel> GetEntityById(EnderecoViewModel endereco)
+        [HttpGet("/api/Endereco/GetEntityById")]
+        public async Task<EnderecoViewModel> GetEntityById([FromQuery] EnderecoIdViewModel endereco)
         {
             var enderecos = await _IEndereco.GetEntityById(endereco.IdEndereco);
             var enderecoMap = _Imapper.Map<EnderecoViewModel>(enderecos);

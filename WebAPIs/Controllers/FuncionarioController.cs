@@ -59,7 +59,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Funcionario/Delete")]
-        public async Task<List<Notifies>> Delete(FuncionarioViewModel funcionario)
+        public async Task<List<Notifies>> Delete(int funcionario)
         {
             var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
             await _IFuncionario.Delete(funcionarioMap);
@@ -68,8 +68,8 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpPost("/api/Funcionario/GetEntityById")]
-        public async Task<FuncionarioViewModel> GetEntityById(FuncionarioViewModel funcionario)
+        [HttpGet("/api/Funcionario/GetEntityById")]
+        public async Task<FuncionarioViewModel> GetEntityById([FromQuery] FuncionarioIdViewModel funcionario)
         {
             var funcionarios = await _IFuncionario.GetEntityById(funcionario.IdFuncionario);
             var funcionarioMap = _IMapper.Map<FuncionarioViewModel>(funcionarios);

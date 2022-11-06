@@ -17,4 +17,9 @@
         public int IdEmpresa { get; set; }
 
     }
+
+    public class SetorIdViewModel
+    {
+        public int IdSetor { get; set; }
+    }
 }

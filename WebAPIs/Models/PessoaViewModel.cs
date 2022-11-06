@@ -51,4 +51,9 @@ namespace WebAPIs.Models
         public DateTime DataAlteracao { get; set; }
 
     }
+
+    public class PessoaIdViewModel
+    {
+        public int IdPessoas { get; set; }
+    }
 }

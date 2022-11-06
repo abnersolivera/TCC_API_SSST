@@ -44,4 +44,8 @@ namespace WebAPIs.Models
 
         public DateTime DataAlteracao { get; set; }
     }
+    public class PrestadorIdViewModel
+    {
+        public int IdPrestador { get; set; }
+    }
 }
