@@ -25,10 +25,9 @@ namespace Infrastructure.Repository.Repositories
 
             using (var banco = new ContextBase(_OptionsBuilder))
             {                
-                int skip = 0;
-                int take = 25;
+
                 int count = await banco.Pessoa.CountAsync();
-                return await banco.Pessoa.Where(exPessoa).AsNoTracking().Skip(skip).Take(take).ToListAsync();
+                return await banco.Pessoa.Where(exPessoa).AsNoTracking().ToListAsync();
             }
         }
     }
