@@ -1,4 +1,5 @@
-﻿using Entities.Entities.Empresas;
+﻿using Entities.Entities.Atendimentos;
+using Entities.Entities.Empresas;
 using Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
@@ -26,5 +27,6 @@ namespace Entities.Entities
         public DateTime? UltimoAcesso { get; set; }
 
         public ICollection<PessoaEmpresa> PessoaEmpresa { get; set; }
+        public ICollection<Atendimento> Atendimento { get; set; }
     }
 }

@@ -33,10 +33,9 @@ namespace Entities.Entities.Exames
 
     public class ExameDetails
     {
-        [NotMapped]
+
         public List<Exame> Exame { get; set; }
 
-        [NotMapped]
         public Details Details { get; set; } 
     }
 }

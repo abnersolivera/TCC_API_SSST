@@ -7,11 +7,15 @@ namespace Entities.Entities.Atendimentos
     [Table("Atendimento")]
     public class Atendimento : Notifies
     {
+        [Key()]
         [Column("id_Atendimento")]
         public int IdAtendimento { get; set; }
 
         [Column("data_Atendimento")]
         public DateTime DataAtendimento { get; set; }
+
+        [Column("dataAgendamento_Atendimento")]
+        public DateTime DataAgendamentoAtendimento { get; set; }
 
         [Column("horaInicial_Atendimento")]
         public DateTime HoraInicialAtendimento { get; set; }
@@ -19,8 +23,8 @@ namespace Entities.Entities.Atendimentos
         [Column("horaFinal_Atendimento")]
         public DateTime? HoraFinalAtendimento { get; set; }
 
-        [Column("horaChegada_Atendimento")]
-        public DateTime? HoraChegadaAtendimento { get; set; }
+        [Column("horaAgendada_Atendimento")]
+        public DateTime? HoraAgendadaAtendimento { get; set; }
 
         [Column("compromisso_Atendimento")]
         public TipoExame CompromissoAtendimento { get; set; }

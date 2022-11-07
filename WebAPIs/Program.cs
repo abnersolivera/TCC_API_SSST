@@ -4,6 +4,7 @@ using Domain.Interfaces.Generics;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Entities.Entities;
+using Entities.Entities.Atendimentos;
 using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
@@ -65,6 +66,8 @@ builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
 builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
 builder.Services.AddSingleton<IUser, RepositoryUser>();
 builder.Services.AddSingleton<IFuncionarioRisco, RepositoryFuncionarioRisco>();
+builder.Services.AddSingleton<IAtendimento, RepositoryAtendimento>();
+builder.Services.AddSingleton<IAgendamento, RepositoryAgendamento>();
 #endregion
 
 #region Serviço Dominio
@@ -79,6 +82,8 @@ builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
 builder.Services.AddSingleton<IServiceExame, ServiceExame>();
 builder.Services.AddSingleton<IServiceRisco, ServiceRisco>();
 builder.Services.AddSingleton<IServiceUser, ServiceUser>();
+builder.Services.AddSingleton<IServiceAtendimento, ServiceAtendimento>();
+builder.Services.AddSingleton<IServiceAgendamento, ServiceAgendamento>();
 #endregion
 
 #region JWT
@@ -174,6 +179,14 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>();
     cfg.CreateMap<ExameDetailsViewModel, ExameDetails>()/*.ForMember(edv => edv.Exame, m => m.MapFrom(ed => ed.ExameViewModel)).ForMember(edv => edv.Details, m => m.MapFrom(ed => ed.ExameViewModel))*/;
     cfg.CreateMap<ExameDetails, ExameDetailsViewModel>()/*.ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Exame)).ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Details))*/;
+    cfg.CreateMap<AtendimentoViewModel, Atendimento>();
+    cfg.CreateMap<Atendimento, AtendimentoViewModel>();
+    cfg.CreateMap<AtendimentoIdViewModel, Atendimento>();
+    cfg.CreateMap<Atendimento, AtendimentoIdViewModel>();
+    cfg.CreateMap<AgendamentoViewModel, Agendamento>();
+    cfg.CreateMap<Agendamento, AgendamentoViewModel>();
+    cfg.CreateMap<AgendamentoIdViewModel, Agendamento>();
+    cfg.CreateMap<Agendamento, AgendamentoIdViewModel>();    
 });
 
 

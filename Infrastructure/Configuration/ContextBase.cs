@@ -1,4 +1,5 @@
 ﻿using Entities.Entities;
+using Entities.Entities.Atendimentos;
 using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Endereco;
@@ -10,7 +11,6 @@ using Entities.Entities.Riscos;
 using Entities.Entities.Setores;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Infrastructure.Configuration
 {
@@ -18,6 +18,8 @@ namespace Infrastructure.Configuration
     {
         public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
 
+        public DbSet<Agendamento> Agendamento { get; set; }
+        public DbSet<Atendimento> Atendimento { get; set; }
         public DbSet<FuncionarioRisco> FuncionarioRisco { get; set; }
         public DbSet<FuncionarioExames> FuncionarioExames { get; set; }
         public DbSet<EnderecoUnidade> EnderecoUnidade { get; set; }

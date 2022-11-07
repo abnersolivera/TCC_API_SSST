@@ -4,6 +4,7 @@ using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20221107185056_Entitie-Atendimento")]
+    partial class EntitieAtendimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,59 +109,6 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Entities.Atendimentos.Agendamento", b =>
-                {
-                    b.Property<int>("IdAgendamento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id_Agendamento");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAgendamento"), 1L, 1);
-
-                    b.Property<int>("CompromissoAgendamento")
-                        .HasColumnType("int")
-                        .HasColumnName("compromisso_Agendamento");
-
-                    b.Property<DateTime>("DataAgendamento")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("data_Agendamento");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("dataAlteracao_Agendamento");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("dataCadastro_Agendamento");
-
-                    b.Property<string>("FuncionarioAgendamentoo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("funcionario_Agendamento");
-
-                    b.Property<DateTime>("HoraAgendada")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("hota_Agendamento");
-
-                    b.Property<string>("RazaoSocialAgendamento")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)")
-                        .HasColumnName("razaoSocial_Agendamento");
-
-                    b.Property<int>("StatusAgendamento")
-                        .HasColumnType("int")
-                        .HasColumnName("status_Agendamento");
-
-                    b.Property<int?>("TipoCompromissoAgendamentoo")
-                        .HasColumnType("int")
-                        .HasColumnName("tipoCompromisso_Agendamento");
-
-                    b.HasKey("IdAgendamento");
-
-                    b.ToTable("Agendamento");
                 });
 
             modelBuilder.Entity("Entities.Entities.Atendimentos.Atendimento", b =>
