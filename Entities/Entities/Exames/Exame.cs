@@ -30,4 +30,10 @@ namespace Entities.Entities.Exames
 
         public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
     }
+
+    public class ExameDetails
+    {
+        public List<Exame> Exame { get; set; } = new List<Exame>();
+        public Details Details { get; set; }
+    }
 }

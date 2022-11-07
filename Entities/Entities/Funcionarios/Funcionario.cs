@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Cargos;
+using Entities.Entities.Empresas;
 using Entities.Entities.Exames;
 using Entities.Entities.Setores;
 using Entities.Enums;
@@ -66,6 +67,10 @@ namespace Entities.Entities.Funcionarios
         [ForeignKey("Setor")]
         public int IdSetor { get; set; }
         public virtual Setor Setor { get; set; }
+
+        [ForeignKey("Empresa")]
+        public int IdEmpresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
 
         public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
 

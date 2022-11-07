@@ -79,7 +79,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/List")]
-        public async Task<List<PessoaViewModel>> List()
+        public async Task<List<PessoaViewModel>> List([FromRoute] int skip, [FromRoute] int take)
         {
             var pessoa = await _Ipessoa.List();
             var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);

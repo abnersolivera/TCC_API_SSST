@@ -64,6 +64,7 @@ builder.Services.AddSingleton<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
 builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
 builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
 builder.Services.AddSingleton<IUser, RepositoryUser>();
+builder.Services.AddSingleton<IFuncionarioRisco, RepositoryFuncionarioRisco>();
 #endregion
 
 #region Serviço Dominio
@@ -169,6 +170,10 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Setor, SetorIdViewModel>();
     cfg.CreateMap<RiscoIdViewModel, Risco>();
     cfg.CreateMap<Risco, RiscoIdViewModel>();
+    cfg.CreateMap<FuncionarioRiscoViewModel, FuncionarioRisco>();
+    cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>();
+    cfg.CreateMap<ExameDetailsViewModel, Exame>();
+    cfg.CreateMap<Exame, ExameDetailsViewModel>();
 });
 
 

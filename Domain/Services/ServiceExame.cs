@@ -45,5 +45,11 @@ namespace Domain.Services
         {
             return await _IExame.ListarExame(n => n.SituacaoExame);
         }
+
+        public async Task<List<ExameDetails>> ListarExamesDetalhe()
+        {
+            return await _IExame.Listar();
+        }
+
     }
 }

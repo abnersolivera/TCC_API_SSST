@@ -35,6 +35,8 @@ namespace WebAPIs.Models
         public int IdCargo { get; set; }
 
         public int IdSetor { get; set; }
+
+        public int IdEmpresa { get; set; }
     }
 
     public class FuncionarioIdViewModel
