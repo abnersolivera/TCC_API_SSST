@@ -101,8 +101,8 @@ namespace WebAPIs.Controllers
         public async Task<List<ExameDetailsViewModel>> ListarExamesDetalhe()
         {
             var exame = await _IServiceExame.ListarExamesDetalhe();
-            var exameMap = _IMapper.Map<List<ExameDetailsViewModel>>(exame);
-            return exameMap;
+            //var exameMap = _IMapper.Map<List<ExameDetailsViewModel>>(exame);
+            return null;
         }
     }
 }

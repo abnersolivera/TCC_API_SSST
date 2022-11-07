@@ -58,7 +58,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Cargo/Delete")]
-        public async Task<List<Notifies>> Delete(int cargo)
+        public async Task<List<Notifies>> Delete([FromQuery] CargoIdViewModel cargo)
         {
             var cargoMap = _Imapper.Map<Cargo>(cargo);
             await _ICargo.Delete(cargoMap);

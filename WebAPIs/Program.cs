@@ -172,8 +172,8 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Risco, RiscoIdViewModel>();
     cfg.CreateMap<FuncionarioRiscoViewModel, FuncionarioRisco>();
     cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>();
-    cfg.CreateMap<ExameDetailsViewModel, Exame>();
-    cfg.CreateMap<Exame, ExameDetailsViewModel>();
+    cfg.CreateMap<ExameDetailsViewModel, ExameDetails>()/*.ForMember(edv => edv.Exame, m => m.MapFrom(ed => ed.ExameViewModel)).ForMember(edv => edv.Details, m => m.MapFrom(ed => ed.ExameViewModel))*/;
+    cfg.CreateMap<ExameDetails, ExameDetailsViewModel>()/*.ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Exame)).ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Details))*/;
 });
 
 

@@ -33,7 +33,7 @@ namespace Entities.Entities.Exames
 
     public class ExameDetails
     {
-        public List<Exame> Exame { get; set; } = new List<Exame>();
-        public Details Details { get; set; }
+        public List<Exame> Exame { get; set; }
+        public Details Details { get; set; } 
     }
 }

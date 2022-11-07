@@ -61,7 +61,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Prestador/Delete")]
-        public async Task<List<Notifies>> Delete(int prestador)
+        public async Task<List<Notifies>> Delete([FromQuery] PrestadorIdViewModel prestador)
         {
             var prestadorMap = _Imapper.Map<Prestador>(prestador);
             await _IPrestador.Delete(prestadorMap);

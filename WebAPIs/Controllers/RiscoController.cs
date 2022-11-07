@@ -59,7 +59,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Risco/Delete")]
-        public async Task<List<Notifies>> Delete(int risco)
+        public async Task<List<Notifies>> Delete([FromQuery] RiscoIdViewModel risco)
         {
             var riscoMap = _IMapper.Map<Risco>(risco);
             await _IRisco.Delete(riscoMap);
