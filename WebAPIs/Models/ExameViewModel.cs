@@ -26,9 +26,9 @@ namespace WebAPIs.Models
     }
 
     public class ExameDetailsViewModel
-    {
+    {        
         public List<ExameViewModel> ExameViewModel { get; set; }
-
+       
         public Details Details { get; set; }
     }
 }
