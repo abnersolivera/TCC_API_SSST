@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Entities.Entities;
 using Entities.Entities.Pessoas;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
@@ -11,6 +12,8 @@ namespace Infrastructure.Repository.Repositories
     {
         private readonly DbContextOptions<ContextBase> _OptionsBuilder;
 
+        
+
         public RepositoryPessoa()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
@@ -18,9 +21,14 @@ namespace Infrastructure.Repository.Repositories
 
         public async Task<List<Pessoa>> ListarPessoa(Expression<Func<Pessoa, bool>> exPessoa)
         {
+            
+
             using (var banco = new ContextBase(_OptionsBuilder))
-            {
-                return await banco.Pessoa.Where(exPessoa).AsNoTracking().ToListAsync();
+            {                
+                int skip = 0;
+                int take = 25;
+                int count = await banco.Pessoa.CountAsync();
+                return await banco.Pessoa.Where(exPessoa).AsNoTracking().Skip(skip).Take(take).ToListAsync();
             }
         }
     }

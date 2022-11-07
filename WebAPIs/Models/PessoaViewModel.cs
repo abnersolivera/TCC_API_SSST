@@ -1,4 +1,5 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities;
+using Entities.Enums;
 
 namespace WebAPIs.Models
 {
@@ -48,7 +49,7 @@ namespace WebAPIs.Models
 
         public DateTime DataCadastro { get; set; }
 
-        public DateTime DataAlteracao { get; set; }
+        public DateTime DataAlteracao { get; set; }       
 
     }
 

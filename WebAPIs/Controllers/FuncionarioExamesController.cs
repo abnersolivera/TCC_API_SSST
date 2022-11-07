@@ -31,44 +31,5 @@ namespace WebAPIs.Controllers
             return funcionarioExamesMap.Notitycoes;
         }
 
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPatch("/api/FuncionarioExames/Update")]
-        public async Task<List<Notifies>> Update(FuncionarioExamesViewModel funcionarioExames)
-        {
-            var funcionarioExamesMap = _IMapper.Map<FuncionarioExames>(funcionarioExames);
-            await _IFuncionarioExames.Update(funcionarioExamesMap);
-            return funcionarioExamesMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpDelete("/api/FuncionarioExames/Delete")]
-        public async Task<List<Notifies>> Delete(FuncionarioExamesViewModel funcionarioExames)
-        {
-            var funcionarioExamesMap = _IMapper.Map<FuncionarioExames>(funcionarioExames);
-            await _IFuncionarioExames.Delete(funcionarioExamesMap);
-            return funcionarioExamesMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPost("/api/FuncionarioExames/GetEntityById")]
-        public async Task<FuncionarioExamesViewModel> GetEntityById(FuncionarioExamesViewModel funcionarioExames)
-        {
-            var funcionarioExame = await _IFuncionarioExames.GetEntityById(funcionarioExames.IdFuncionarioExames);
-            var funcionarioExamesMap = _IMapper.Map<FuncionarioExamesViewModel>(funcionarioExame);
-            return funcionarioExamesMap;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpGet("/api/FuncionarioExames/List")]
-        public async Task<List<FuncionarioExamesViewModel>> List()
-        {
-            var funcionarioExames = await _IFuncionarioExames.List();
-            var funcionarioExamesMap = _IMapper.Map<List<FuncionarioExamesViewModel>>(funcionarioExames);
-            return funcionarioExamesMap;
-        }
     }
 }

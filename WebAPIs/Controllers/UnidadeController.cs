@@ -60,7 +60,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Unidade/Delete")]
-        public async Task<List<Notifies>> Delete(int unidade)
+        public async Task<List<Notifies>> Delete([FromQuery] UnidadeIdViewModel unidade)
         {
             var unidadeMap = _IMapper.Map<Unidade>(unidade);
             await _IUnidade.Delete(unidadeMap);

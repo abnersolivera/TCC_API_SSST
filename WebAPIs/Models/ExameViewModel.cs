@@ -1,6 +1,7 @@
 ﻿using Entities.Entities.Prestadores;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Entities.Entities;
 
 namespace WebAPIs.Models
 {
@@ -22,5 +23,12 @@ namespace WebAPIs.Models
     public class ExameIdViewModel
     {
         public int IdExame { get; set; }
+    }
+
+    public class ExameDetailsViewModel
+    {        
+        public List<ExameViewModel> ExameViewModel { get; set; }
+       
+        public Details Details { get; set; }
     }
 }

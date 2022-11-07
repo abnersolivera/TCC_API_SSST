@@ -633,6 +633,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("IdCargo")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdEmpresa")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdSetor")
                         .HasColumnType("int");
 
@@ -667,6 +670,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("IdFuncionario");
 
                     b.HasIndex("IdCargo");
+
+                    b.HasIndex("IdEmpresa");
 
                     b.HasIndex("IdSetor");
 
@@ -893,6 +898,30 @@ namespace Infrastructure.Migrations
                     b.HasKey("IdPrestador");
 
                     b.ToTable("Prestador");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Riscos.FuncionarioRisco", b =>
+                {
+                    b.Property<int>("IdFuncionarioExames")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_FuncionarioRisco");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFuncionarioExames"), 1L, 1);
+
+                    b.Property<int>("IdFuncionario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdRisco")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdFuncionarioExames");
+
+                    b.HasIndex("IdFuncionario");
+
+                    b.HasIndex("IdRisco");
+
+                    b.ToTable("FuncionarioRisco");
                 });
 
             modelBuilder.Entity("Entities.Entities.Riscos.Risco", b =>
@@ -1270,6 +1299,12 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Entities.Empresas.Empresa", "Empresa")
+                        .WithMany("Funcionario")
+                        .HasForeignKey("IdEmpresa")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Entities.Entities.Setores.Setor", "Setor")
                         .WithMany("Funcionario")
                         .HasForeignKey("IdSetor")
@@ -1278,7 +1313,28 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("Cargo");
 
+                    b.Navigation("Empresa");
+
                     b.Navigation("Setor");
+                });
+
+            modelBuilder.Entity("Entities.Entities.Riscos.FuncionarioRisco", b =>
+                {
+                    b.HasOne("Entities.Entities.Funcionarios.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IdFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Entities.Riscos.Risco", "Risco")
+                        .WithMany()
+                        .HasForeignKey("IdRisco")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcionario");
+
+                    b.Navigation("Risco");
                 });
 
             modelBuilder.Entity("Entities.Entities.Riscos.Risco", b =>
@@ -1369,6 +1425,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("Cargo");
 
                     b.Navigation("EnderecoEmpresa");
+
+                    b.Navigation("Funcionario");
 
                     b.Navigation("PessoaEmpresa");
 

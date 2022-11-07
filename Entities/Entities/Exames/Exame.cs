@@ -30,4 +30,13 @@ namespace Entities.Entities.Exames
 
         public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
     }
+
+    public class ExameDetails
+    {
+        [NotMapped]
+        public List<Exame> Exame { get; set; }
+
+        [NotMapped]
+        public Details Details { get; set; } 
+    }
 }

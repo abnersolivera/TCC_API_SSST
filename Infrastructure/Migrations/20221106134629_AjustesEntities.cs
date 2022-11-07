@@ -5,10 +5,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class entities_juste_dev_net : Migration
+    public partial class AjustesEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "Nome_Usuario",
+                table: "AspNetUsers",
+                type: "nvarchar(100)",
+                maxLength: 100,
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "Empresa",
                 columns: table => new
@@ -232,6 +239,32 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EnderecoEmpresa",
+                columns: table => new
+                {
+                    id_EnderecoEmpresa = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdEndereco = table.Column<int>(type: "int", nullable: false),
+                    IdEmpresa = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnderecoEmpresa", x => x.id_EnderecoEmpresa);
+                    table.ForeignKey(
+                        name: "FK_EnderecoEmpresa_Empresa_IdEmpresa",
+                        column: x => x.IdEmpresa,
+                        principalTable: "Empresa",
+                        principalColumn: "id_Empresa",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EnderecoEmpresa_Endereco_IdEndereco",
+                        column: x => x.IdEndereco,
+                        principalTable: "Endereco",
+                        principalColumn: "id_Endereco",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Exame",
                 columns: table => new
                 {
@@ -323,7 +356,8 @@ namespace Infrastructure.Migrations
                     dataAdmissao_Funcionario = table.Column<DateTime>(type: "datetime2", nullable: false),
                     dataDemissao_Funcionario = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IdCargo = table.Column<int>(type: "int", nullable: false),
-                    IdSetor = table.Column<int>(type: "int", nullable: false)
+                    IdSetor = table.Column<int>(type: "int", nullable: false),
+                    IdEmpresa = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -335,6 +369,12 @@ namespace Infrastructure.Migrations
                         principalColumn: "id_Cargo",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
+                        name: "FK_Funcionario_Empresa_IdEmpresa",
+                        column: x => x.IdEmpresa,
+                        principalTable: "Empresa",
+                        principalColumn: "id_Empresa",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
                         name: "FK_Funcionario_Setor_IdSetor",
                         column: x => x.IdSetor,
                         principalTable: "Setor",
@@ -342,10 +382,108 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.NoAction);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EnderecoUnidade",
+                columns: table => new
+                {
+                    id_EnderecoUnidade = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdEndereco = table.Column<int>(type: "int", nullable: false),
+                    IdUnidade = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnderecoUnidade", x => x.id_EnderecoUnidade);
+                    table.ForeignKey(
+                        name: "FK_EnderecoUnidade_Endereco_IdEndereco",
+                        column: x => x.IdEndereco,
+                        principalTable: "Endereco",
+                        principalColumn: "id_Endereco",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EnderecoUnidade_Unidade_IdUnidade",
+                        column: x => x.IdUnidade,
+                        principalTable: "Unidade",
+                        principalColumn: "id_Unidade",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FuncionarioExames",
+                columns: table => new
+                {
+                    id_FuncionarioExames = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdFuncionario = table.Column<int>(type: "int", nullable: false),
+                    IdExame = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuncionarioExames", x => x.id_FuncionarioExames);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioExames_Exame_IdExame",
+                        column: x => x.IdExame,
+                        principalTable: "Exame",
+                        principalColumn: "id_Exame",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioExames_Funcionario_IdFuncionario",
+                        column: x => x.IdFuncionario,
+                        principalTable: "Funcionario",
+                        principalColumn: "id_Funcionario",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FuncionarioRisco",
+                columns: table => new
+                {
+                    id_FuncionarioRisco = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdFuncionario = table.Column<int>(type: "int", nullable: false),
+                    IdRisco = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuncionarioRisco", x => x.id_FuncionarioRisco);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioRisco_Funcionario_IdFuncionario",
+                        column: x => x.IdFuncionario,
+                        principalTable: "Funcionario",
+                        principalColumn: "id_Funcionario",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioRisco_Risco_IdRisco",
+                        column: x => x.IdRisco,
+                        principalTable: "Risco",
+                        principalColumn: "id_Risco",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cargo_IdEmpresa",
                 table: "Cargo",
                 column: "IdEmpresa");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnderecoEmpresa_IdEmpresa",
+                table: "EnderecoEmpresa",
+                column: "IdEmpresa");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnderecoEmpresa_IdEndereco",
+                table: "EnderecoEmpresa",
+                column: "IdEndereco");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnderecoUnidade_IdEndereco",
+                table: "EnderecoUnidade",
+                column: "IdEndereco");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnderecoUnidade_IdUnidade",
+                table: "EnderecoUnidade",
+                column: "IdUnidade");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Exame_IdPrestador",
@@ -358,9 +496,34 @@ namespace Infrastructure.Migrations
                 column: "IdCargo");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Funcionario_IdEmpresa",
+                table: "Funcionario",
+                column: "IdEmpresa");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Funcionario_IdSetor",
                 table: "Funcionario",
                 column: "IdSetor");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionarioExames_IdExame",
+                table: "FuncionarioExames",
+                column: "IdExame");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionarioExames_IdFuncionario",
+                table: "FuncionarioExames",
+                column: "IdFuncionario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionarioRisco_IdFuncionario",
+                table: "FuncionarioRisco",
+                column: "IdFuncionario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionarioRisco_IdRisco",
+                table: "FuncionarioRisco",
+                column: "IdRisco");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PessoaEmpresa_ApplicationUserId",
@@ -416,13 +579,16 @@ namespace Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Endereco");
+                name: "EnderecoEmpresa");
 
             migrationBuilder.DropTable(
-                name: "Exame");
+                name: "EnderecoUnidade");
 
             migrationBuilder.DropTable(
-                name: "Funcionario");
+                name: "FuncionarioExames");
+
+            migrationBuilder.DropTable(
+                name: "FuncionarioRisco");
 
             migrationBuilder.DropTable(
                 name: "PessoaEmpresa");
@@ -431,13 +597,22 @@ namespace Infrastructure.Migrations
                 name: "PrestadorEmpresa");
 
             migrationBuilder.DropTable(
-                name: "Risco");
+                name: "UsuarioEmpresa");
+
+            migrationBuilder.DropTable(
+                name: "Endereco");
 
             migrationBuilder.DropTable(
                 name: "Unidade");
 
             migrationBuilder.DropTable(
-                name: "UsuarioEmpresa");
+                name: "Exame");
+
+            migrationBuilder.DropTable(
+                name: "Funcionario");
+
+            migrationBuilder.DropTable(
+                name: "Risco");
 
             migrationBuilder.DropTable(
                 name: "Cargo");
@@ -450,6 +625,10 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Empresa");
+
+            migrationBuilder.DropColumn(
+                name: "Nome_Usuario",
+                table: "AspNetUsers");
         }
     }
 }

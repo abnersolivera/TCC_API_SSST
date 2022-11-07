@@ -61,7 +61,10 @@ namespace Infrastructure.Repository.Generics
         {
             using (var data = new ContextBase(_OptionsBuilder))
             {
-                return await data.Set<T>().ToListAsync();
+                int skip = 0;
+                int take = 1;
+                int count = await data.Set<T>().CountAsync();  
+                return await data.Set<T>().Skip(skip).Take(take).ToListAsync();
 
             }
         }

@@ -14,5 +14,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Exame Objeto);
 
         Task<List<Exame>> ListarExamesAtivo();
+
+        Task<ExameDetails> ListarExamesDetalhe();
     }
 }

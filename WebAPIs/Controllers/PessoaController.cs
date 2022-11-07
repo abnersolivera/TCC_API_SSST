@@ -59,7 +59,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Pessoa/Delete")]
-        public async Task<List<Notifies>> Delete(int pessoa)
+        public async Task<List<Notifies>> Delete([FromQuery] PessoaIdViewModel pessoa)
         {
             var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
             await _Ipessoa.Delete(pessoaMap);

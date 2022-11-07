@@ -48,7 +48,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Endereco/Delete")]
-        public async Task<List<Notifies>> Delete(int endereco)
+        public async Task<List<Notifies>> Delete([FromQuery] EnderecoIdViewModel endereco)
         {
             var enderecoMap = _Imapper.Map<Endereco>(endereco);
             await _IEndereco.Delete(enderecoMap);

@@ -12,5 +12,7 @@ namespace Domain.Interfaces
     public interface IExame : IGeneric<Exame>
     {
         Task<List<Exame>> ListarExame(Expression<Func<Exame, bool>> exExame);
+
+        Task<ExameDetails> Listar();
     }
 }
