@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Atendimentos;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Empresas
@@ -6,6 +7,7 @@ namespace Entities.Entities.Empresas
     [Table("AtendimentoEmpresa")]
     public class AtendimentoEmpresa : Notifies
     {
+        [Key()]
         [Column("id_AtendimentoEmpresa")]
         public int IdAtendimentoEmpresa { get; set; }
 

@@ -1,3 +1,4 @@
+#region Using
 using AutoMapper;
 using Domain.Interfaces;
 using Domain.Interfaces.Generics;
@@ -22,6 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebAPIs.Models;
 using WebAPIs.Token;
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +70,10 @@ builder.Services.AddSingleton<IUser, RepositoryUser>();
 builder.Services.AddSingleton<IFuncionarioRisco, RepositoryFuncionarioRisco>();
 builder.Services.AddSingleton<IAtendimento, RepositoryAtendimento>();
 builder.Services.AddSingleton<IAgendamento, RepositoryAgendamento>();
+builder.Services.AddSingleton<IAtendimentoEmpresa, RepositoryAtendimentoEmpresa>();
+builder.Services.AddSingleton<IAtendimentoExames, RepositoryAtendimentoExames>();
+builder.Services.AddSingleton<IAtendimentoFuncionario, RepositoryAtendimentoFuncionario>();
+builder.Services.AddSingleton<IAtendimentoRiscos, RepositoryAtendimentoRiscos>();
 #endregion
 
 #region Serviço Dominio
@@ -121,8 +127,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 #region AutoMapper
 var config = new AutoMapper.MapperConfiguration(cfg =>
 {
-    cfg.CreateMap<PessoaViewModel, Pessoa>();
-    cfg.CreateMap<Pessoa, PessoaViewModel>();
+    cfg.CreateMap<Pessoa, PessoaViewModel>().ReverseMap();
     cfg.CreateMap<PrestadorViewModel, Prestador>();
     cfg.CreateMap<Prestador, PrestadorViewModel>();
     cfg.CreateMap<EmpresaViewModel, Empresa>();
@@ -177,8 +182,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Risco, RiscoIdViewModel>();
     cfg.CreateMap<FuncionarioRiscoViewModel, FuncionarioRisco>();
     cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>();
-    cfg.CreateMap<ExameDetailsViewModel, ExameDetails>()/*.ForMember(edv => edv.Exame, m => m.MapFrom(ed => ed.ExameViewModel)).ForMember(edv => edv.Details, m => m.MapFrom(ed => ed.ExameViewModel))*/;
-    cfg.CreateMap<ExameDetails, ExameDetailsViewModel>()/*.ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Exame)).ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Details))*/;
+    cfg.CreateMap<ExameDetails, ExameDetailsViewModel>().ReverseMap()/*.ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Exame)).ForMember(edv => edv.ExameViewModel, m => m.MapFrom(ed => ed.Details))*/;
     cfg.CreateMap<AtendimentoViewModel, Atendimento>();
     cfg.CreateMap<Atendimento, AtendimentoViewModel>();
     cfg.CreateMap<AtendimentoIdViewModel, Atendimento>();
@@ -186,7 +190,11 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<AgendamentoViewModel, Agendamento>();
     cfg.CreateMap<Agendamento, AgendamentoViewModel>();
     cfg.CreateMap<AgendamentoIdViewModel, Agendamento>();
-    cfg.CreateMap<Agendamento, AgendamentoIdViewModel>();    
+    cfg.CreateMap<Agendamento, AgendamentoIdViewModel>();
+    cfg.CreateMap<AtendimentoEmpresa, AtendimentoEmpresaViewModel>().ReverseMap();
+    cfg.CreateMap<AtendimentoFuncionario, AtendimentoFuncionarioViewModel>().ReverseMap();
+    cfg.CreateMap<AtendimentoExames, AtendimentoExamesViewModel>().ReverseMap();
+    cfg.CreateMap<AtendimentoRiscos, AtendimentoRiscosViewModel>().ReverseMap();
 });
 
 

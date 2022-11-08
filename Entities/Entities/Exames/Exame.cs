@@ -29,6 +29,7 @@ namespace Entities.Entities.Exames
         public virtual Prestador Prestador { get; set; }
 
         public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
+        public ICollection<AtendimentoExames> AtendimentoExames { get; set; }
     }
 
     public class ExameDetails

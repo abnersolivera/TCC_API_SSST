@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Atendimentos;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Entities.Exames
@@ -6,8 +7,9 @@ namespace Entities.Entities.Exames
     [Table("AtendimentoExames")]
     public class AtendimentoExames : Notifies
     {
+        [Key()]
         [Column("id_AtendimentoEmpresa")]
-        public int IdAtendimentoEmpresa { get; set; }
+        public int IdAtendimentoExames { get; set; }
 
         [ForeignKey("Exame")]
         public int IdExame { get; set; }

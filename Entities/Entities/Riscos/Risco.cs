@@ -27,5 +27,8 @@ namespace Entities.Entities.Riscos
         [ForeignKey("Prestador")]
         public int IdPrestador { get; set; }
         public virtual Prestador Prestador { get; set; }
+
+        public ICollection<FuncionarioRisco> FuncionarioRisco { get; set; }
+        public ICollection<AtendimentoRiscos> AtendimentoRiscos { get; set; }
     }
 }
