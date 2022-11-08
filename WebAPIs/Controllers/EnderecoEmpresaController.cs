@@ -30,45 +30,5 @@ namespace WebAPIs.Controllers
             await _IEnderecoEmpresa.Add(enderecoEmpresaMap);
             return enderecoEmpresaMap.Notitycoes;
         }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPatch("/api/EnderecoEmpresa/Update")]
-        public async Task<List<Notifies>> Update(EnderecoEmpresaViewModel enderecoEmpresa)
-        {
-            var enderecoEmpresaMap = _IMapper.Map<EnderecoEmpresa>(enderecoEmpresa);
-            await _IEnderecoEmpresa.Update(enderecoEmpresaMap);
-            return enderecoEmpresaMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpDelete("/api/EnderecoEmpresa/Delete")]
-        public async Task<List<Notifies>> Delete(EnderecoEmpresaViewModel enderecoEmpresa)
-        {
-            var enderecoEmpresaMap = _IMapper.Map<EnderecoEmpresa>(enderecoEmpresa);
-            await _IEnderecoEmpresa.Delete(enderecoEmpresaMap);
-            return enderecoEmpresaMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPost("/api/EnderecoEmpresa/GetEntityById")]
-        public async Task<EnderecoEmpresaViewModel> GetEntityById(EnderecoEmpresaViewModel enderecoEmpresa)
-        {
-            var enderecoEmpresas = await _IEnderecoEmpresa.GetEntityById(enderecoEmpresa.IdEnderecoEmpresa);
-            var enderecoEmpresaMap = _IMapper.Map<EnderecoEmpresaViewModel>(enderecoEmpresas);
-            return enderecoEmpresaMap;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpGet("/api/EnderecoEmpresa/List")]
-        public async Task<List<EnderecoEmpresaViewModel>> List()
-        {
-            var enderecoEmpresa = await _IEnderecoEmpresa.List();
-            var enderecoEmpresaMap = _IMapper.Map<List<EnderecoEmpresaViewModel>>(enderecoEmpresa);
-            return enderecoEmpresaMap;
-        }
     }
 }
