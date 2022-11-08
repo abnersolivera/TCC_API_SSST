@@ -74,5 +74,7 @@ namespace Entities.Entities.Empresas
 
         public ICollection<Funcionario> Funcionario { get; set; }
 
+        public ICollection<AtendimentoEmpresa> AtendimentoEmpresa { get; set; }
+
     }
 }

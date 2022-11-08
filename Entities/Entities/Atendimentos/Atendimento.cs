@@ -1,4 +1,8 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Empresas;
+using Entities.Entities.Exames;
+using Entities.Entities.Funcionarios;
+using Entities.Entities.Riscos;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -80,5 +84,13 @@ namespace Entities.Entities.Atendimentos
 
         [Column("dataAlteracao_Atendimento")]
         public DateTime DataAlteracao { get; set; }
+
+        public ICollection<AtendimentoEmpresa> AtendimentoEmpresa { get; set; }
+
+        public ICollection<AtendimentoExames> AtendimentoExames { get; set; }
+
+        public ICollection<AtendimentoFuncionario> AtendimentoFuncionario { get; set; }
+
+        public ICollection<AtendimentoRiscos> AtendimentoRiscos { get; set; }
     }
 }

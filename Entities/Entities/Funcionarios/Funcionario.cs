@@ -1,6 +1,7 @@
 ﻿using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Exames;
+using Entities.Entities.Riscos;
 using Entities.Entities.Setores;
 using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
@@ -73,6 +74,10 @@ namespace Entities.Entities.Funcionarios
         public virtual Empresa Empresa { get; set; }
 
         public ICollection<FuncionarioExames> FuncionarioExames { get; set; }
+
+        public ICollection<FuncionarioRisco> FuncionarioRisco { get; set; }
+
+        public ICollection<AtendimentoExames> AtendimentoExames { get; set; }
 
     }
 }
