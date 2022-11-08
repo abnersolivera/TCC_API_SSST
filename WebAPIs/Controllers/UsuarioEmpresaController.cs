@@ -30,45 +30,5 @@ namespace WebAPIs.Controllers
             await _IUsuarioEmpresa.Add(usuarioEmpresaMap);
             return usuarioEmpresaMap.Notitycoes;
         }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPatch("/api/UsuarioEmpresa/Update")]
-        public async Task<List<Notifies>> Update(UsuarioEmpresaViewModel usuarioEmpresa)
-        {
-            var usuarioEmpresaMap = _IMapper.Map<UsuarioEmpresa>(usuarioEmpresa);
-            await _IUsuarioEmpresa.Update(usuarioEmpresaMap);
-            return usuarioEmpresaMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpDelete("/api/UsuarioEmpresa/Delete")]
-        public async Task<List<Notifies>> Delete(UsuarioEmpresaViewModel usuarioEmpresa)
-        {
-            var usuarioEmpresaMap = _IMapper.Map<UsuarioEmpresa>(usuarioEmpresa);
-            await _IUsuarioEmpresa.Delete(usuarioEmpresaMap);
-            return usuarioEmpresaMap.Notitycoes;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpPost("/api/UsuarioEmpresa/GetEntityById")]
-        public async Task<UsuarioEmpresaViewModel> GetEntityById(UsuarioEmpresaViewModel usuarioEmpresa)
-        {
-            var usuarioEmpresas = await _IUsuarioEmpresa.GetEntityById(usuarioEmpresa.IdUsuarioEmpresa);
-            var usuarioEmpresaMap = _IMapper.Map<UsuarioEmpresaViewModel>(usuarioEmpresas);
-            return usuarioEmpresaMap;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpGet("/api/UsuarioEmpresa/List")]
-        public async Task<List<UsuarioEmpresaViewModel>> List()
-        {
-            var usuarioEmpresa = await _IUsuarioEmpresa.List();
-            var usuarioEmpresaMap = _IMapper.Map<List<UsuarioEmpresaViewModel>>(usuarioEmpresa);
-            return usuarioEmpresaMap;
-        }
     }
 }
