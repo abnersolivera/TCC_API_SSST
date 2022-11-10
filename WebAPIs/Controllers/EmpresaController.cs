@@ -39,31 +39,31 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Empresa/Add")]
-        public async Task<List<Notifies>> Add(EmpresaViewModel empresa)
-        {
+        public async Task<Notifies2<Empresa>> Add(EmpresaViewModel empresa)
+        {            
             var empresaMap = _Imapper.Map<Empresa>(empresa);
-            await _IServiceEmpresa.Adicionar(empresaMap);
-            return empresaMap.Notitycoes;
+            var result = await _IServiceEmpresa.Adicionar(empresaMap);
+            return result;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Empresa/Update")]
-        public async Task<List<Notifies>> Update(EmpresaViewModel empresa)
+        public async Task<Notifies2<Empresa>> Update(EmpresaViewModel empresa)
         {
             var empresaMap = _Imapper.Map<Empresa>(empresa);
-            await _IServiceEmpresa.Atualizar(empresaMap);
-            return empresaMap.Notitycoes;
+            var result = await _IServiceEmpresa.Atualizar(empresaMap);
+            return result;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Empresa/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] EmpresaIdViewModel empresa)
+        public async Task<Empresa> Delete([FromQuery] EmpresaIdViewModel empresa)
         {
             var empresaMap = _Imapper.Map<Empresa>(empresa);
             await _IEmpresa.Delete(empresaMap);
-            return empresaMap.Notitycoes;
+            return empresaMap;
         }
 
         [Authorize]

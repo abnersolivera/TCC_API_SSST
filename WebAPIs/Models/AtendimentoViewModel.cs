@@ -11,9 +11,9 @@ namespace WebAPIs.Models
 
         public DateTime DataAtendimento { get; set; }
 
-        public DateTime DataAgendamentoAtendimento { get; set; }
+        public DateTime? DataAgendamentoAtendimento { get; set; }
 
-        public DateTime HoraInicialAtendimento { get; set; }
+        public DateTime? HoraInicialAtendimento { get; set; }
 
         public DateTime? HoraFinalAtendimento { get; set; }
 
@@ -48,6 +48,7 @@ namespace WebAPIs.Models
         public DateTime DataCadastro { get; set; }
 
         public DateTime DataAlteracao { get; set; }
+
     }
 
     public class AtendimentoIdViewModel
@@ -83,4 +84,9 @@ namespace WebAPIs.Models
         public int IdAgendamento { get; set; }
     }
 
+
 }
+
+
+
+
