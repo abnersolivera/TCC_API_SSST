@@ -6,17 +6,20 @@ namespace WebAPIs.Models
 {
     public class EmpresaViewModel
     {
-
+        
         public int IdEmpresa { get; set; }
 
         public bool SituacaoEmpresa { get; set; }
 
         public TipoCliente? TipoCliente { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         public string NomeAbreviadoEmpresa { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         public string RazaoSocialEmpresa { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         public string? CnpjEmpresa { get; set; }
 
         public string? CpfEmpresa { get; set; }

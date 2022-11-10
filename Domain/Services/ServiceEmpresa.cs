@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
+using Entities.Entities;
 using Entities.Entities.Empresas;
 
 namespace Domain.Services
@@ -13,26 +14,36 @@ namespace Domain.Services
             _IEmpresa = iEmpresa;
         }
 
-        public async Task Adicionar(Empresa Objeto)
+        public async Task<Notifies2<Empresa>> Adicionar(Empresa empresa)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.RazaoSocialEmpresa, "RazaoSocialEmpresa");
+            var validateResult = new Notifies2<Empresa> { Value = empresa };
+
+
+            var validaNome = (validateResult.ValidarPropriedadeString(empresa.RazaoSocialEmpresa, "RazaoSocialEmpresa"));
+
             if (validaNome)
             {
-                Objeto.DataCadastro = DateTime.Now;
-                Objeto.DataAlteracao = DateTime.Now;
-                Objeto.SituacaoEmpresa = true;
-                await _IEmpresa.Add(Objeto);
+                empresa.DataCadastro = DateTime.Now;
+                empresa.DataAlteracao = DateTime.Now;
+                empresa.SituacaoEmpresa = true;
+                await _IEmpresa.Add(empresa);
             }
+
+            return validateResult;
         }
 
-        public async Task Atualizar(Empresa Objeto)
+        public async Task<Notifies2<Empresa>> Atualizar(Empresa empresa)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.RazaoSocialEmpresa, "RazaoSocialEmpresa");
+            var validateResult = new Notifies2<Empresa> { Value = empresa };
+
+            var validaNome = validateResult.ValidarPropriedadeString(empresa.RazaoSocialEmpresa, "RazaoSocialEmpresa");
             if (validaNome)
             {
-                Objeto.DataAlteracao = DateTime.Now;
-                await _IEmpresa.Update(Objeto);
+                empresa.DataAlteracao = DateTime.Now;
+                await _IEmpresa.Update(empresa);
             }
+
+            return validateResult;
         }
 
         public async Task<List<Empresa>> ListarEmpresaAtivas()

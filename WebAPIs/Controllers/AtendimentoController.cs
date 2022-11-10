@@ -42,6 +42,9 @@ namespace WebAPIs.Controllers
         [HttpPost("/api/Atendimento/Add")]
         public async Task<List<Notifies>> Add(AtendimentoViewModel atendimento)
         {
+            var IdLogado = RetornaIdUsuarioLogado().Result;
+            var user = await _IAtendimento.ListarUserById(IdLogado.ToString());            
+            atendimento.IdUsuarioAtendimento = user.Id;
             var atendimentoMap = _IMapper.Map<Atendimento>(atendimento);
             await _IServiceAtendimento.Adicionar(atendimentoMap);
             return atendimentoMap.Notitycoes;

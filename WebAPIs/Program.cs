@@ -21,6 +21,7 @@ using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebAPIs.Converters;
 using WebAPIs.Models;
 using WebAPIs.Token;
 #endregion
@@ -30,7 +31,10 @@ var builder = WebApplication.CreateBuilder(args);
 #region ServicesContainer
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => 
+{ 
+    options.JsonSerializerOptions.Converters.Add(new DateConverter()); 
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

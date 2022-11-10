@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Entities.Entities;
 using Entities.Entities.Atendimentos;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
@@ -14,6 +15,15 @@ namespace Infrastructure.Repository.Repositories
         public RepositoryAtendimento()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
+        }
+
+        public async Task<ApplicationUser> ListarUserById(string Id)
+        {
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.Set<ApplicationUser>().FindAsync(Id);
+
+            }
         }
     }
 }

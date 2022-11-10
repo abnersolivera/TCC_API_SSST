@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Entities.Empresas
 {
     [Table("Empresa")]
-    public class Empresa : Notifies
+    public class Empresa
     {
         [Key()]
         [Column("id_Empresa")]
