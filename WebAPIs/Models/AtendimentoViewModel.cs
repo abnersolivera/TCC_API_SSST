@@ -50,6 +50,51 @@ namespace WebAPIs.Models
         public DateTime DataAlteracao { get; set; }
 
     }
+    public class AtendimentoDTO
+    {
+        public int IdAtendimento { get; set; }
+
+        public string DataAtendimento { get; set; }
+
+        public string? DataAgendamentoAtendimento { get; set; }
+
+        public string? HoraInicialAtendimento { get; set; }
+
+        public string? HoraFinalAtendimento { get; set; }
+
+        public string? HoraAgendadaAtendimento { get; set; }
+
+        public TipoExame CompromissoAtendimento { get; set; }
+
+        public TipoCompromisso TipoCompromissoAtendimento { get; set; }
+
+        public string RazaoSocialAtendimento { get; set; }
+
+        public string FuncionarioAtendimento { get; set; }
+
+        public string RGAtendimento { get; set; }
+
+        public string CPFAtendimento { get; set; }
+
+        public string? MatriculaAtendimento { get; set; }
+
+        public string UnidadeAtendimento { get; set; }
+
+        public string SetorAtendimento { get; set; }
+
+        public string CargoAtendimento { get; set; }
+
+        public string? AtendimentoAtendimento { get; set; }
+
+        public string IdUsuarioAtendimento { get; set; }
+
+        public TipoAtendimento StatusAtendimento { get; set; }
+
+        public string DataCadastro { get; set; }
+
+        public string DataAlteracao { get; set; }
+
+    }
 
     public class AtendimentoIdViewModel
     {
@@ -77,6 +122,29 @@ namespace WebAPIs.Models
         public DateTime DataCadastro { get; set; }
 
         public DateTime DataAlteracao { get; set; }
+    }
+
+    public class AgendamentoDTO
+    {
+        public int IdAgendamento { get; set; }
+
+        public string DataAgendamento { get; set; }
+
+        public string HoraAgendada { get; set; }
+
+        public TipoExame CompromissoAgendamento { get; set; }
+
+        public TipoCompromisso TipoCompromissoAgendamentoo { get; set; }
+
+        public string RazaoSocialAgendamento { get; set; }
+
+        public string FuncionarioAgendamentoo { get; set; }
+
+        public TipoAtendimento StatusAgendamento { get; set; }
+
+        public string DataCadastro { get; set; }
+
+        public string DataAlteracao { get; set; }
     }
 
     public class AgendamentoIdViewModel

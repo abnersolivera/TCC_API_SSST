@@ -68,11 +68,19 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/GetEntityById")]
-        public async Task<ExameViewModel> GetEntityById([FromQuery] ExameIdViewModel exame)
+        public async Task<IActionResult> GetEntityById([FromQuery] ExameIdViewModel exame)
         {
-            var exames = await _IExame.GetEntityById(exame.IdExame);
-            var exameMap = _IMapper.Map<ExameViewModel>(exames);
-            return exameMap;
+            try
+            {
+                var exames = await _IExame.GetEntityById(exame.IdExame);
+                var exameMap = _IMapper.Map<ExameViewModel>(exames);
+                return Ok(exameMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
@@ -98,11 +106,11 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/ListarExamesDetalhe")]
-        public async Task<List<ExameDetailsViewModel>> ListarExamesDetalhe()
+        public async Task<ExameDetailsViewModel> ListarExamesDetalhe()
         {
             var exame = await _IServiceExame.ListarExamesDetalhe();
-            //var exameMap = _IMapper.Map<List<ExameDetailsViewModel>>(exame);
-            return null;
+            var exameMap = _IMapper.Map<ExameDetailsViewModel>(exame);
+            return exameMap;
         }
     }
 }

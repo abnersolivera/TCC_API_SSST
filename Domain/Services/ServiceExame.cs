@@ -14,10 +14,7 @@ namespace Domain.Services
     {
         private readonly IExame _IExame;
 
-        public ServiceExame(IExame iExame)
-        {
-            _IExame = iExame;
-        }
+        public ServiceExame(IExame iExame) => _IExame = iExame;
 
         public async Task Adicionar(Exame Objeto)
         {
@@ -41,14 +38,8 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Exame>> ListarExamesAtivo()
-        {
-            return await _IExame.ListarExame(n => n.SituacaoExame);
-        }
+        public async Task<List<Exame>> ListarExamesAtivo() => await _IExame.ListarExame(n => n.SituacaoExame);
 
-        public async Task<ExameDetails> ListarExamesDetalhe()
-        {
-            return await _IExame.Listar();
-        } 
+        public async Task<ExameDetails> ListarExamesDetalhe() => await _IExame.Listar();
     }
 }
