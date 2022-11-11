@@ -28,11 +28,19 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Agendamento/Add")]
-        public async Task<List<Notifies>> Add(AgendamentoViewModel agendamento)
+        public async Task<IActionResult> Add(AgendamentoViewModel agendamento)
         {
-            var agendamentoMap = _IMapper.Map<Agendamento>(agendamento);
-            await _IServiceAgendamento.Adicionar(agendamentoMap);
-            return agendamentoMap.Notitycoes;
+            try
+            {
+                var agendamentoMap = _IMapper.Map<Agendamento>(agendamento);
+                await _IServiceAgendamento.Adicionar(agendamentoMap);
+                return Ok(agendamentoMap);
+            }
+            catch(Exception ex) 
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

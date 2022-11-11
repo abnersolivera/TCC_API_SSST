@@ -44,11 +44,6 @@ namespace WebAPIs.Models
         public string IdUsuarioAtendimento { get; set; }
 
         public TipoAtendimento StatusAtendimento { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
-
     }
     public class AtendimentoDTO
     {
@@ -111,17 +106,14 @@ namespace WebAPIs.Models
 
         public TipoExame CompromissoAgendamento { get; set; }
 
-        public TipoCompromisso TipoCompromissoAgendamentoo { get; set; }
+        public TipoCompromisso TipoCompromissoAgendamento { get; set; }
 
         public string RazaoSocialAgendamento { get; set; }
 
-        public string FuncionarioAgendamentoo { get; set; }
+        public string FuncionarioAgendamento { get; set; }
 
         public TipoAtendimento StatusAgendamento { get; set; }
 
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
     }
 
     public class AgendamentoDTO
@@ -134,11 +126,11 @@ namespace WebAPIs.Models
 
         public TipoExame CompromissoAgendamento { get; set; }
 
-        public TipoCompromisso TipoCompromissoAgendamentoo { get; set; }
+        public TipoCompromisso TipoCompromissoAgendamento { get; set; }
 
         public string RazaoSocialAgendamento { get; set; }
 
-        public string FuncionarioAgendamentoo { get; set; }
+        public string FuncionarioAgendamento { get; set; }
 
         public TipoAtendimento StatusAgendamento { get; set; }
 

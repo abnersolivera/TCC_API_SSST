@@ -26,7 +26,7 @@ namespace Entities.Entities.Atendimentos
         public TipoExame CompromissoAgendamento { get; set; }
 
         [Column("tipoCompromisso_Agendamento")]
-        public TipoCompromisso? TipoCompromissoAgendamentoo { get; set; }
+        public TipoCompromisso? TipoCompromissoAgendamento { get; set; }
 
         [Column("razaoSocial_Agendamento")]
         [MaxLength(250)]
@@ -34,7 +34,7 @@ namespace Entities.Entities.Atendimentos
 
         [Column("funcionario_Agendamento")]
         [MaxLength(100)]
-        public string FuncionarioAgendamentoo { get; set; }
+        public string FuncionarioAgendamento { get; set; }
 
         [Column("status_Agendamento")]
         public TipoAtendimento StatusAgendamento { get; set; }
