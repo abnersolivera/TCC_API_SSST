@@ -75,7 +75,10 @@ namespace WebAPIs.Controllers
         public async Task<IActionResult> AdicionaUsuarioIdentity([FromBody] Login login)
         {
             if (string.IsNullOrWhiteSpace(login.Email) || string.IsNullOrWhiteSpace(login.Senha))
-                return Ok("Falta alguns dados");
+            {
+                Response.StatusCode = 400;
+                return BadRequest("Falta alguns dados");
+            }
 
             var user = new ApplicationUser
             {
@@ -90,7 +93,8 @@ namespace WebAPIs.Controllers
 
             if (resultado.Errors.Any())
             {
-                return Ok(resultado.Errors);
+                Response.StatusCode = 400;
+                return BadRequest(resultado.Errors);
             }
 
             //Geração de Confirmação caso precise
@@ -105,7 +109,10 @@ namespace WebAPIs.Controllers
             if (resultado2.Succeeded)
                 return Ok("Usuário Adicionado com Sucesso");
             else
-                return Ok("Erro ao confirmar usuários");
+            {
+                Response.StatusCode = 400;
+                return BadRequest("Erro ao confirmar usuários");
+            }
 
         }
 

@@ -50,8 +50,6 @@ namespace WebAPIs.Controllers
             return atendimentoMap.Notitycoes;
         }
 
-
-
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Atendimento/Update")]
@@ -75,20 +73,20 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Atendimento/GetEntityById")]
-        public async Task<AtendimentoViewModel> GetEntityById([FromQuery] AtendimentoIdViewModel atendimento)
+        public async Task<AtendimentoDTO> GetEntityById([FromQuery] AtendimentoIdViewModel atendimento)
         {
             var atendimentos = await _IAtendimento.GetEntityById(atendimento.IdAtendimento);
-            var atendimentoMap = _IMapper.Map<AtendimentoViewModel>(atendimentos);
+            var atendimentoMap = _IMapper.Map<AtendimentoDTO>(atendimentos);
             return atendimentoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Atendimento/List")]
-        public async Task<List<AtendimentoViewModel>> List()
+        public async Task<List<AtendimentoDTO>> List()
         {
             var atendimento = await _IAtendimento.List();
-            var atendimentoMap = _IMapper.Map<List<AtendimentoViewModel>>(atendimento);
+            var atendimentoMap = _IMapper.Map<List<AtendimentoDTO>>(atendimento);
             return atendimentoMap;
         }
 

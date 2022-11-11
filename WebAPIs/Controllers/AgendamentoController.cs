@@ -68,10 +68,10 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Agendamento/List")]
-        public async Task<List<AgendamentoViewModel>> List()
+        public async Task<List<AgendamentoDTO>> List()
         {
             var agendamento = await _IAgendamento.List();
-            var agendamentoMap = _IMapper.Map<List<AgendamentoViewModel>>(agendamento);
+            var agendamentoMap = _IMapper.Map<List<AgendamentoDTO>>(agendamento);
             return agendamentoMap;
         }
     }
