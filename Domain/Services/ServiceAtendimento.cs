@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿
+using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
 using Entities.Entities.Atendimentos;
 using Entities.Entities.Pessoas;

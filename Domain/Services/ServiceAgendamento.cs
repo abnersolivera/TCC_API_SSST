@@ -20,7 +20,7 @@ namespace Domain.Services
 
         public async Task Adicionar(Agendamento Objeto)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAgendamentoo, "FuncionarioAgendamentoo");
+            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAgendamento, "FuncionarioAgendamentoo");
             if (validaNome)
             {
                 Objeto.DataCadastro = DateTime.Now;
@@ -31,7 +31,7 @@ namespace Domain.Services
 
         public async Task Atualizar(Agendamento Objeto)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAgendamentoo, "FuncionarioAgendamentoo");
+            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAgendamento, "FuncionarioAgendamentoo");
             if (validaNome)
             {
                 Objeto.DataAlteracao = DateTime.Now;
