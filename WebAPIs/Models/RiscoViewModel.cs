@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Entities.Enums;
 
 namespace WebAPIs.Models
 {
@@ -10,6 +11,8 @@ namespace WebAPIs.Models
         public bool SituacaoRisco { get; set; }
 
         public string NomeRisco { get; set; }
+
+        public TipoRisco TipoRisco { get; set; }
 
         public DateTime DataCadastro { get; set; }
 

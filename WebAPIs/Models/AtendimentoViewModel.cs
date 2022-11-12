@@ -45,6 +45,7 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAtendimento { get; set; }
     }
+
     public class AtendimentoDTO
     {
         public int IdAtendimento { get; set; }
@@ -102,8 +103,6 @@ namespace WebAPIs.Models
 
         public DateTime DataAgendamento { get; set; }
 
-        public DateTime HoraAgendada { get; set; }
-
         public TipoExame CompromissoAgendamento { get; set; }
 
         public TipoCompromisso TipoCompromissoAgendamento { get; set; }
@@ -121,8 +120,6 @@ namespace WebAPIs.Models
         public int IdAgendamento { get; set; }
 
         public string DataAgendamento { get; set; }
-
-        public string HoraAgendada { get; set; }
 
         public TipoExame CompromissoAgendamento { get; set; }
 
@@ -143,8 +140,6 @@ namespace WebAPIs.Models
     {
         public int IdAgendamento { get; set; }
     }
-
-
 }
 
 
