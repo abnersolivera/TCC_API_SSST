@@ -1,4 +1,5 @@
 ﻿using Entities.Entities.Prestadores;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,9 @@ namespace Entities.Entities.Riscos
         [Column("nome_Risco")]
         [MaxLength(255)]
         public string NomeRisco { get; set; }
+
+        [Column("tipo_Risco")]
+        public TipoRisco TipoRisco { get; set; }
 
         [Column("dataCadastro_Risco")]
         public DateTime DataCadastro { get; set; }
