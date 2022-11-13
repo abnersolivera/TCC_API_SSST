@@ -6,10 +6,6 @@ namespace WebAPIs.Models
 {
     public class UserViewModel
     {
-        public string Id { get; set; }
-
-        public bool StatusUsuario { get; set; }
-
         public string? CaminhoImagem { get; set; }
 
         public string? Nome { get; set; }

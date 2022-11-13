@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIs", "WebAPIs\WebAPIs.csproj", "{532EBAC3-A817-459A-8C66-019CB73A0DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectAPISSST", "TestProjectAPISSST\TestProjectAPISSST.csproj", "{5AE0CC4B-B35E-441D-B55A-CB6A97BFD360}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectAPISSST", "TestProjectAPISSST\TestProjectAPISSST.csproj", "{5AE0CC4B-B35E-441D-B55A-CB6A97BFD360}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

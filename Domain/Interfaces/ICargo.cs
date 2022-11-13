@@ -7,5 +7,7 @@ namespace Domain.Interfaces
     public interface ICargo : IGeneric<Cargo>
     {
         Task<List<Cargo>> ListarCargo(Expression<Func<Cargo, bool>> exCargo);
+
+        Task<List<Cargo>> Listar(int id);
     }
 }

@@ -4,8 +4,6 @@ namespace WebAPIs.Models
 {
     public class PrestadorViewModel
     {
-        public int IdPrestador { get; set; }
-
         public TipoSegmento? TipoPrestador { get; set; }
 
         public bool SitucaoPrestador { get; set; }
@@ -39,10 +37,6 @@ namespace WebAPIs.Models
         public string? cnpj_Prestador { get; set; }
 
         public string? cpf_Prestador { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
     }
     public class PrestadorIdViewModel
     {

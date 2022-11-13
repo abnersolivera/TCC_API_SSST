@@ -41,9 +41,9 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Cargo>> ListarCargoAtivo()
-        {
-            return await _ICargo.ListarCargo(n => n.SituacaoCargo);
-        }
+        public async Task<List<Cargo>> ListarCargoAtivo() => await _ICargo.ListarCargo(n => n.SituacaoCargo);
+
+        public async Task<List<Cargo>> ListarCargoEmpresa(int id) => await _ICargo.Listar(id);
+
     }
 }

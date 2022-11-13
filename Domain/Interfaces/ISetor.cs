@@ -7,5 +7,7 @@ namespace Domain.Interfaces
     public interface ISetor : IGeneric<Setor>
     {
         Task<List<Setor>> ListarSetor(Expression<Func<Setor, bool>> exSetor);
+
+        Task<List<Setor>> Listar(int id);
     }
 }

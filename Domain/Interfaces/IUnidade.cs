@@ -7,5 +7,7 @@ namespace Domain.Interfaces
     public interface IUnidade : IGeneric<Unidade>
     {
         Task<List<Unidade>> ListarUnidade(Expression<Func<Unidade, bool>> exUnidade);
+
+        Task<List<Unidade>> Listar(int id);
     }
 }

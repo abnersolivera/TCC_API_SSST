@@ -7,10 +7,6 @@ namespace WebAPIs.Models
 {
     public class ExameViewModel
     {
-        public int IdExame { get; set; }
-
-        public bool SituacaoExame { get; set; }
-
         public string NomeExame { get; set; }
 
         public DateTime DataCadastro { get; set; }

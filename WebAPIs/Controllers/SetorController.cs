@@ -95,5 +95,15 @@ namespace WebAPIs.Controllers
             var setorMap = _Imapper.Map<List<SetorViewModel>>(setor);
             return setorMap;
         }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Setor/ListarSetorEmpresa")]
+        public async Task<List<SetorViewModel>> ListarSetorEmpresa([FromQuery] int idEmpresa)
+        {
+            var setor = await _IServiceSetor.ListarSetorEmpresa(idEmpresa);
+            var setorMap = _Imapper.Map<List<SetorViewModel>>(setor);
+            return setorMap;
+        }
     }
 }

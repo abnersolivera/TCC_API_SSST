@@ -15,5 +15,8 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Cargo Objeto);
 
         Task<List<Cargo>> ListarCargoAtivo();
+
+        Task<List<Cargo>> ListarCargoEmpresa(int id);
     }
+
 }

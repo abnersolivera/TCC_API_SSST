@@ -5,12 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WebAPIs.Models
 {
     public class EmpresaViewModel
-    {
-        
-        public int IdEmpresa { get; set; }
-
-        public bool SituacaoEmpresa { get; set; }
-
+    {    
         public TipoCliente? TipoCliente { get; set; }
 
         [Required(AllowEmptyStrings = false)]
@@ -18,8 +13,7 @@ namespace WebAPIs.Models
 
         [Required(AllowEmptyStrings = false)]
         public string RazaoSocialEmpresa { get; set; }
-
-        [Required(AllowEmptyStrings = false)]
+        
         public string? CnpjEmpresa { get; set; }
 
         public string? CpfEmpresa { get; set; }
@@ -31,10 +25,6 @@ namespace WebAPIs.Models
         public DateTime? DataContratoEmpresa { get; set; }
 
         public string? NumeroContratoEmpresa { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
     }
 
     public class EmpresaIdViewModel
