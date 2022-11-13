@@ -14,5 +14,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Unidade Objeto);
 
         Task<List<Unidade>> ListarUnidadeAtivas();
+
+        Task<List<Unidade>> ListarUnidadeEmpresa(int id);
     }
 }

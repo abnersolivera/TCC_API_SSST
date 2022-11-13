@@ -21,6 +21,24 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
+        public async Task<List<Setor>> Listar(int id)
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+
+            return await ( from s in banco.Setor
+                           join e in banco.Empresa on s.IdEmpresa equals e.IdEmpresa
+                           where id.Equals(s.IdEmpresa)
+                           select new Setor 
+                                      {
+                                        IdSetor = s.IdSetor, 
+                                        NomeSetor = s.NomeSetor, 
+                                        DataCadastro = s.DataCadastro, 
+                                        DataAlteracao = s.DataAlteracao, 
+                                        IdEmpresa = s.IdEmpresa
+                                      }
+                         ).AsNoTracking().ToListAsync();
+        }
+
         public async Task<List<Setor>> ListarSetor(Expression<Func<Setor, bool>> exSetor)
         {
             using (var banco = new ContextBase(_OptionsBuilder))

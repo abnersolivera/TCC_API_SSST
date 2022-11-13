@@ -5,10 +5,6 @@ namespace WebAPIs.Models
 {
     public class PessoaViewModel
     {
-        public int IdPessoas { get; set; }
-
-        public bool StatusPessoas { get; set; }
-
         public string NomePessoas { get; set; }
 
         public string? EnderecoPessoas { get; set; }
@@ -46,11 +42,6 @@ namespace WebAPIs.Models
         public string? TelelefoneCelularPessoas { get; set; }
 
         public TipoProfissional? TipoPessoas { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }       
-
     }
 
     public class PessoaIdViewModel

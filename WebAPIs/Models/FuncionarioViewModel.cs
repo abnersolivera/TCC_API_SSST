@@ -4,10 +4,6 @@ namespace WebAPIs.Models
 {
     public class FuncionarioViewModel
     {
-        public int IdFuncionario { get; set; }
-
-        public bool SituacaoFuncionario { get; set; }
-
         public string? NomeFuncionario { get; set; }
 
         public DateTime DataNascimentoFuncionario { get; set; }
@@ -23,10 +19,6 @@ namespace WebAPIs.Models
         public string? EmailFuncionario { get; set; }
 
         public TipoSexo SexoFuncionario { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
 
         public DateTime DataAdmissao { get; set; }
 

@@ -4,10 +4,6 @@ namespace WebAPIs.Models
 {
     public class EnderecoViewModel
     {
-        public int IdEndereco { get; set; }
-
-        public bool StatusEndereco { get; set; }
-
         public TipoEndereco TipoEndereco { get; set; }
 
         public string EnderecoEndereco { get; set; }
@@ -27,10 +23,6 @@ namespace WebAPIs.Models
         public string TelefoneEndereco { get; set; }
 
         public string EmailEndereco { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
     }
 
     public class EnderecoIdViewModel

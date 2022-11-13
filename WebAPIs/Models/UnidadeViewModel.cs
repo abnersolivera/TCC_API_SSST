@@ -5,10 +5,6 @@ namespace WebAPIs.Models
 {
     public class UnidadeViewModel
     {
-        public int IdUnidade { get; set; }
-
-        public bool SituacaoUnidade { get; set; }
-
         public string NomeAbreviadoUnidade { get; set; }
 
         public string RazaoSocialUnidade { get; set; }
@@ -26,10 +22,6 @@ namespace WebAPIs.Models
         public DateTime? DataContratoUnidade { get; set; }
 
         public string? NumeroContratoUnidade { get; set; }
-
-        public DateTime DataCadastro { get; set; }
-
-        public DateTime DataAlteracao { get; set; }
 
         public string? CnaeUnidade { get; set; }
 

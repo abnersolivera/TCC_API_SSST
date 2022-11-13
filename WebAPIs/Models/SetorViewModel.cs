@@ -2,10 +2,6 @@
 {
     public class SetorViewModel
     {
-        public int IdSetor { get; set; }
-
-        public bool SituacaoSetor { get; set; }
-
         public string NomeSetor { get; set; }
 
         public string? DescricaoSetor { get; set; }

@@ -41,9 +41,9 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Setor>> ListarSetorAtivo()
-        {
-            return await _ISetor.ListarSetor(n => n.SituacaoSetor);
-        }
+        public async Task<List<Setor>> ListarSetorAtivo() => await _ISetor.ListarSetor(n => n.SituacaoSetor);
+
+        public async Task<List<Setor>> ListarSetorEmpresa(int id) => await _ISetor.Listar(id);
+
     }
 }

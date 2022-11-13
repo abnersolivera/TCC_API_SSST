@@ -97,5 +97,15 @@ namespace WebAPIs.Controllers
             return unidadeMap;
         }
 
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Unidade/ListarUnidadeEmpresa")]
+        public async Task<List<UnidadeViewModel>> ListarUnidadeEmpresa([FromQuery] int idEmpresa)
+        {
+            var unidade = await _IServiceUnidade.ListarUnidadeEmpresa(idEmpresa);
+            var unidadeMap = _IMapper.Map<List<UnidadeViewModel>>(unidade);
+            return unidadeMap;
+        }
+
     }
 }

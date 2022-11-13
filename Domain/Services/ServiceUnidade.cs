@@ -40,9 +40,8 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Unidade>> ListarUnidadeAtivas()
-        {
-            return await _IUnidade.ListarUnidade(n => n.SituacaoUnidade);
-        }
+        public async Task<List<Unidade>> ListarUnidadeAtivas() => await _IUnidade.ListarUnidade(n => n.SituacaoUnidade);
+
+        public async Task<List<Unidade>> ListarUnidadeEmpresa(int id) => await _IUnidade.Listar(id);
     }
 }

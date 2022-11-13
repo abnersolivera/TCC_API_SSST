@@ -77,6 +77,16 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
+        [HttpGet("/api/Cargo/ListarCargoEmpresa")]
+        public async Task<List<CargoViewModel>> ListarCargoEmpresa([FromQuery] int idEmpresa)
+        {
+            var cargos = await _IServiceCargo.ListarCargoEmpresa(idEmpresa);
+            var cargoMap = _Imapper.Map<List<CargoViewModel>>(cargos);
+            return cargoMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
         [HttpGet("/api/Cargo/List")]
         public async Task<List<CargoViewModel>> List()
         {

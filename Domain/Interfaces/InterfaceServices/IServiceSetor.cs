@@ -15,5 +15,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Setor Objeto);
 
         Task<List<Setor>> ListarSetorAtivo();
+
+        Task<List<Setor>> ListarSetorEmpresa(int id);
     }
 }

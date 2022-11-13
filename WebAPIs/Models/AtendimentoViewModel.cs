@@ -7,8 +7,6 @@ namespace WebAPIs.Models
 {
     public class AtendimentoViewModel
     {
-        public int IdAtendimento { get; set; }
-
         public DateTime DataAtendimento { get; set; }
 
         public DateTime? DataAgendamentoAtendimento { get; set; }
@@ -99,7 +97,6 @@ namespace WebAPIs.Models
 
     public class AgendamentoViewModel
     {
-        public int IdAgendamento { get; set; }
 
         public DateTime DataAgendamento { get; set; }
 
