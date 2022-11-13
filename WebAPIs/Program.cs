@@ -22,6 +22,7 @@ using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Globalization;
 using WebAPIs.Converters;
 using WebAPIs.Models;
@@ -41,7 +42,15 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(op =>
+{
+    op.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "SSST",
+        Description = "Api SSST"
+    });
+});
 #endregion
 
 #region ConfigService
