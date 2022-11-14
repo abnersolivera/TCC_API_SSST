@@ -58,30 +58,30 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/GetEntityById")]
-        public async Task<EnderecoViewModel> GetEntityById([FromQuery] EnderecoIdViewModel endereco)
+        public async Task<EnderecoDTO> GetEntityById([FromQuery] EnderecoIdViewModel endereco)
         {
             var enderecos = await _IEndereco.GetEntityById(endereco.IdEndereco);
-            var enderecoMap = _Imapper.Map<EnderecoViewModel>(enderecos);
+            var enderecoMap = _Imapper.Map<EnderecoDTO>(enderecos);
             return enderecoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/List")]
-        public async Task<List<EnderecoViewModel>> List()
+        public async Task<List<EnderecoDTO>> List()
         {
             var endereco = await _IEndereco.List();
-            var enderecoMap = _Imapper.Map<List<EnderecoViewModel>>(endereco);
+            var enderecoMap = _Imapper.Map<List<EnderecoDTO>>(endereco);
             return enderecoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/ListarEnderecoAtivos")]
-        public async Task<List<EnderecoViewModel>> ListarEnderecoAtivos()
+        public async Task<List<EnderecoDTO>> ListarEnderecoAtivos()
         {
             var endereco = await _IServiceEndereco.ListarEnderecoAtivas();
-            var enderecoMap = _Imapper.Map<List<EnderecoViewModel>>(endereco);
+            var enderecoMap = _Imapper.Map<List<EnderecoDTO>>(endereco);
             return enderecoMap;
         }
     }

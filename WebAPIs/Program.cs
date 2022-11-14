@@ -152,49 +152,60 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Agendamento, AgendamentoDTO>().ReverseMap();
 
     cfg.CreateMap<Atendimento, AtendimentoViewModel>().ReverseMap();
-    cfg.CreateMap<Atendimento, AtendimentoDTO>().ReverseMap();
     cfg.CreateMap<Atendimento, AtendimentoIdViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoEmpresa, AtendimentoEmpresaViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoFuncionario, AtendimentoFuncionarioViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoExames, AtendimentoExamesViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoRiscos, AtendimentoRiscosViewModel>().ReverseMap();
+    cfg.CreateMap<Atendimento, AtendimentoDTO>().ReverseMap();
 
     cfg.CreateMap<Cargo, CargoViewModel>().ReverseMap();
     cfg.CreateMap<Cargo, CargoIdViewModel>().ReverseMap();
+    cfg.CreateMap<Cargo, CargoDTO>().ReverseMap();
 
-    cfg.CreateMap<Empresa, EmpresaIdViewModel>().ReverseMap();
     cfg.CreateMap<Empresa, EmpresaViewModel>().ReverseMap();
+    cfg.CreateMap<Empresa, EmpresaIdViewModel>().ReverseMap();
+    cfg.CreateMap<Empresa, EmpresaDTO>().ReverseMap();
 
     cfg.CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
     cfg.CreateMap<Endereco, EnderecoIdViewModel>().ReverseMap();
     cfg.CreateMap<EnderecoEmpresa, EnderecoEmpresaViewModel>().ReverseMap();
     cfg.CreateMap<EnderecoUnidade, EnderecoUnidadeViewModel>().ReverseMap();
+    cfg.CreateMap<Endereco, EnderecoDTO>().ReverseMap();
 
     cfg.CreateMap<Exame, ExameViewModel>().ReverseMap();
     cfg.CreateMap<Exame, ExameIdViewModel>().ReverseMap();
     cfg.CreateMap<ExameDetails, ExameDetailsViewModel>().ForMember(x => x.ExameViewModel, x => x.MapFrom(e => e.Exame)).ReverseMap();
+    cfg.CreateMap<Exame, ExameDTO>().ReverseMap();
 
     cfg.CreateMap<Funcionario, FuncionarioViewModel>().ReverseMap();
     cfg.CreateMap<Funcionario, FuncionarioIdViewModel>().ReverseMap();
     cfg.CreateMap<FuncionarioExames, FuncionarioExamesViewModel>().ReverseMap();
     cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>().ReverseMap();
+    cfg.CreateMap<Funcionario, FuncionarioDTO>().ReverseMap();
 
     cfg.CreateMap<Pessoa, PessoaViewModel>().ReverseMap();
     cfg.CreateMap<Pessoa, PessoaIdViewModel>().ReverseMap();
     cfg.CreateMap<PessoaEmpresa, PessoaEmpresaViewModel>().ReverseMap();
+    cfg.CreateMap<Pessoa, PessoaDTO>().ReverseMap();
 
     cfg.CreateMap<Prestador, PrestadorViewModel>().ReverseMap();
     cfg.CreateMap<Prestador, PrestadorIdViewModel>().ReverseMap();
     cfg.CreateMap<PrestadorEmpresa, PrestadorEmpresaViewModel>().ReverseMap();
+    cfg.CreateMap<Prestador, PrestadorDTO>().ReverseMap();
 
     cfg.CreateMap<Risco, RiscoViewModel>().ReverseMap();
     cfg.CreateMap<Risco, RiscoIdViewModel>().ReverseMap();
+    cfg.CreateMap<Risco, RiscoDTO>().ReverseMap();
 
     cfg.CreateMap<Setor, SetorViewModel>().ReverseMap();
     cfg.CreateMap<Setor, SetorIdViewModel>().ReverseMap();
+    cfg.CreateMap<Setor, SetorDTO>().ReverseMap();
 
     cfg.CreateMap<Unidade, UnidadeViewModel>().ReverseMap();
     cfg.CreateMap<Unidade, UnidadeIdViewModel>().ReverseMap();
+    cfg.CreateMap<Unidade, UnidadeDTO>().ReverseMap();
+
 
     cfg.CreateMap<ApplicationUser, UserViewModel>().ReverseMap();
     cfg.CreateMap<UsuarioEmpresa, UsuarioEmpresaViewModel>().ReverseMap();

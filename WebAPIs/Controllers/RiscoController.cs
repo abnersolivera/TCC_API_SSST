@@ -69,30 +69,30 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Risco/GetEntityById")]
-        public async Task<RiscoViewModel> GetEntityById([FromQuery] RiscoIdViewModel risco)
+        public async Task<RiscoDTO> GetEntityById([FromQuery] RiscoIdViewModel risco)
         {
             var riscos = await _IRisco.GetEntityById(risco.IdRisco);
-            var riscoMap = _IMapper.Map<RiscoViewModel>(riscos);
+            var riscoMap = _IMapper.Map<RiscoDTO>(riscos);
             return riscoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Risco/List")]
-        public async Task<List<RiscoViewModel>> List()
+        public async Task<List<RiscoDTO>> List()
         {
             var risco = await _IRisco.List();
-            var riscoMap = _IMapper.Map<List<RiscoViewModel>>(risco);
+            var riscoMap = _IMapper.Map<List<RiscoDTO>>(risco);
             return riscoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Risco/ListarRiscosAtivos")]
-        public async Task<List<RiscoViewModel>> ListarRiscosAtivos()
+        public async Task<List<RiscoDTO>> ListarRiscosAtivos()
         {
             var risco = await _IServiceRisco.ListarRiscoAtivo();
-            var riscoMap = _IMapper.Map<List<RiscoViewModel>>(risco);
+            var riscoMap = _IMapper.Map<List<RiscoDTO>>(risco);
             return riscoMap;
         }
 

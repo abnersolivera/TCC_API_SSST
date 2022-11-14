@@ -1,7 +1,4 @@
-﻿using Entities.Entities;
-using Entities.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using Entities.Enums;
 
 namespace WebAPIs.Models
 {
@@ -42,6 +39,11 @@ namespace WebAPIs.Models
         public string IdUsuarioAtendimento { get; set; }
 
         public TipoAtendimento StatusAtendimento { get; set; }
+    }
+
+    public class AtendimentoIdViewModel
+    {
+        public int IdAtendimento { get; set; }
     }
 
     public class AtendimentoDTO
@@ -90,11 +92,6 @@ namespace WebAPIs.Models
 
     }
 
-    public class AtendimentoIdViewModel
-    {
-        public int IdAtendimento { get; set; }
-    }
-
     public class AgendamentoViewModel
     {
 
@@ -110,6 +107,11 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAgendamento { get; set; }
 
+    }
+
+    public class AgendamentoIdViewModel
+    {
+        public int IdAgendamento { get; set; }
     }
 
     public class AgendamentoDTO
@@ -131,11 +133,6 @@ namespace WebAPIs.Models
         public string DataCadastro { get; set; }
 
         public string DataAlteracao { get; set; }
-    }
-
-    public class AgendamentoIdViewModel
-    {
-        public int IdAgendamento { get; set; }
     }
 }
 

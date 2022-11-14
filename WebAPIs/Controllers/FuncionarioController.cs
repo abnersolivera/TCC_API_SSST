@@ -69,30 +69,30 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Funcionario/GetEntityById")]
-        public async Task<FuncionarioViewModel> GetEntityById([FromQuery] FuncionarioIdViewModel funcionario)
+        public async Task<FuncionarioDTO> GetEntityById([FromQuery] FuncionarioIdViewModel funcionario)
         {
             var funcionarios = await _IFuncionario.GetEntityById(funcionario.IdFuncionario);
-            var funcionarioMap = _IMapper.Map<FuncionarioViewModel>(funcionarios);
+            var funcionarioMap = _IMapper.Map<FuncionarioDTO>(funcionarios);
             return funcionarioMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Funcionario/List")]
-        public async Task<List<FuncionarioViewModel>> List()
+        public async Task<List<FuncionarioDTO>> List()
         {
             var funcionario = await _IFuncionario.List();
-            var funcionarioMap = _IMapper.Map<List<FuncionarioViewModel>>(funcionario);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioDTO>>(funcionario);
             return funcionarioMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Funcionario/ListarFuncionarioAtivas")]
-        public async Task<List<FuncionarioViewModel>> ListarFuncionarioAtivas()
+        public async Task<List<FuncionarioDTO>> ListarFuncionarioAtivas()
         {
             var funcionario = await _IServiceFuncionario.ListarFuncionarioAtivas();
-            var funcionarioMap = _IMapper.Map<List<FuncionarioViewModel>>(funcionario);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioDTO>>(funcionario);
             return funcionarioMap;
         }
 

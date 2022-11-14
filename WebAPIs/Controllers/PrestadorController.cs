@@ -71,30 +71,30 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Prestador/GetEntityById")]
-        public async Task<PrestadorViewModel> GetEntityById([FromQuery] PrestadorIdViewModel prestador)
+        public async Task<PrestadorDTO> GetEntityById([FromQuery] PrestadorIdViewModel prestador)
         {
             var prestadores = await _IPrestador.GetEntityById(prestador.IdPrestador);
-            var pessoaMap = _Imapper.Map<PrestadorViewModel>(prestador);
+            var pessoaMap = _Imapper.Map<PrestadorDTO>(prestador);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Prestador/List")]
-        public async Task<List<PrestadorViewModel>> List()
+        public async Task<List<PrestadorDTO>> List()
         {
             var prestador = await _IPrestador.List();
-            var pessoaMap = _Imapper.Map<List<PrestadorViewModel>>(prestador);
+            var pessoaMap = _Imapper.Map<List<PrestadorDTO>>(prestador);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Prestador/ListarPrestadorAtivos")]
-        public async Task<List<PrestadorViewModel>> ListarPrestadorAtivos()
+        public async Task<List<PrestadorDTO>> ListarPrestadorAtivos()
         {
             var prestador = await _IServicePrestador.ListarPrestadorAtivas();
-            var prestadorMap = _Imapper.Map<List<PrestadorViewModel>>(prestador);
+            var prestadorMap = _Imapper.Map<List<PrestadorDTO>>(prestador);
             return prestadorMap;
         }
     }
