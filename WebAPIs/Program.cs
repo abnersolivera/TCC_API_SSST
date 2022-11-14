@@ -91,6 +91,7 @@ builder.Services.AddSingleton<IAtendimentoEmpresa, RepositoryAtendimentoEmpresa>
 builder.Services.AddSingleton<IAtendimentoExames, RepositoryAtendimentoExames>();
 builder.Services.AddSingleton<IAtendimentoFuncionario, RepositoryAtendimentoFuncionario>();
 builder.Services.AddSingleton<IAtendimentoRiscos, RepositoryAtendimentoRiscos>();
+builder.Services.AddSingleton<IUpload, RepositoryUpload>();
 #endregion
 
 #region Serviço Dominio
