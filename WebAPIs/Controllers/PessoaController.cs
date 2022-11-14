@@ -69,30 +69,30 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/GetEntityById")]        
-        public async Task<PessoaViewModel> GetEntityById([FromQuery] PessoaIdViewModel pessoa)
+        public async Task<PessoaDTO> GetEntityById([FromQuery] PessoaIdViewModel pessoa)
         {
             var pessoas = await _Ipessoa.GetEntityById(pessoa.IdPessoas);
-            var pessoaMap = _Imapper.Map<PessoaViewModel>(pessoas);
+            var pessoaMap = _Imapper.Map<PessoaDTO>(pessoas);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/List")]
-        public async Task<List<PessoaViewModel>> List()
+        public async Task<List<PessoaDTO>> List()
         {
             var pessoa = await _Ipessoa.List();
-            var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);
+            var pessoaMap = _Imapper.Map<List<PessoaDTO>>(pessoa);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/ListarPessoasAtivas")]
-        public async Task<List<PessoaViewModel>> ListarMPessoaAtivas()
+        public async Task<List<PessoaDTO>> ListarMPessoaAtivas()
         {
             var pessoa = await _IServicePessoa.ListarPessoaAtivas();
-            var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);
+            var pessoaMap = _Imapper.Map<List<PessoaDTO>>(pessoa);
             return pessoaMap;
         }
     }

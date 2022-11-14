@@ -66,10 +66,10 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Agendamento/GetEntityById")]
-        public async Task<AgendamentoViewModel> GetEntityById([FromQuery] AgendamentoIdViewModel atendimento)
+        public async Task<AgendamentoDTO> GetEntityById([FromQuery] AgendamentoIdViewModel atendimento)
         {
             var agendamentos = await _IAgendamento.GetEntityById(atendimento.IdAgendamento);
-            var agendamentoMap = _IMapper.Map<AgendamentoViewModel>(agendamentos);
+            var agendamentoMap = _IMapper.Map<AgendamentoDTO>(agendamentos);
             return agendamentoMap;
         }
 

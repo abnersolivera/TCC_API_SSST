@@ -73,7 +73,7 @@ namespace WebAPIs.Controllers
             try
             {
                 var exames = await _IExame.GetEntityById(exame.IdExame);
-                var exameMap = _IMapper.Map<ExameViewModel>(exames);
+                var exameMap = _IMapper.Map<ExameDTO>(exames);
                 return Ok(exameMap);
             }
             catch (Exception ex)
@@ -86,20 +86,20 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/List")]
-        public async Task<List<ExameViewModel>> List()
+        public async Task<List<ExameDTO>> List()
         {
             var exame = await _IExame.List();
-            var exameMap = _IMapper.Map<List<ExameViewModel>>(exame);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
             return exameMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/ListarExamesAtivos")]
-        public async Task<List<ExameViewModel>> ListarExamesAtivos()
+        public async Task<List<ExameDTO>> ListarExamesAtivos()
         {
             var exame = await _IServiceExame.ListarExamesAtivo();
-            var exameMap = _IMapper.Map<List<ExameViewModel>>(exame);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
             return exameMap;
         }
 
