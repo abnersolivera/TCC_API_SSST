@@ -10,9 +10,6 @@ namespace Entities.Entities
     public class Details
     {
         [NotMapped]
-        public int Skip { get; set; }
-
-        [NotMapped]
         public int Take { get; set; }
 
         [NotMapped]
@@ -20,5 +17,8 @@ namespace Entities.Entities
 
         [NotMapped]
         public int PageQuantity { get; set; }
+
+        [NotMapped]
+        public int CurretPage { get; set; }
     }
 }

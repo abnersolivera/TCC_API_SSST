@@ -13,6 +13,6 @@ namespace Domain.Interfaces
     {
         Task<List<Exame>> ListarExame(Expression<Func<Exame, bool>> exExame);
 
-        Task<ExameDetails> Listar();
+        Task<ExameDetails> Listar(int curretPage);
     }
 }

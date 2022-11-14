@@ -106,9 +106,9 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/ListarExamesDetalhe")]
-        public async Task<ExameDetailsViewModel> ListarExamesDetalhe()
+        public async Task<ExameDetailsViewModel> ListarExamesDetalhe([FromQuery] int? curretPage = 1)
         {
-            var exame = await _IServiceExame.ListarExamesDetalhe();
+            var exame = await _IServiceExame.ListarExamesDetalhe(curretPage!.Value);
             var exameMap = _IMapper.Map<ExameDetailsViewModel>(exame);
             return exameMap;
         }
