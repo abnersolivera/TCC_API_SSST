@@ -8,5 +8,6 @@ namespace Domain.Interfaces
 {
     public interface IUpload
     {
+        Task<string> UploadBase64(string base64, string container);
     }
 }

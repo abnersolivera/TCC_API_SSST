@@ -41,9 +41,13 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Funcionario>> ListarFuncionarioAtivas()
-        {
-            return await _IFuncionario.ListarFuncionario(n => n.SituacaoFuncionario);
-        }
+        public async Task<List<Funcionario>> ListarFuncionarioAtivas() => await _IFuncionario.ListarFuncionario(n => n.SituacaoFuncionario);
+
+        public async Task<List<Funcionario>> ListarFuncionarioEmpresa(int id) => await _IFuncionario.Listar(id);
+
+        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int id) => await _IFuncionario.ListarEmpresaCargoSetor(id);
+
+        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarNomeFuncionarioEmpresaCargoSetor(string nome) => await _IFuncionario.ListarFuncionarioCargoSetor(nome);
+
     }
 }

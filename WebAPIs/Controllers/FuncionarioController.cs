@@ -96,5 +96,35 @@ namespace WebAPIs.Controllers
             return funcionarioMap;
         }
 
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Funcionario/ListarFuncionarioEmpresa")]
+        public async Task<List<FuncionarioDTO>> ListarFuncionarioEmpresa([FromQuery] int idEmpresa)
+        {
+            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresa(idEmpresa);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioDTO>>(funcionario);
+            return funcionarioMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Funcionario/ListarEmpresaCargoSetor")]
+        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresaCargoSetor([FromQuery] int idEmpresa)
+        {
+            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresaCargoSetor(idEmpresa);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioEmpCarSerDTO>>(funcionario);
+            return funcionarioMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Funcionario/ListarNomeFuncionarioEmpresaCargoSetor")]
+        public async Task<List<FuncionarioEmpCarSerDTO>> ListarNomeFuncionarioEmpresaCargoSetor([FromQuery] string nome)
+        {
+            var funcionario = await _IServiceFuncionario.ListarNomeFuncionarioEmpresaCargoSetor(nome);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioEmpCarSerDTO>>(funcionario);
+            return funcionarioMap;
+        }
+
     }
 }

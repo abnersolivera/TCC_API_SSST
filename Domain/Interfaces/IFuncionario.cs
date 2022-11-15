@@ -7,5 +7,11 @@ namespace Domain.Interfaces
     public interface IFuncionario : IGeneric<Funcionario>
     {
         Task<List<Funcionario>> ListarFuncionario(Expression<Func<Funcionario, bool>> exFuncionario);
+
+        Task<List<Funcionario>> Listar(int id);
+
+        Task<List<FuncionarioEmpresaCargoSetor>> ListarEmpresaCargoSetor(int id);
+
+        Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioCargoSetor(string nome);
     }
 }

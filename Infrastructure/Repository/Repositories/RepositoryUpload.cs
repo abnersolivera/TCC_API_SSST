@@ -1,17 +1,12 @@
 ﻿using Azure.Storage.Blobs;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
     public class RepositoryUpload : IUpload
-    {
-        public string UploadBase64(string base64, string container)
+    {    
+        public async Task<string> UploadBase64(string base64, string container)
         {
             //Gerar um nome randomico
             var fileName = Guid.NewGuid().ToString() + ".jpg";
@@ -22,15 +17,16 @@ namespace Domain.Services
             //Gerando um array de Bytes
             byte[] imageBytes = Convert.FromBase64String(data);
 
+            //
+            var connectionStrings = "DefaultEndpointsProtocol=https;AccountName=ssststorage;AccountKey=5hYFUTX6JTpMBJ1zutrJotsZ4Bz+CDlhl0FDnVFumQ/qjcU4QsY0bUGvN3G9GPiReVJW5ktadwTt+AStA+gM6w==;EndpointSuffix=core.windows.net";
             // Define o BLOB no qual a image será armazenada
-            var blobClient = new BlobClient("DefaultEndpointsProtocol=https;AccountName=ssststorage;AccountKey=5hYFUTX6JTpMBJ1zutrJotsZ4Bz+CDlhl0FDnVFumQ/qjcU4QsY0bUGvN3G9GPiReVJW5ktadwTt+AStA+gM6w==;EndpointSuffix=core.windows.net", container, fileName);
+            var blobClient = new BlobClient(connectionStrings, container, fileName);
 
             // Enviando a image
             using (var stream = new MemoryStream(imageBytes))
             {
                 blobClient.Upload(stream);
             }
-
             //Retornando a URL
             return blobClient.Uri.AbsoluteUri;
         }
