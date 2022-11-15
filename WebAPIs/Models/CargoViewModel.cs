@@ -39,6 +39,8 @@ namespace WebAPIs.Models
 
     public class CargoFuncionarioDTO
     {
+        public int IdCargo { get; set; }
+
         public string NomeCargo { get; set; }
 
     }

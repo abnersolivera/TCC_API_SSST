@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Entities.Entities;
 using Entities.Entities.Empresas;
+using Entities.Entities.Pessoas;
 using Entities.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -147,5 +148,38 @@ namespace WebAPIs.Controllers
             var userMap = _Imapper.Map<List<UserViewModel>>(user);
             return userMap;
         }
+
+        //[Authorize]
+        //[Produces("application/json")]
+        //[HttpPatch("/api/User/Update")]
+        //public async Task<IActionResult> Update([FromBody] UserImageViewModel user)
+        //{
+        //    try
+        //    {
+        //        var IdLogado = RetornaIdUsuarioLogado().Result;
+
+        //        var queryUser = await _IUser.ListarUserById(IdLogado.ToString());
+
+        //        var users = new ApplicationUser
+        //        {
+        //            Nome = user.Nome is not "" ? user.Nome : queryUser.Nome,
+        //            UserName = queryUser.Email,
+        //            Email = queryUser.Email,
+        //            Tipo = TipoUsuario.Comum,
+        //            StatusUsuario = true,
+        //            CaminhoImagem= user.CaminhoImagem,
+        //        };
+
+        //        var pessoaMap = _Imapper.Map<ApplicationUser>(users);
+        //        await _IUser.Update(pessoaMap);
+        //        return Ok(pessoaMap);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Response.StatusCode = 400;
+        //        return BadRequest(ex.Message);
+        //    }
+
+        //}
     }
 }

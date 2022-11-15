@@ -63,6 +63,8 @@ namespace WebAPIs.Models
 
     public class EmpresaFuncionarioDTO
     {
+        public int IdEmpresa { get; set; }
+
         public string RazaoSocialEmpresa { get; set; }
 
     }
