@@ -35,6 +35,8 @@
 
     public class SetorFuncionarioDTO
     {
+        public int IdSetor { get; set; }
+
         public string NomeSetor { get; set; }
 
     }

@@ -19,4 +19,12 @@ namespace WebAPIs.Models
         public DateTime? UltimoAcesso { get; set; }
     }
 
+    public class UserImageViewModel
+    {
+        public string? CaminhoImagem { get; set; }
+
+        public string? Nome { get; set; }
+
+    }
+
 }
