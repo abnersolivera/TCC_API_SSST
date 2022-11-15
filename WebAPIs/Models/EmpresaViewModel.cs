@@ -8,6 +8,8 @@ namespace WebAPIs.Models
     {    
         public TipoCliente? TipoCliente { get; set; }
 
+        public TipoPessoa? TipoPessoa { get; set; }
+
         [Required(AllowEmptyStrings = false)]
         public string NomeAbreviadoEmpresa { get; set; }
 
@@ -39,6 +41,8 @@ namespace WebAPIs.Models
         public bool SituacaoEmpresa { get; set; }
 
         public TipoCliente? TipoCliente { get; set; }
+
+        public TipoPessoa? TipoPessoa { get; set; }
 
         public string NomeAbreviadoEmpresa { get; set; }
 
