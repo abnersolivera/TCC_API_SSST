@@ -20,9 +20,7 @@ namespace Infrastructure.Repository.Repositories
         public RepositoryUser()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
-        }
-
-
+        }        
 
         public async Task<List<ApplicationUser>> ListarUser(Expression<Func<ApplicationUser, bool>> exUser)
         {

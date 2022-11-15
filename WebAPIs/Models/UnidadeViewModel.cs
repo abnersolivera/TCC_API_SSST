@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Entities.Enums;
 
 namespace WebAPIs.Models
 {
     public class UnidadeViewModel
     {
+        public TipoPessoa? TipoPessoa { get; set; }
         public string NomeAbreviadoUnidade { get; set; }
 
         public string RazaoSocialUnidade { get; set; }
@@ -44,6 +46,8 @@ namespace WebAPIs.Models
     public class UnidadeDTO
     {
         public int IdUnidade { get; set; }
+
+        public TipoPessoa? TipoPessoa { get; set; }
 
         public bool SituacaoUnidade { get; set; }
 

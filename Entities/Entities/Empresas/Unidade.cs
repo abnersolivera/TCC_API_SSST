@@ -1,5 +1,6 @@
 ﻿using Entities.Entities.Endereco;
 using Entities.Entities.Pessoas;
+using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,9 @@ namespace Entities.Entities.Empresas
 
         [Column("situacao_Unidade")]
         public bool SituacaoUnidade { get; set; }
+
+        [Column("tipoPessoa_Unidade")]
+        public TipoPessoa? TipoPessoa { get; set; }
 
         [Column("nomeAbreviado_Unidade")]
         [MaxLength(255)]
