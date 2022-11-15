@@ -21,6 +21,7 @@ using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Globalization;
@@ -163,10 +164,12 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Cargo, CargoViewModel>().ReverseMap();
     cfg.CreateMap<Cargo, CargoIdViewModel>().ReverseMap();
     cfg.CreateMap<Cargo, CargoDTO>().ReverseMap();
+    cfg.CreateMap<Cargo, CargoFuncionarioDTO>().ReverseMap();
 
     cfg.CreateMap<Empresa, EmpresaViewModel>().ReverseMap();
     cfg.CreateMap<Empresa, EmpresaIdViewModel>().ReverseMap();
     cfg.CreateMap<Empresa, EmpresaDTO>().ReverseMap();
+    cfg.CreateMap<Empresa, EmpresaFuncionarioDTO>().ReverseMap();
 
     cfg.CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
     cfg.CreateMap<Endereco, EnderecoIdViewModel>().ReverseMap();
@@ -184,6 +187,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<FuncionarioExames, FuncionarioExamesViewModel>().ReverseMap();
     cfg.CreateMap<FuncionarioRisco, FuncionarioRiscoViewModel>().ReverseMap();
     cfg.CreateMap<Funcionario, FuncionarioDTO>().ReverseMap();
+    cfg.CreateMap<FuncionarioEmpresaCargoSetor, FuncionarioEmpCarSerDTO>().ForMember(x => x.Empresa, x => x.MapFrom(e => e.EmpresaFun)).ForMember(x => x.Setor, x => x.MapFrom(s => s.SetorFun)).ForMember(x => x.Cargo, x => x.MapFrom(c => c.CargoFun)).ReverseMap();
 
     cfg.CreateMap<Pessoa, PessoaViewModel>().ReverseMap();
     cfg.CreateMap<Pessoa, PessoaIdViewModel>().ReverseMap();
@@ -202,6 +206,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Setor, SetorViewModel>().ReverseMap();
     cfg.CreateMap<Setor, SetorIdViewModel>().ReverseMap();
     cfg.CreateMap<Setor, SetorDTO>().ReverseMap();
+    cfg.CreateMap<Setor, SetorFuncionarioDTO>().ReverseMap();
 
     cfg.CreateMap<Unidade, UnidadeViewModel>().ReverseMap();
     cfg.CreateMap<Unidade, UnidadeIdViewModel>().ReverseMap();

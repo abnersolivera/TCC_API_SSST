@@ -32,4 +32,10 @@
         public int IdEmpresa { get; set; }
 
     }
+
+    public class SetorFuncionarioDTO
+    {
+        public string NomeSetor { get; set; }
+
+    }
 }

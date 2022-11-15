@@ -36,4 +36,10 @@ namespace WebAPIs.Models
         public int IdEmpresa { get; set; }
 
     }
+
+    public class CargoFuncionarioDTO
+    {
+        public string NomeCargo { get; set; }
+
+    }
 }

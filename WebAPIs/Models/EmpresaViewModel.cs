@@ -60,4 +60,10 @@ namespace WebAPIs.Models
 
         public DateTime DataAlteracao { get; set; }
     }
+
+    public class EmpresaFuncionarioDTO
+    {
+        public string RazaoSocialEmpresa { get; set; }
+
+    }
 }

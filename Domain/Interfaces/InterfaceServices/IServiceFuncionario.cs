@@ -9,5 +9,11 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Funcionario Objeto);
 
         Task<List<Funcionario>> ListarFuncionarioAtivas();
+
+        Task<List<Funcionario>> ListarFuncionarioEmpresa(int id);
+
+        Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int id);
+
+        Task<List<FuncionarioEmpresaCargoSetor>> ListarNomeFuncionarioEmpresaCargoSetor(string nome);
     }
 }
