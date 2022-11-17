@@ -160,13 +160,12 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<AtendimentoExames, AtendimentoExamesViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoRiscos, AtendimentoRiscosViewModel>().ReverseMap();
     cfg.CreateMap<Atendimento, AtendimentoDTO>().ReverseMap();
-    cfg.CreateMap<AtendimentoGeral, AtendimentoGerals>().ForMember(x => x.Empresa, x => x.MapFrom(em => em.Empresa))
+    cfg.CreateMap<AtendimentoGeral, AtendimentoGeralDTO>().ForMember(x => x.Empresa, x => x.MapFrom(em => em.Empresa))
                                                         .ForMember(x => x.Atendimento, x => x.MapFrom(a => a.Atendimento))
                                                         .ForMember(x => x.Funcionario, x => x.MapFrom(f => f.Funcionario))
                                                         .ForMember(x => x.Exames, x => x.MapFrom(ex => ex.Exames))
                                                         .ForMember(x => x.Riscos, x => x.MapFrom(r => r.Riscos))
                                                         .ReverseMap();
-    cfg.CreateMap<AtendimentoGeral, AtendimentoViewModel>().ReverseMap();
 
     cfg.CreateMap<Cargo, CargoViewModel>().ReverseMap();
     cfg.CreateMap<Cargo, CargoIdViewModel>().ReverseMap();
@@ -188,6 +187,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Exame, ExameIdViewModel>().ReverseMap();
     cfg.CreateMap<ExameDetails, ExameDetailsViewModel>().ForMember(x => x.ExameViewModel, x => x.MapFrom(e => e.Exame)).ReverseMap();
     cfg.CreateMap<Exame, ExameDTO>().ReverseMap();
+    cfg.CreateMap<Exame, ExameAtendimentoDTO>().ReverseMap();
 
     cfg.CreateMap<Funcionario, FuncionarioViewModel>().ReverseMap();
     cfg.CreateMap<Funcionario, FuncionarioIdViewModel>().ReverseMap();
@@ -199,6 +199,14 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
                                                                           .ForMember(x => x.Cargo, x => x.MapFrom(c => c.CargoFun))
                                                                           .ForMember(x => x.Unidade, x => x.MapFrom(u => u.UnidadeFun))
                                                                           .ReverseMap();
+    cfg.CreateMap<FuncionarioAtendimento, FuncionarioAtendimentoDTO>().ForMember(x => x.Empresa, x => x.MapFrom(e => e.EmpresaFun))
+                                                                      .ForMember(x => x.Setor, x => x.MapFrom(s => s.SetorFun))
+                                                                      .ForMember(x => x.Cargo, x => x.MapFrom(c => c.CargoFun))
+                                                                      .ForMember(x => x.Unidade, x => x.MapFrom(u => u.UnidadeFun))
+                                                                      .ForMember(x => x.Atendimento, x => x.MapFrom(a => a.AtendimentoFun))
+                                                                      .ForMember(x => x.Exame, x => x.MapFrom(ex => ex.ExameFun))
+                                                                      .ForMember(x => x.Risco, x => x.MapFrom(r => r.RiscoFun))
+                                                                      .ReverseMap();
 
     cfg.CreateMap<Pessoa, PessoaViewModel>().ReverseMap();
     cfg.CreateMap<Pessoa, PessoaIdViewModel>().ReverseMap();
@@ -213,6 +221,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Risco, RiscoViewModel>().ReverseMap();
     cfg.CreateMap<Risco, RiscoIdViewModel>().ReverseMap();
     cfg.CreateMap<Risco, RiscoDTO>().ReverseMap();
+    cfg.CreateMap<Risco, RiscoAtendimentoDTO>().ReverseMap();
 
     cfg.CreateMap<Setor, SetorViewModel>().ReverseMap();
     cfg.CreateMap<Setor, SetorIdViewModel>().ReverseMap();

@@ -34,4 +34,12 @@ namespace WebAPIs.Models
 
         public int IdPrestador { get; set; }
     }
+
+    public class RiscoAtendimentoDTO
+    {
+        public int IdRisco { get; set; }
+
+        public string NomeRisco { get; set; }
+
+    }
 }

@@ -64,7 +64,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Atendimento/Atendimentos")]
-        public async Task<IActionResult> Atendimentos([FromBody] AtendimentoGerals urlParamAtendimento)
+        public async Task<IActionResult> Atendimentos([FromBody] AtendimentoGeralDTO urlParamAtendimento)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace WebAPIs.Controllers
                 var riscoMap = _IMapper.Map<List<Risco>>(urlParamAtendimento.Riscos);
                 var exameMap = _IMapper.Map<List<Exame>>(urlParamAtendimento.Exames);
                 var result = await _IAtendimento.Atendimentos(atendimentoMap, empresaMap, fucionarioMap, riscoMap, exameMap);
-                return Ok(result);
+                return Ok(result.IdAtendimento);
             }
             catch (Exception ex)
             {

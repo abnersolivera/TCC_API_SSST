@@ -10,5 +10,6 @@ namespace Domain.Interfaces
 {
     public interface IAgendamento : IGeneric<Agendamento>
     {
+        Task<int> CountAtendimento();
     }
 }

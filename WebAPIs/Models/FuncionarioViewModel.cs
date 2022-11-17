@@ -113,4 +113,50 @@ namespace WebAPIs.Models
         public UnidadeFuncionarioDTO Unidade { get; set; }
 
     }
+
+    public class FuncionarioAtendimentoDTO
+    {
+        public int IdFuncionario { get; set; }
+
+        public bool SituacaoFuncionario { get; set; }
+
+        public string? NomeFuncionario { get; set; }
+
+        public DateTime DataNascimentoFuncionario { get; set; }
+
+        public string? CpfFuncionario { get; set; }
+
+        public string? RgFuncionario { get; set; }
+
+        public string? PisFuncionario { get; set; }
+
+        public string? TelefoneFuncionario { get; set; }
+
+        public string? EmailFuncionario { get; set; }
+
+        public TipoSexo SexoFuncionario { get; set; }
+
+        public DateTime DataAdmissao { get; set; }
+
+        public DateTime? DataDemissao { get; set; }
+
+        public DateTime DataCadastro { get; set; }
+
+        public DateTime DataAlteracao { get; set; }
+
+        public CargoFuncionarioDTO Cargo { get; set; }
+
+        public SetorFuncionarioDTO Setor { get; set; }
+
+        public EmpresaFuncionarioDTO Empresa { get; set; }
+
+        public UnidadeFuncionarioDTO Unidade { get; set; }
+
+        public List<RiscoAtendimentoDTO> Risco { get; set; }
+
+        public List<ExameAtendimentoDTO> Exame { get; set; }  
+
+        public AtendimentoDTO Atendimento { get; set; }
+
+    }
 }

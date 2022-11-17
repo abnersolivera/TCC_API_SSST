@@ -13,7 +13,7 @@ namespace Domain.Interfaces
     {
         Task<Atendimento> ListarUserById(string Id);
 
-        Task<AtendimentoGeral> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame);
+        Task<Atendimento> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame);
 
     }
 }

@@ -92,9 +92,9 @@ namespace WebAPIs.Models
 
     }
 
-    public class AtendimentoGerals
+    public class AtendimentoGeralDTO 
     {
-        public AtendimentoViewModel Atendimento { get; set; } //Atendimento
+        public AtendimentoViewModel Atendimento { get; set; } 
 
         public EmpresaDTO Empresa { get; set; }
 
@@ -150,6 +150,11 @@ namespace WebAPIs.Models
         public string DataCadastro { get; set; }
 
         public string DataAlteracao { get; set; }
+    }
+
+    public class AgendamentCount
+    {
+        public int Count { get; set; }
     }
 }
 
