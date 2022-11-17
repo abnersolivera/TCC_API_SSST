@@ -95,5 +95,15 @@ namespace WebAPIs.Controllers
             var empresaMap = _Imapper.Map<List<EmpresaDTO>>(empresa);
             return empresaMap;
         }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Empresa/ListarNomeEmpresa")]
+        public async Task<List<EmpresaDTO>> ListarNomeEmpresa(string? nome, int? id, string? cnpj, string? cpf)
+        {
+            var empresa = await _IServiceEmpresa.ListarNomeEmpresaId(nome, id, cnpj, cpf);
+            var empresaMap = _Imapper.Map<List<EmpresaDTO>>(empresa);
+            return empresaMap;
+        }
     }
 }
