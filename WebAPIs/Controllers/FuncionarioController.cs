@@ -126,9 +126,9 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Funcionario/ListarEmpresaCargoSetor")]
-        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresaCargoSetor([FromQuery] int idEmpresa)
+        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresaCargoSetor([FromQuery] int idEmpresa, int idFuncionario)
         {
-            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresaCargoSetor(idEmpresa);
+            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresaCargoSetor(idEmpresa, idFuncionario);
             var funcionarioMap = _IMapper.Map<List<FuncionarioEmpCarSerDTO>>(funcionario);
             return funcionarioMap;
         }
