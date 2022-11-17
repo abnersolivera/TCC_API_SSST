@@ -58,6 +58,7 @@ namespace Infrastructure.Repository.Repositories
 
             return await (from f in banco.Funcionario
                           join e in banco.Empresa on f.IdEmpresa equals e.IdEmpresa
+                          join u in banco.Unidade on e.IdEmpresa equals u.IdEmpresa
                           join c in banco.Cargo on f.IdCargo equals c.IdCargo
                           join s in banco.Setor on f.IdSetor equals s.IdSetor
                           where id.Equals(f.IdEmpresa) || idFuncionario.Equals(f.IdFuncionario)
@@ -79,7 +80,9 @@ namespace Infrastructure.Repository.Repositories
                               DataDemissao = f.DataDemissao,
                               CargoFun = new Cargo {IdCargo = c.IdCargo, NomeCargo = c.NomeCargo},
                               SetorFun = new Setor {IdSetor = s.IdSetor, NomeSetor = s.NomeSetor},
-                              EmpresaFun = new Empresa {IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa}
+                              EmpresaFun = new Empresa {IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa},
+                              UnidadeFun = new Unidade { IdUnidade = u.IdUnidade, RazaoSocialUnidade = u.RazaoSocialUnidade}
+                              
 
                           }).AsNoTracking().ToListAsync();
         }
