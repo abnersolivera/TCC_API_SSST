@@ -14,5 +14,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task Atualizar(Risco Objeto);
 
         Task<List<Risco>> ListarRiscoAtivo();
+
+        Task<List<Risco>> ListarRiscosNome(string nome);
     }
 }

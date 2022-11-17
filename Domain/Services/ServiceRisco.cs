@@ -35,9 +35,8 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Risco>> ListarRiscoAtivo()
-        {
-            return await _IRisco.ListarRiscos(n => n.SituacaoRisco);
-        }
+        public async Task<List<Risco>> ListarRiscoAtivo() => await _IRisco.ListarRiscos(n => n.SituacaoRisco);
+
+        public async Task<List<Risco>> ListarRiscosNome(string nome) => await _IRisco.RiscosNome(nome);
     }
 }

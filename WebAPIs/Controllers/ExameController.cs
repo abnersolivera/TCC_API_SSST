@@ -112,5 +112,15 @@ namespace WebAPIs.Controllers
             var exameMap = _IMapper.Map<ExameDetailsViewModel>(exame);
             return exameMap;
         }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Exame/ListarExamesNome")]
+        public async Task<List<ExameDTO>> ListarExamesNome([FromQuery] string nome)
+        {
+            var exame = await _IServiceExame.ListarExamesNome(nome);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
+            return exameMap;
+        }
     }
 }
