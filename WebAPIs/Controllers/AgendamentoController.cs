@@ -32,6 +32,7 @@ namespace WebAPIs.Controllers
         {
             try
             {
+
                 var agendamentoMap = _IMapper.Map<Agendamento>(agendamento);
                 await _IServiceAgendamento.Adicionar(agendamentoMap);
                 return Ok(agendamentoMap);

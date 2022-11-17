@@ -23,23 +23,23 @@ namespace Domain.Services
 
         public async Task Adicionar(Atendimento Objeto)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAtendimento, "FuncionarioAtendimento");
-            if (validaNome)
-            {
+            //var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAtendimento, "FuncionarioAtendimento");
+            //if (validaNome)
+            //{
                 Objeto.DataCadastro = DateTime.Now;
                 Objeto.DataAlteracao = DateTime.Now;
                 await _IAtendimento.Add(Objeto);
-            }
+            //}
         }
 
         public async Task Atualizar(Atendimento Objeto)
         {
-            var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAtendimento, "FuncionarioAtendimento");
-            if (validaNome)
-            {
+            //var validaNome = Objeto.ValidarPropriedadeString(Objeto.FuncionarioAtendimento, "FuncionarioAtendimento");
+            //if (validaNome)
+            //{
                 Objeto.DataAlteracao = DateTime.Now;
                 await _IAtendimento.Update(Objeto);
-            }
+            //}
         }
     }
 }

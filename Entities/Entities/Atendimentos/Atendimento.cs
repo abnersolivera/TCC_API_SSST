@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Entities.Atendimentos
 {
     [Table("Atendimento")]
-    public class Atendimento : Notifies
+    public class Atendimento
     {
         [Key()]
         [Column("id_Atendimento")]
@@ -92,5 +92,18 @@ namespace Entities.Entities.Atendimentos
         public ICollection<AtendimentoFuncionario> AtendimentoFuncionario { get; set; }
 
         public ICollection<AtendimentoRiscos> AtendimentoRiscos { get; set; }
+    }
+
+    public class AtendimentoGeral
+    {
+        public Atendimento Atendimentos { get; set; }
+
+        public Funcionario Funcionarios { get; set; }
+
+        public Empresa Empresas { get; set; }
+
+        public List<Exame> Exames { get; set; }
+
+        public List<Risco> Riscos { get; set; }
     }
 }

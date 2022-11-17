@@ -27,7 +27,7 @@ namespace WebAPIs.Controllers
 
         private async Task<string> RetornaIdUsuarioLogado()
         {
-            if(User != null)
+            if (User != null)
             {
                 var idUsuario = User.FindFirst("idUsuario");
                 return idUsuario.Value;
@@ -49,11 +49,20 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Pessoa/Update")]
-        public async Task<List<Notifies>> Update(PessoaViewModel pessoa)
+        public async Task<IActionResult> Update(PessoaDTO pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);            
-            await _IServicePessoa.Atualizar(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _IServicePessoa.Atualizar(pessoaMap);
+                return Ok(pessoaMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
@@ -68,7 +77,7 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/Pessoa/GetEntityById")]        
+        [HttpGet("/api/Pessoa/GetEntityById")]
         public async Task<PessoaDTO> GetEntityById([FromQuery] PessoaIdViewModel pessoa)
         {
             var pessoas = await _Ipessoa.GetEntityById(pessoa.IdPessoas);

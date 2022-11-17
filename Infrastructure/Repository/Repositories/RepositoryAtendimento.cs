@@ -1,9 +1,14 @@
 ﻿using Domain.Interfaces;
 using Entities.Entities;
 using Entities.Entities.Atendimentos;
+using Entities.Entities.Empresas;
+using Entities.Entities.Exames;
+using Entities.Entities.Funcionarios;
+using Entities.Entities.Riscos;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repository.Repositories
@@ -17,11 +22,59 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task<ApplicationUser> ListarUserById(string Id)
+        public async Task<AtendimentoGeral> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame)
+        {
+            
+
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                await banco.Set<Atendimento>().AddAsync(atendimento);                
+                await banco.SaveChangesAsync();
+                
+
+                var dadosEmpresa = new AtendimentoEmpresa();
+                dadosEmpresa.IdAtendimento = atendimento.IdAtendimento;
+                dadosEmpresa.IdEmpresa = empresa.IdEmpresa;
+                await banco.Set<AtendimentoEmpresa>().AddAsync(dadosEmpresa);
+                await banco.SaveChangesAsync();
+                
+
+                var dadosFuncionario = new AtendimentoFuncionario();
+                dadosFuncionario.IdAtendimento = atendimento.IdAtendimento;
+                dadosFuncionario.IdFuncionario = funcionario.IdFuncionario;
+                await banco.SaveChangesAsync();
+                
+
+
+                await banco.Set<AtendimentoFuncionario>().AddAsync(dadosFuncionario);
+                foreach (var item in risco)
+                {
+                    var dados = new AtendimentoRiscos();
+                    dados.IdAtendimento = atendimento.IdAtendimento;
+                    dados.IdRisco = item.IdRisco;
+                    await banco.Set<AtendimentoRiscos>().AddAsync(dados);
+                    await banco.SaveChangesAsync();
+                }
+                
+
+                foreach (var item in exame)
+                {
+                    var dadosExames = new AtendimentoExames();
+                    dadosExames.IdAtendimento = atendimento.IdAtendimento;
+                    dadosExames.IdExame = item.IdExame;
+                    await banco.Set<AtendimentoExames>().AddAsync(dadosExames);
+                    await banco.SaveChangesAsync();
+                }
+                var result = new AtendimentoGeral {Atendimentos = atendimento, Empresas = empresa, Exames = exame, Funcionarios = funcionario, Riscos = risco };
+                return result;
+            }
+        }
+
+        public async Task<Atendimento> ListarUserById(string Id)
         {
             using (var banco = new ContextBase(_OptionsBuilder))
             {
-                return await banco.Set<ApplicationUser>().FindAsync(Id);
+                return await banco.Set<Atendimento>().FindAsync(Id);
 
             }
         }
