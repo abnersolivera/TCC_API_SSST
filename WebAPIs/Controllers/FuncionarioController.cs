@@ -64,7 +64,7 @@ namespace WebAPIs.Controllers
             {
                 var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
                 await _IServiceFuncionario.Atualizar(funcionarioMap);
-                return funcionarioMap;
+                return Ok(funcionarioMap);
             }
             catch (Exception ex)
             {
