@@ -85,4 +85,12 @@ namespace WebAPIs.Models
 
         public int IdEmpresa { get; set; }
     }
+
+    public class UnidadeFuncionarioDTO
+    {
+        public int IdUnidade { get; set; }
+
+        public string RazaoSocialUnidade { get; set; }
+          
+    }
 }

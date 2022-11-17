@@ -116,5 +116,7 @@ namespace Entities.Entities.Funcionarios
         public Setor SetorFun { get; set; }
 
         public Empresa EmpresaFun { get; set; }
+
+        public Unidade UnidadeFun { get; set; }
     }
 }

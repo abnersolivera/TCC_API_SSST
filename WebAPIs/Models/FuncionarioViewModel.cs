@@ -110,5 +110,7 @@ namespace WebAPIs.Models
 
         public EmpresaFuncionarioDTO Empresa { get; set; }
 
+        public UnidadeFuncionarioDTO Unidade { get; set; }
+
     }
 }
