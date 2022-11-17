@@ -65,7 +65,7 @@ namespace Infrastructure.Repository.Repositories
                     await banco.Set<AtendimentoExames>().AddAsync(dadosExames);
                     await banco.SaveChangesAsync();
                 }
-                var result = new AtendimentoGeral {Atendimentos = atendimento, Empresas = empresa, Exames = exame, Funcionarios = funcionario, Riscos = risco };
+                var result = new AtendimentoGeral()/* {Atendimento = atendimento, Empresa = empresa, Exames = exame, Funcionario = funcionario, Riscos = risco }*/;
                 return result;
             }
         }

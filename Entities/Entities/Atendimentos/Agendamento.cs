@@ -28,6 +28,9 @@ namespace Entities.Entities.Atendimentos
         [Column("tipoCompromisso_Agendamento")]
         public TipoCompromisso? TipoCompromissoAgendamento { get; set; }
 
+        [Column("idFuncionario_Agendamento")]
+        public int IdFuncionario { get; set; }
+
         [Column("razaoSocial_Agendamento")]
         [MaxLength(250)]
         public string? RazaoSocialAgendamento { get; set; }

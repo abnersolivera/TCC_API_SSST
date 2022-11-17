@@ -96,11 +96,11 @@ namespace Entities.Entities.Atendimentos
 
     public class AtendimentoGeral
     {
-        public Atendimento Atendimentos { get; set; }
+        public Atendimento Atendimento { get; set; }
 
-        public Funcionario Funcionarios { get; set; }
+        public Empresa Empresa { get; set; }
 
-        public Empresa Empresas { get; set; }
+        public Funcionario Funcionario { get; set; }
 
         public List<Exame> Exames { get; set; }
 
