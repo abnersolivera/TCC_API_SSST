@@ -121,7 +121,7 @@ namespace Infrastructure.Repository.Repositories
                              SetorFun = new Setor { IdSetor = s.IdSetor, NomeSetor = s.NomeSetor },
                              EmpresaFun = new Empresa {IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa }
 
-                         }).AsNoTracking().ToListAsync(); ;
+                         }).AsNoTracking().ToListAsync(); 
         }
     }
 }

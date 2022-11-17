@@ -10,5 +10,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task <Notifies2<Empresa>> Atualizar(Empresa empresa);
 
         Task<List<Empresa>> ListarEmpresaAtivas();
+
+        Task<List<Empresa>> ListarNomeEmpresaId(string? nome, int? id, string? cnpj, string? cpf);
     }
 }
