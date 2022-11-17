@@ -86,10 +86,23 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAtendimento { get; set; }
 
-        public string DataCadastro { get; set; }
+        public string? DataCadastro { get; set; }
 
-        public string DataAlteracao { get; set; }
+        public string? DataAlteracao { get; set; }
 
+    }
+
+    public class AtendimentoGerals
+    {
+        public AtendimentoViewModel Atendimento { get; set; }
+
+        public EmpresaDTO Empresa { get; set; }
+
+        public FuncionarioDTO Funcionario { get; set; }
+
+        public List<RiscoDTO> Riscos { get; set; }
+
+        public List<ExameDTO> Exames { get; set; }
     }
 
     public class AgendamentoViewModel

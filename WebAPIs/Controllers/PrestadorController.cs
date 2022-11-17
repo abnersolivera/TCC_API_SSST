@@ -41,11 +41,20 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Prestador/Add")]
-        public async Task<List<Notifies>> Add(PrestadorViewModel prestador)
+        public async Task<IActionResult> Add(PrestadorViewModel prestador)
         {
-            var prestadorMap = _Imapper.Map<Prestador>(prestador);
-            await _IServicePrestador.Adicionar(prestadorMap);
-            return prestadorMap.Notitycoes;
+            try
+            {
+                var prestadorMap = _Imapper.Map<Prestador>(prestador);
+                await _IServicePrestador.Adicionar(prestadorMap);
+                return Ok(prestadorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [Authorize]
@@ -74,7 +83,7 @@ namespace WebAPIs.Controllers
         public async Task<PrestadorDTO> GetEntityById([FromQuery] PrestadorIdViewModel prestador)
         {
             var prestadores = await _IPrestador.GetEntityById(prestador.IdPrestador);
-            var pessoaMap = _Imapper.Map<PrestadorDTO>(prestador);
+            var pessoaMap = _Imapper.Map<PrestadorDTO>(prestadores);
             return pessoaMap;
         }
 

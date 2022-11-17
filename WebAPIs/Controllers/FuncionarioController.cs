@@ -39,21 +39,38 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Funcionario/Add")]
-        public async Task<List<Notifies>> Add(FuncionarioViewModel funcionario)
+        public async Task<IActionResult> Add(FuncionarioViewModel funcionario)
         {
-            var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
-            await _IServiceFuncionario.Adicionar(funcionarioMap);
-            return funcionarioMap.Notitycoes;
+            try
+            {
+                var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
+                await _IServiceFuncionario.Adicionar(funcionarioMap);
+                return Ok(funcionarioMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Funcionario/Update")]
-        public async Task<List<Notifies>> Update(FuncionarioViewModel funcionario)
+        public async Task<IActionResult> Update(FuncionarioDTO funcionario)
         {
-            var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
-            await _IServiceFuncionario.Atualizar(funcionarioMap);
-            return funcionarioMap.Notitycoes;
+            try
+            {
+                var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
+                await _IServiceFuncionario.Atualizar(funcionarioMap);
+                return funcionarioMap;
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

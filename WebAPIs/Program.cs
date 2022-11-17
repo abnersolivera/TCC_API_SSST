@@ -160,6 +160,12 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<AtendimentoExames, AtendimentoExamesViewModel>().ReverseMap();
     cfg.CreateMap<AtendimentoRiscos, AtendimentoRiscosViewModel>().ReverseMap();
     cfg.CreateMap<Atendimento, AtendimentoDTO>().ReverseMap();
+    cfg.CreateMap<AtendimentoGeral, AtendimentoGerals>().ForMember(x => x.Empresa, x => x.MapFrom(em => em.Empresas))
+                                                        .ForMember(x => x.Atendimento, x => x.MapFrom(a => a.Atendimentos))
+                                                        .ForMember(x => x.Funcionario, x => x.MapFrom(f => f.Funcionarios))
+                                                        .ForMember(x => x.Exames, x => x.MapFrom(ex => ex.Exames))
+                                                        .ForMember(x => x.Riscos, x => x.MapFrom(r => r.Riscos))
+                                                        .ReverseMap();
 
     cfg.CreateMap<Cargo, CargoViewModel>().ReverseMap();
     cfg.CreateMap<Cargo, CargoIdViewModel>().ReverseMap();
