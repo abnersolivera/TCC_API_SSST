@@ -85,6 +85,8 @@ namespace Entities.Entities.Atendimentos
         [Column("dataAlteracao_Atendimento")]
         public DateTime DataAlteracao { get; set; }
 
+
+
         public ICollection<AtendimentoEmpresa> AtendimentoEmpresa { get; set; }
 
         public ICollection<AtendimentoExames> AtendimentoExames { get; set; }

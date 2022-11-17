@@ -19,5 +19,12 @@ namespace Infrastructure.Repository.Repositories
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
+
+        public async Task<int> CountAtendimento()
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+
+            return await (from a in banco.Agendamento select a).CountAsync();
+        }
     }
 }

@@ -143,5 +143,15 @@ namespace WebAPIs.Controllers
             return funcionarioMap;
         }
 
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Funcionario/ListarFuncionarioAtendimento")]
+        public async Task<List<FuncionarioAtendimentoDTO>> ListarFuncionarioAtendimento([FromQuery] int? idAtendimento, int? idFuncionario, int? idEmpresa)
+        {
+            var funcionario = await _IServiceFuncionario.ListarFuncionarioAtendimento(idAtendimento, idFuncionario, idEmpresa);
+            var funcionarioMap = _IMapper.Map<List<FuncionarioAtendimentoDTO>>(funcionario);
+            return funcionarioMap;
+        }
+
     }
 }

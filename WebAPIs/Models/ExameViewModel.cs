@@ -38,4 +38,11 @@ namespace WebAPIs.Models
 
         public int IdPrestador { get; set; }
     }
+
+    public class ExameAtendimentoDTO
+    {
+        public int IdExame { get; set; }
+
+        public string NomeExame { get; set; }
+    }
 }

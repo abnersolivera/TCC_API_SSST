@@ -13,8 +13,9 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repository.Repositories
 {
+
     public class RepositoryAtendimento : RepositoryGenerics<Atendimento>, IAtendimento
-    {
+    {        
         private readonly DbContextOptions<ContextBase> _OptionsBuilder;
 
         public RepositoryAtendimento()
@@ -22,9 +23,8 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task<AtendimentoGeral> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame)
-        {
-            
+        public async Task<Atendimento> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame)
+        {           
 
             using (var banco = new ContextBase(_OptionsBuilder))
             {
@@ -65,8 +65,7 @@ namespace Infrastructure.Repository.Repositories
                     await banco.Set<AtendimentoExames>().AddAsync(dadosExames);
                     await banco.SaveChangesAsync();
                 }
-                var result = new AtendimentoGeral()/* {Atendimento = atendimento, Empresa = empresa, Exames = exame, Funcionario = funcionario, Riscos = risco }*/;
-                return result;
+                return atendimento;
             }
         }
 
