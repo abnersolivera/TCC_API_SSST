@@ -12,7 +12,7 @@ namespace Domain.Interfaces.InterfaceServices
 
         Task<List<Funcionario>> ListarFuncionarioEmpresa(int id);
 
-        Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int id, int idFuncionario);
+        Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int? id, int? idFuncionario);
 
         Task<List<FuncionarioEmpresaCargoSetor>> ListarNomeFuncionarioEmpresaCargoSetor(string nome);
     }
