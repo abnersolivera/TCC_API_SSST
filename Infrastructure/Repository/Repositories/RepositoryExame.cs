@@ -25,6 +25,15 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
+        public async Task<List<Exame>> ExamesNome(string nome)
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+
+            return await (from e in banco.Exame
+                          where e.NomeExame.Contains(nome)
+                          select e).AsNoTracking().ToListAsync();
+        }
+
         public async Task<ExameDetails> Listar(int curretPage)
         {
             using var banco = new ContextBase(_OptionsBuilder);

@@ -16,5 +16,7 @@ namespace Domain.Interfaces.InterfaceServices
         Task<List<Exame>> ListarExamesAtivo();
 
         Task<ExameDetails> ListarExamesDetalhe(int curretPage);
+
+        Task<List<Exame>> ListarExamesNome(string nome);
     }
 }

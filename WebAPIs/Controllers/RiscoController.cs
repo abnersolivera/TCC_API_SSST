@@ -96,5 +96,15 @@ namespace WebAPIs.Controllers
             return riscoMap;
         }
 
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Risco/ListarRiscosNome")]
+        public async Task<List<RiscoDTO>> ListarRiscosNome([FromQuery] string nome)
+        {
+            var risco = await _IServiceRisco.ListarRiscosNome(nome);
+            var riscoMap = _IMapper.Map<List<RiscoDTO>>(risco);
+            return riscoMap;
+        }
+
     }
 }

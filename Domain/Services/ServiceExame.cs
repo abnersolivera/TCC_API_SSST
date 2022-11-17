@@ -41,5 +41,7 @@ namespace Domain.Services
         public async Task<List<Exame>> ListarExamesAtivo() => await _IExame.ListarExame(n => n.SituacaoExame);
 
         public async Task<ExameDetails> ListarExamesDetalhe(int curretPage) => await _IExame.Listar(curretPage);
+
+        public Task<List<Exame>> ListarExamesNome(string nome) => _IExame.ExamesNome(nome);
     }
 }

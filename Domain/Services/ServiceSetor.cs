@@ -1,12 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
-using Entities.Entities.Cargos;
 using Entities.Entities.Setores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
