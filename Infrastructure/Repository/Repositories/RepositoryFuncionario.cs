@@ -52,7 +52,7 @@ namespace Infrastructure.Repository.Repositories
                          ).AsNoTracking().ToListAsync();
         }
 
-        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarEmpresaCargoSetor(int id, int idFuncionario)
+        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarEmpresaCargoSetor(int? id, int? idFuncionario)
         {
             using var banco = new ContextBase(_OptionsBuilder);
 
@@ -60,7 +60,7 @@ namespace Infrastructure.Repository.Repositories
                           join e in banco.Empresa on f.IdEmpresa equals e.IdEmpresa
                           join c in banco.Cargo on f.IdCargo equals c.IdCargo
                           join s in banco.Setor on f.IdSetor equals s.IdSetor
-                          where id.Equals(f.IdEmpresa) || idFuncionario.Equals(f.IdEmpresa)
+                          where id.Equals(f.IdEmpresa) || idFuncionario.Equals(f.IdFuncionario)
                           select new FuncionarioEmpresaCargoSetor
                           {
                               IdFuncionario = f.IdFuncionario,
@@ -77,9 +77,9 @@ namespace Infrastructure.Repository.Repositories
                               DataAlteracao = f.DataAlteracao,
                               DataAdmissao = f.DataAdmissao,
                               DataDemissao = f.DataDemissao,
-                              CargoFun = new Cargo { NomeCargo = c.NomeCargo},
-                              SetorFun = new Setor { NomeSetor = s.NomeSetor},
-                              EmpresaFun = new Empresa { RazaoSocialEmpresa = e.RazaoSocialEmpresa}
+                              CargoFun = new Cargo {IdCargo = c.IdCargo, NomeCargo = c.NomeCargo},
+                              SetorFun = new Setor {IdSetor = s.IdSetor, NomeSetor = s.NomeSetor},
+                              EmpresaFun = new Empresa {IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa}
 
                           }).AsNoTracking().ToListAsync();
         }
