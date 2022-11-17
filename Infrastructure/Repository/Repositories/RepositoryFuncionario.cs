@@ -25,10 +25,6 @@ namespace Infrastructure.Repository.Repositories
         public async Task<List<FuncionarioAtendimento>> FuncionarioAtendimento(int? idAtendimento, int? idFuncionario, int? idEmpresa)
         {
             using var banco = new ContextBase(_OptionsBuilder);
-
-            var ats = await(from at in banco.Atendimento where at.IdAtendimento == idAtendimento select new Atendimento { IdAtendimento = at.IdAtendimento }).AsNoTracking().ToListAsync();
-
-
             return await(from a in banco.Atendimento
                          join af in banco.AtendimentoFuncionario on a.IdAtendimento equals af.IdAtendimento
                          join f in banco.Funcionario on af.IdFuncionario equals f.IdFuncionario
