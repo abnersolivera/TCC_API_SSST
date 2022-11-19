@@ -42,11 +42,9 @@ namespace Infrastructure.Repository.Repositories
                 var dadosFuncionario = new AtendimentoFuncionario();
                 dadosFuncionario.IdAtendimento = atendimento.IdAtendimento;
                 dadosFuncionario.IdFuncionario = funcionario.IdFuncionario;
+                await banco.Set<AtendimentoFuncionario>().AddAsync(dadosFuncionario);
                 await banco.SaveChangesAsync();
                 
-
-
-                await banco.Set<AtendimentoFuncionario>().AddAsync(dadosFuncionario);
                 foreach (var item in risco)
                 {
                     var dados = new AtendimentoRiscos();

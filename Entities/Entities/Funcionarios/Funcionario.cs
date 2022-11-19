@@ -162,8 +162,8 @@ namespace Entities.Entities.Funcionarios
 
         public Unidade UnidadeFun { get; set; }
 
-        public List<Exame> ExameFun { get; set; }
+        public List<Exame> ExameFun { get; set; } = new List<Exame>();
 
-        public List<Risco> RiscoFun { get; set; }
+        public List<Risco> RiscoFun { get; set; } = new List<Risco>(); 
     }
 }
