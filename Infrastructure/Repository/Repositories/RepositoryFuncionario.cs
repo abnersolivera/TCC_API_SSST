@@ -35,7 +35,7 @@ namespace Infrastructure.Repository.Repositories
             var queryRisco = await (from a in banco.Atendimento
                                     join ar in banco.AtendimentoRiscos on a.IdAtendimento equals ar.IdAtendimento
                                     join r in banco.Risco on ar.IdRisco equals r.IdRisco
-                                    select new Tuple<int, Risco>(a.IdAtendimento,new Risco {IdRisco = r.IdRisco, NomeRisco = r.NomeRisco})).AsNoTracking().ToListAsync();
+                                    select new Tuple<int, Risco>(a.IdAtendimento,new Risco {IdRisco = r.IdRisco, NomeRisco = r.NomeRisco, TipoRisco = r.TipoRisco})).AsNoTracking().ToListAsync();
             #endregion
 
             #region QueryExame
@@ -137,8 +137,8 @@ namespace Infrastructure.Repository.Repositories
                                    DataDemissao = f.DataDemissao,
                                    CargoFun = new Cargo { IdCargo = c.IdCargo, NomeCargo = c.NomeCargo },
                                    SetorFun = new Setor { IdSetor = s.IdSetor, NomeSetor = s.NomeSetor },
-                                   EmpresaFun = new Empresa { IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa },
-                                   UnidadeFun = new Unidade { IdUnidade = u.IdUnidade, RazaoSocialUnidade = u.RazaoSocialUnidade },
+                                   EmpresaFun = new Empresa { IdEmpresa = e.IdEmpresa, RazaoSocialEmpresa = e.RazaoSocialEmpresa, CnpjEmpresa = e.CnpjEmpresa },
+                                   UnidadeFun = new Unidade { IdUnidade = u.IdUnidade, RazaoSocialUnidade = u.RazaoSocialUnidade, CnpjUnidade = u.CnpjUnidade },
                                    AtendimentoFun = new Atendimento
                                    {
                                        IdAtendimento = a.IdAtendimento,
