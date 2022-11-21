@@ -71,5 +71,9 @@ namespace WebAPIs.Models
 
         public string RazaoSocialEmpresa { get; set; }
 
+        public string? CnpjEmpresa { get; set; }
+
+        public string? CpfEmpresa { get; set; }
+
     }
 }
