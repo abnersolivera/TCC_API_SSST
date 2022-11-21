@@ -169,7 +169,6 @@ namespace Infrastructure.Repository.Repositories
             #region SerializarQuery
             foreach (var item in queryRisco)
             {
-
                 if(item.Item1.Equals(idAtendimento))
                     risco.Add(item.Item2);
             }
