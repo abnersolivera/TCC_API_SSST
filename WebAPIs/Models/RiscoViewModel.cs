@@ -41,5 +41,7 @@ namespace WebAPIs.Models
 
         public string NomeRisco { get; set; }
 
+        public TipoRisco TipoRisco { get; set; }
+
     }
 }
