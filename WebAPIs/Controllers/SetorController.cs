@@ -39,31 +39,55 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Setor/Add")]
-        public async Task<List<Notifies>> Add(SetorViewModel setor)
+        public async Task<IActionResult> Add(SetorViewModel setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _IServiceSetor.Adicionar(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _IServiceSetor.Adicionar(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Setor/Update")]
-        public async Task<List<Notifies>> Update(SetorViewModel setor)
+        public async Task<IActionResult> Update(SetorDTO setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _IServiceSetor.Atualizar(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _IServiceSetor.Atualizar(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Setor/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] SetorIdViewModel setor)
+        public async Task<IActionResult> Delete([FromQuery] SetorIdViewModel setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _ISetor.Delete(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _ISetor.Delete(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

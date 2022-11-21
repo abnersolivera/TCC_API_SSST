@@ -38,31 +38,55 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Cargo/Add")]
-        public async Task<List<Notifies>> Add(CargoViewModel cargo)
+        public async Task<IActionResult> Add(CargoViewModel cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _IServiceCargo.Adicionar(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _IServiceCargo.Adicionar(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Cargo/Update")]
-        public async Task<List<Notifies>> Update(CargoViewModel cargo)
+        public async Task<IActionResult> Update(CargoDTO cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _IServiceCargo.Atualizar(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _IServiceCargo.Atualizar(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Cargo/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] CargoIdViewModel cargo)
+        public async Task<IActionResult> Delete([FromQuery] CargoIdViewModel cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _ICargo.Delete(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _ICargo.Delete(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

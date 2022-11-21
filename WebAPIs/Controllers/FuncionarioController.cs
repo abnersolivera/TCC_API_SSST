@@ -76,11 +76,19 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Funcionario/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] FuncionarioIdViewModel funcionario)
+        public async Task<IActionResult> Delete([FromQuery] FuncionarioIdViewModel funcionario)
         {
-            var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
-            await _IFuncionario.Delete(funcionarioMap);
-            return funcionarioMap.Notitycoes;
+            try
+            {
+                var funcionarioMap = _IMapper.Map<Funcionario>(funcionario);
+                await _IFuncionario.Delete(funcionarioMap);
+                return Ok(funcionarioMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

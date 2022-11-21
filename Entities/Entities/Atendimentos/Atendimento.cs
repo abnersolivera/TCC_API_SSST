@@ -37,11 +37,11 @@ namespace Entities.Entities.Atendimentos
         public TipoCompromisso TipoCompromissoAtendimento { get; set; }
 
         [Column("razaoSocial_Atendimento")]
-        [MaxLength(250)]
+        [MaxLength(250, ErrorMessage = "Permitido 250 Caracteres")]
         public string RazaoSocialAtendimento { get; set; }
 
         [Column("funcionario_Atendimento")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Permitido 100 Caracteres")]
         public string FuncionarioAtendimento { get; set; }
 
         [Column("rg_Atendimento")]
@@ -84,8 +84,6 @@ namespace Entities.Entities.Atendimentos
 
         [Column("dataAlteracao_Atendimento")]
         public DateTime DataAlteracao { get; set; }
-
-
 
         public ICollection<AtendimentoEmpresa> AtendimentoEmpresa { get; set; }
 

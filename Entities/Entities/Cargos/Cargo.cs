@@ -17,11 +17,11 @@ namespace Entities.Entities.Cargos
         public bool SituacaoCargo { get; set; }
 
         [Column("nome_Cargo")]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Permitido 100 Caracteres")]
         public string NomeCargo { get; set; }
 
         [Column("descricao_Cargo")]
-        [MaxLength(255)]
+        [MaxLength(255, ErrorMessage = "Permitido 255 Caracteres")]
         public string? DescricaoCargo { get; set; }
 
         [Column("dataCadastro_Cargo")]

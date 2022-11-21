@@ -39,31 +39,55 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Risco/Add")]
-        public async Task<List<Notifies>> Add(RiscoViewModel risco)
+        public async Task<IActionResult> Add(RiscoViewModel risco)
         {
-            var riscoMap = _IMapper.Map<Risco>(risco);
-            await _IServiceRisco.Adicionar(riscoMap);
-            return riscoMap.Notitycoes;
+            try
+            {
+                var riscoMap = _IMapper.Map<Risco>(risco);
+                await _IServiceRisco.Adicionar(riscoMap);
+                return Ok(riscoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Risco/Update")]
-        public async Task<List<Notifies>> Update(RiscoViewModel risco)
+        public async Task<IActionResult> Update(RiscoDTO risco)
         {
-            var riscoMap = _IMapper.Map<Risco>(risco);
-            await _IServiceRisco.Atualizar(riscoMap);
-            return riscoMap.Notitycoes;
+            try
+            {
+                var riscoMap = _IMapper.Map<Risco>(risco);
+                await _IServiceRisco.Atualizar(riscoMap);
+                return Ok(riscoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Risco/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] RiscoIdViewModel risco)
+        public async Task<IActionResult> Delete([FromQuery] RiscoIdViewModel risco)
         {
-            var riscoMap = _IMapper.Map<Risco>(risco);
-            await _IRisco.Delete(riscoMap);
-            return riscoMap.Notitycoes;
+            try
+            {
+                var riscoMap = _IMapper.Map<Risco>(risco);
+                await _IRisco.Delete(riscoMap);
+                return Ok(riscoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

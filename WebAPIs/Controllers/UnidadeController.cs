@@ -40,31 +40,58 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Unidade/Add")]
-        public async Task<List<Notifies>> Add(UnidadeViewModel unidade)
+        public async Task<IActionResult> Add(UnidadeViewModel unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IServiceUnidade.Adicionar(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IServiceUnidade.Adicionar(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Unidade/Update")]
-        public async Task<List<Notifies>> Update(UnidadeViewModel unidade)
+        public async Task<IActionResult> Update(UnidadeDTO unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IServiceUnidade.Atualizar(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IServiceUnidade.Atualizar(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Unidade/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] UnidadeIdViewModel unidade)
+        public async Task<IActionResult> Delete([FromQuery] UnidadeIdViewModel unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IUnidade.Delete(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IUnidade.Delete(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

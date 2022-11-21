@@ -39,11 +39,20 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Pessoa/Add")]
-        public async Task<List<Notifies>> Add(PessoaViewModel pessoa)
+        public async Task<IActionResult> Add(PessoaViewModel pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
-            await _IServicePessoa.Adicionar(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _IServicePessoa.Adicionar(pessoaMap);
+                return Ok(pessoaMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
@@ -68,11 +77,19 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Pessoa/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] PessoaIdViewModel pessoa)
+        public async Task<IActionResult> Delete([FromQuery] PessoaIdViewModel pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
-            await _Ipessoa.Delete(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _Ipessoa.Delete(pessoaMap);
+                return Ok(pessoaMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
