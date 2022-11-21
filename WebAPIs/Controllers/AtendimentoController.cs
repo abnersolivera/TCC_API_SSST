@@ -88,7 +88,7 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Atendimento/Update")]
-        public async Task<IActionResult> Update(AtendimentoViewModel atendimento)
+        public async Task<IActionResult> Update(AtendimentoDTO atendimento)
         {
             try
             {
@@ -109,9 +109,17 @@ namespace WebAPIs.Controllers
         [HttpDelete("/api/Atendimento/Delete")]
         public async Task<IActionResult> Delete([FromQuery] AtendimentoIdViewModel atendimento)
         {
-            var atendimentoMap = _IMapper.Map<Atendimento>(atendimento);
-            await _IAtendimento.Delete(atendimentoMap);
-            return Ok(atendimentoMap);
+            try
+            {
+                var atendimentoMap = _IMapper.Map<Atendimento>(atendimento);
+                await _IAtendimento.Delete(atendimentoMap);
+                return Ok(atendimentoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

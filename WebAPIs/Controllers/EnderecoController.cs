@@ -28,31 +28,56 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Endereco/Add")]
-        public async Task<List<Notifies>> Add(EnderecoViewModel endereco)
+        public async Task<IActionResult> Add(EnderecoViewModel endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IServiceEndereco.Adicionar(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IServiceEndereco.Adicionar(enderecoMap);
+                return Ok(enderecoMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Endereco/Update")]
-        public async Task<List<Notifies>> Update(EnderecoViewModel endereco)
+        public async Task<IActionResult> Update(EnderecoDTO endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IServiceEndereco.Atualizar(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IServiceEndereco.Atualizar(enderecoMap);
+                return Ok(enderecoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Endereco/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] EnderecoIdViewModel endereco)
+        public async Task<IActionResult> Delete([FromQuery] EnderecoIdViewModel endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IEndereco.Delete(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IEndereco.Delete(enderecoMap);
+                return Ok(enderecoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]

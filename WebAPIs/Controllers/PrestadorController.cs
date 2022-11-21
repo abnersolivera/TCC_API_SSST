@@ -60,21 +60,38 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Prestador/Update")]
-        public async Task<List<Notifies>> Update(PrestadorViewModel prestador)
+        public async Task<IActionResult> Update(PrestadorDTO prestador)
         {
-            var prestadorMap = _Imapper.Map<Prestador>(prestador);
-            await _IServicePrestador.Atualizar(prestadorMap);
-            return prestadorMap.Notitycoes;
+            try
+            {
+                var prestadorMap = _Imapper.Map<Prestador>(prestador);
+                await _IServicePrestador.Atualizar(prestadorMap);
+                return Ok(prestadorMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Prestador/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] PrestadorIdViewModel prestador)
+        public async Task<IActionResult> Delete([FromQuery] PrestadorIdViewModel prestador)
         {
-            var prestadorMap = _Imapper.Map<Prestador>(prestador);
-            await _IPrestador.Delete(prestadorMap);
-            return prestadorMap.Notitycoes;
+            try
+            {
+                var prestadorMap = _Imapper.Map<Prestador>(prestador);
+                await _IPrestador.Delete(prestadorMap);
+                return Ok(prestadorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
