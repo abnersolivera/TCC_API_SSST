@@ -22,6 +22,21 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
+        public async Task<object> CountAtendimentoExames()
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+
+            #region QueryExame
+            var queryExame = await(from ae in banco.AtendimentoExames
+                                   join e in banco.Exame on ae.IdExame equals e.IdExame
+                                   select new Exame{ IdExame = e.IdExame, NomeExame = e.NomeExame }).AsNoTracking().ToListAsync();
+            #endregion
+
+            var count = queryExame.GroupBy(e => e.NomeExame).Select(g => g.Select(g => new { NomeExames = g.NomeExame, Counts = g.NomeExame.Count() }).Distinct()).ToList();
+
+            return count;
+        }
+
         public async Task<List<FuncionarioAtendimento>> FuncionarioAtendimento(int? idAtendimento, int? idFuncionario, int? idEmpresa)
         {
             var list = new FuncionarioAtendimento();
@@ -29,7 +44,9 @@ namespace Infrastructure.Repository.Repositories
             var exame = new List<Exame>();
             var response = new List<FuncionarioAtendimento>();
 
+
             using var banco = new ContextBase(_OptionsBuilder);
+
 
             #region QueryRisco
             var queryRisco = await (from a in banco.Atendimento
@@ -44,6 +61,7 @@ namespace Infrastructure.Repository.Repositories
                                     join e in banco.Exame on ae.IdExame equals e.IdExame
                                     select new Tuple<int, Exame>(a.IdAtendimento, new Exame {IdExame =e.IdExame, NomeExame = e.NomeExame })).AsNoTracking().ToListAsync();
             #endregion
+
 
             #region QueryAtendimento1
             var query = await (from a in banco.Atendimento

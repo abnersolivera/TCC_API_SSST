@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.InterfaceServices;
 using Domain.Services;
 using Entities.Entities;
+using Entities.Entities.Atendimentos;
 using Entities.Entities.Funcionarios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -161,5 +162,13 @@ namespace WebAPIs.Controllers
             return funcionarioMap;
         }
 
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Funcionario/CountAtendimentoExames")]
+        public async Task<IActionResult> CountAtendimentoExames()
+        {
+            var funcionarioExames = await _IFuncionario.CountAtendimentoExames();
+            return Ok(funcionarioExames);
+        }
     }
 }
