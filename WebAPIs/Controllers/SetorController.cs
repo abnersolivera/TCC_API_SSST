@@ -39,70 +39,94 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Setor/Add")]
-        public async Task<List<Notifies>> Add(SetorViewModel setor)
+        public async Task<IActionResult> Add(SetorViewModel setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _IServiceSetor.Adicionar(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _IServiceSetor.Adicionar(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Setor/Update")]
-        public async Task<List<Notifies>> Update(SetorViewModel setor)
+        public async Task<IActionResult> Update(SetorDTO setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _IServiceSetor.Atualizar(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _IServiceSetor.Atualizar(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Setor/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] SetorIdViewModel setor)
+        public async Task<IActionResult> Delete([FromQuery] SetorIdViewModel setor)
         {
-            var setorMap = _Imapper.Map<Setor>(setor);
-            await _ISetor.Delete(setorMap);
-            return setorMap.Notitycoes;
+            try
+            {
+                var setorMap = _Imapper.Map<Setor>(setor);
+                await _ISetor.Delete(setorMap);
+                return Ok(setorMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Setor/GetEntityById")]
-        public async Task<SetorViewModel> GetEntityById([FromQuery] SetorIdViewModel setor)
+        public async Task<SetorDTO> GetEntityById([FromQuery] SetorIdViewModel setor)
         {
             var setores = await _ISetor.GetEntityById(setor.IdSetor);
-            var setorMap = _Imapper.Map<SetorViewModel>(setores);
+            var setorMap = _Imapper.Map<SetorDTO>(setores);
             return setorMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Setor/List")]
-        public async Task<List<SetorViewModel>> List()
+        public async Task<List<SetorDTO>> List()
         {
             var setor = await _ISetor.List();
-            var setorMap = _Imapper.Map<List<SetorViewModel>>(setor);
+            var setorMap = _Imapper.Map<List<SetorDTO>>(setor);
             return setorMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Setor/ListarSetorAtivos")]
-        public async Task<List<SetorViewModel>> ListarSetorAtivos()
+        public async Task<List<SetorDTO>> ListarSetorAtivos()
         {
             var setor = await _IServiceSetor.ListarSetorAtivo();
-            var setorMap = _Imapper.Map<List<SetorViewModel>>(setor);
+            var setorMap = _Imapper.Map<List<SetorDTO>>(setor);
             return setorMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Setor/ListarSetorEmpresa")]
-        public async Task<List<SetorViewModel>> ListarSetorEmpresa([FromQuery] int idEmpresa)
+        public async Task<List<SetorDTO>> ListarSetorEmpresa([FromQuery] int idEmpresa)
         {
             var setor = await _IServiceSetor.ListarSetorEmpresa(idEmpresa);
-            var setorMap = _Imapper.Map<List<SetorViewModel>>(setor);
+            var setorMap = _Imapper.Map<List<SetorDTO>>(setor);
             return setorMap;
         }
     }

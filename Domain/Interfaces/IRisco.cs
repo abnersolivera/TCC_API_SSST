@@ -7,5 +7,7 @@ namespace Domain.Interfaces
     public interface IRisco : IGeneric<Risco>
     {
         Task<List<Risco>> ListarRiscos(Expression<Func<Risco, bool>> exRisco);
+
+        Task<List<Risco>> RiscosNome(string nome);
     }
 }

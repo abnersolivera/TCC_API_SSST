@@ -51,30 +51,30 @@ namespace Entities.Entities.Prestadores
         public string? EstadoPrestador { get; set; }
 
         [Column("cep_Prestador")]
-        [MaxLength(10)]
+        [MaxLength(50)]
         public string? CepPrestador { get; set; }
 
         [Column("atendente_Prestador")]
         public bool? AtendentePrestador { get; set; }
 
         [Column("telefone_Prestador")]
-        [MaxLength(15)]
+        [MaxLength(50)]
         public string? telefone_Prestador { get; set; }
 
         [Column("telefoneCelular_Prestador")]
-        [MaxLength(15)]
+        [MaxLength(50)]
         public string? telefoneCelular_Prestador { get; set; }
 
         [Column("email_Prestador")]
-        [MaxLength(30)]
+        [MaxLength(50)]
         public string? email_Prestador { get; set; }
 
         [Column("cnpj_Prestador")]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string? cnpj_Prestador { get; set; }
 
         [Column("cpf_Prestador")]
-        [MaxLength(15)]
+        [MaxLength(50)]
         public string? cpf_Prestador { get; set; }
 
         [Column("dataCadastro_Prestador")]

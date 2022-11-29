@@ -38,31 +38,55 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Exame/Add")]
-        public async Task<List<Notifies>> Add(ExameViewModel exame)
+        public async Task<IActionResult> Add(ExameViewModel exame)
         {
-            var exameMap = _IMapper.Map<Exame>(exame);
-            await _IServiceExame.Adicionar(exameMap);
-            return exameMap.Notitycoes;
+            try
+            {
+                var exameMap = _IMapper.Map<Exame>(exame);
+                await _IServiceExame.Adicionar(exameMap);
+                return Ok(exameMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Exame/Update")]
-        public async Task<List<Notifies>> Update(ExameViewModel exame)
+        public async Task<IActionResult> Update(ExameDTO exame)
         {
-            var exameMap = _IMapper.Map<Exame>(exame);
-            await _IServiceExame.Atualizar(exameMap);
-            return exameMap.Notitycoes;
+            try
+            {
+                var exameMap = _IMapper.Map<Exame>(exame);
+                await _IServiceExame.Atualizar(exameMap);
+                return Ok(exameMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Exame/Delete")]
-        public async Task<List<Notifies>> Delete(int exame)
+        public async Task<IActionResult> Delete(int exame)
         {
-            var exameMap = _IMapper.Map<Exame>(exame);
-            await _IExame.Delete(exameMap);
-            return exameMap.Notitycoes;
+            try
+            {
+                var exameMap = _IMapper.Map<Exame>(exame);
+                await _IExame.Delete(exameMap);
+                return Ok(exameMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
@@ -73,7 +97,7 @@ namespace WebAPIs.Controllers
             try
             {
                 var exames = await _IExame.GetEntityById(exame.IdExame);
-                var exameMap = _IMapper.Map<ExameViewModel>(exames);
+                var exameMap = _IMapper.Map<ExameDTO>(exames);
                 return Ok(exameMap);
             }
             catch (Exception ex)
@@ -86,30 +110,48 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/List")]
-        public async Task<List<ExameViewModel>> List()
+        public async Task<List<ExameDTO>> List()
         {
             var exame = await _IExame.List();
-            var exameMap = _IMapper.Map<List<ExameViewModel>>(exame);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
             return exameMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/ListarExamesAtivos")]
-        public async Task<List<ExameViewModel>> ListarExamesAtivos()
+        public async Task<List<ExameDTO>> ListarExamesAtivos()
         {
             var exame = await _IServiceExame.ListarExamesAtivo();
-            var exameMap = _IMapper.Map<List<ExameViewModel>>(exame);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
             return exameMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Exame/ListarExamesDetalhe")]
-        public async Task<ExameDetailsViewModel> ListarExamesDetalhe()
+        public async Task<ExameDetailsViewModel> ListarExamesDetalhe([FromQuery] int? curretPage = 1)
         {
-            var exame = await _IServiceExame.ListarExamesDetalhe();
-            var exameMap = _IMapper.Map<ExameDetailsViewModel>(exame);
+            try
+            {
+                var exame = await _IServiceExame.ListarExamesDetalhe(curretPage!.Value);
+                var exameMap = _IMapper.Map<ExameDetailsViewModel>(exame);
+                return exameMap;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Exame/ListarExamesNome")]
+        public async Task<List<ExameDTO>> ListarExamesNome([FromQuery] string nome)
+        {
+            var exame = await _IServiceExame.ListarExamesNome(nome);
+            var exameMap = _IMapper.Map<List<ExameDTO>>(exame);
             return exameMap;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Entities.Entities.Cargos;
+﻿using Entities.Entities.Atendimentos;
+using Entities.Entities.Cargos;
 using Entities.Entities.Empresas;
 using Entities.Entities.Exames;
 using Entities.Entities.Riscos;
@@ -6,6 +7,7 @@ using Entities.Entities.Setores;
 using Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO.Pipes;
 
 namespace Entities.Entities.Funcionarios
 {
@@ -79,5 +81,89 @@ namespace Entities.Entities.Funcionarios
 
         public ICollection<AtendimentoExames> AtendimentoExames { get; set; }
 
+    }
+
+    public class FuncionarioEmpresaCargoSetor
+    {
+        public int IdFuncionario { get; set; }
+
+        public bool SituacaoFuncionario { get; set; }
+
+        public string? NomeFuncionario { get; set; }
+
+        public DateTime DataNascimentoFuncionario { get; set; }
+
+        public string? CpfFuncionario { get; set; }
+
+        public string? RgFuncionario { get; set; }
+
+        public string? PisFuncionario { get; set; }
+
+        public string? TelefoneFuncionario { get; set; }
+
+        public string? EmailFuncionario { get; set; }
+
+        public TipoSexo SexoFuncionario { get; set; }
+
+        public DateTime DataCadastro { get; set; }
+
+        public DateTime DataAlteracao { get; set; }
+
+        public DateTime DataAdmissao { get; set; }
+
+        public DateTime? DataDemissao { get; set; }
+
+        public Cargo CargoFun { get; set; }
+
+        public Setor SetorFun { get; set; }
+
+        public Empresa EmpresaFun { get; set; }
+
+        public Unidade UnidadeFun { get; set; }
+    }
+
+    public class FuncionarioAtendimento
+    {
+        public int IdFuncionario { get; set; }
+
+        public bool SituacaoFuncionario { get; set; }
+
+        public string? NomeFuncionario { get; set; }
+
+        public DateTime DataNascimentoFuncionario { get; set; }
+
+        public string? CpfFuncionario { get; set; }
+
+        public string? RgFuncionario { get; set; }
+
+        public string? PisFuncionario { get; set; }
+
+        public string? TelefoneFuncionario { get; set; }
+
+        public string? EmailFuncionario { get; set; }
+
+        public TipoSexo SexoFuncionario { get; set; }
+
+        public DateTime DataCadastro { get; set; }
+
+        public DateTime DataAlteracao { get; set; }
+
+        public DateTime DataAdmissao { get; set; }
+
+        public DateTime? DataDemissao { get; set; }
+
+        public Atendimento AtendimentoFun { get; set; }
+
+        public Cargo CargoFun { get; set; }
+
+        public Setor SetorFun { get; set; }
+
+        public Empresa EmpresaFun { get; set; }
+
+        public Unidade UnidadeFun { get; set; }
+
+        public List<Exame> ExameFun { get; set; } = new List<Exame>();
+
+        public List<Risco> RiscoFun { get; set; } = new List<Risco>(); 
     }
 }

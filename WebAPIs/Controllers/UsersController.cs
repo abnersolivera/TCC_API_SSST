@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Entities.Entities;
 using Entities.Entities.Empresas;
+using Entities.Entities.Pessoas;
 using Entities.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -146,6 +147,53 @@ namespace WebAPIs.Controllers
             var user = await _IUser.List();
             var userMap = _Imapper.Map<List<UserViewModel>>(user);
             return userMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpPatch("/api/User/Update")]
+        public async Task<IActionResult> Update([FromBody] UserImageViewModel user)
+        {
+            try
+            {
+                var IdLogado = RetornaIdUsuarioLogado().Result;
+
+                var queryUser = await _IUser.ListarUserById(IdLogado.ToString());
+
+                var users = new ApplicationUser
+                {
+                    Nome = user.Nome is not "" ? user.Nome : queryUser.Nome,
+                    UserName = queryUser.Email,
+                    Email = queryUser.Email,
+                    Tipo = queryUser.Tipo,
+                    StatusUsuario = queryUser.StatusUsuario,
+                    CaminhoImagem = user.CaminhoImagem,
+                    AccessFailedCount = queryUser.AccessFailedCount,
+                    ConcurrencyStamp = queryUser.ConcurrencyStamp,
+                    EmailConfirmed = queryUser.EmailConfirmed,
+                    LockoutEnabled = queryUser.LockoutEnabled,
+                    LockoutEnd = queryUser.LockoutEnd,
+                    NormalizedEmail = queryUser.NormalizedEmail,
+                    NormalizedUserName = queryUser.NormalizedUserName,
+                    PasswordHash = queryUser.PasswordHash,
+                    PhoneNumber = queryUser.PhoneNumber,                    
+                    PhoneNumberConfirmed = queryUser.PhoneNumberConfirmed,
+                    SecurityStamp = queryUser.SecurityStamp,
+                    TwoFactorEnabled = queryUser.TwoFactorEnabled,
+                    UltimoAcesso = queryUser.UltimoAcesso,
+                    Id = queryUser.Id,
+                };
+
+                var pessoaMap = _Imapper.Map<ApplicationUser>(users);
+                await _IUser.Update(pessoaMap);
+                return Ok(pessoaMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }

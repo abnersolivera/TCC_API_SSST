@@ -4,6 +4,7 @@ using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20221115144558_tipoPessoaEmpresaUnidade")]
+    partial class tipoPessoaEmpresaUnidade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,10 +145,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("HoraAgendada")
                         .HasColumnType("datetime2")
                         .HasColumnName("hota_Agendamento");
-
-                    b.Property<int>("IdFuncionario")
-                        .HasColumnType("int")
-                        .HasColumnName("idFuncionario_Agendamento");
 
                     b.Property<string>("RazaoSocialAgendamento")
                         .HasMaxLength(250)

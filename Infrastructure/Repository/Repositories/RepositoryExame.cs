@@ -25,16 +25,22 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task<ExameDetails> Listar()
+        public async Task<List<Exame>> ExamesNome(string nome)
         {
-
-
             using var banco = new ContextBase(_OptionsBuilder);
-            int skip = 0;
-            int take = 25;
+
+            return await (from e in banco.Exame
+                          where e.NomeExame.Contains(nome)
+                          select e).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<ExameDetails> Listar(int curretPage)
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+            int take = 10;
             int count = await banco.Set<Exame>().CountAsync();
-            var details = (new Details { Skip = skip, Take = take, PageTotal = count, PageQuantity = Convert.ToInt32(Math.Ceiling(count * 1M / 25)) });
-            var query = (await banco.Set<Exame>().Skip(skip).Take(take).ToListAsync());
+            var details = (new Details { Take = take, PageTotal = count, PageQuantity = Convert.ToInt32(Math.Ceiling(count * 1M / take)), CurretPage = curretPage });
+            var query = (await banco.Set<Exame>().Skip(take * (curretPage - 1)).Take(take).ToListAsync());
             var result = new ExameDetails { Exame = query, Details = details };
             return result;
         }

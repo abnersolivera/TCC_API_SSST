@@ -40,70 +40,97 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Unidade/Add")]
-        public async Task<List<Notifies>> Add(UnidadeViewModel unidade)
+        public async Task<IActionResult> Add(UnidadeViewModel unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IServiceUnidade.Adicionar(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IServiceUnidade.Adicionar(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Unidade/Update")]
-        public async Task<List<Notifies>> Update(UnidadeViewModel unidade)
+        public async Task<IActionResult> Update(UnidadeDTO unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IServiceUnidade.Atualizar(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IServiceUnidade.Atualizar(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Unidade/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] UnidadeIdViewModel unidade)
+        public async Task<IActionResult> Delete([FromQuery] UnidadeIdViewModel unidade)
         {
-            var unidadeMap = _IMapper.Map<Unidade>(unidade);
-            await _IUnidade.Delete(unidadeMap);
-            return unidadeMap.Notitycoes;
+            try
+            {
+                var unidadeMap = _IMapper.Map<Unidade>(unidade);
+                await _IUnidade.Delete(unidadeMap);
+                return Ok(unidadeMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Unidade/GetEntityById")]
-        public async Task<UnidadeViewModel> GetEntityById([FromQuery] UnidadeIdViewModel unidade)
+        public async Task<UnidadeDTO> GetEntityById([FromQuery] UnidadeIdViewModel unidade)
         {
             var unidades = await _IUnidade.GetEntityById(unidade.IdUnidade);
-            var unidadeMap = _IMapper.Map<UnidadeViewModel>(unidades);
+            var unidadeMap = _IMapper.Map<UnidadeDTO>(unidades);
             return unidadeMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Unidade/List")]
-        public async Task<List<UnidadeViewModel>> List()
+        public async Task<List<UnidadeDTO>> List()
         {
             var unidade = await _IUnidade.List();
-            var unidadeMap = _IMapper.Map<List<UnidadeViewModel>>(unidade);
+            var unidadeMap = _IMapper.Map<List<UnidadeDTO>>(unidade);
             return unidadeMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Unidade/ListarUnidadeAtivas")]
-        public async Task<List<UnidadeViewModel>> ListarUnidadeAtivas()
+        public async Task<List<UnidadeDTO>> ListarUnidadeAtivas()
         {
             var unidade = await _IServiceUnidade.ListarUnidadeAtivas();
-            var unidadeMap = _IMapper.Map<List<UnidadeViewModel>>(unidade);
+            var unidadeMap = _IMapper.Map<List<UnidadeDTO>>(unidade);
             return unidadeMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Unidade/ListarUnidadeEmpresa")]
-        public async Task<List<UnidadeViewModel>> ListarUnidadeEmpresa([FromQuery] int idEmpresa)
+        public async Task<List<UnidadeDTO>> ListarUnidadeEmpresa([FromQuery] int idEmpresa)
         {
             var unidade = await _IServiceUnidade.ListarUnidadeEmpresa(idEmpresa);
-            var unidadeMap = _IMapper.Map<List<UnidadeViewModel>>(unidade);
+            var unidadeMap = _IMapper.Map<List<UnidadeDTO>>(unidade);
             return unidadeMap;
         }
 

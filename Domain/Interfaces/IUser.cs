@@ -14,7 +14,7 @@ namespace Domain.Interfaces
     public interface IUser : IGeneric<ApplicationUser>
     {
         Task<ApplicationUser> ListarUserById(string Id);
- 
+
         Task<List<ApplicationUser>> ListarUser(Expression<Func<ApplicationUser, bool>> exUser);
     }
 }

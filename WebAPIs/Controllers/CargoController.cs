@@ -38,70 +38,94 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Cargo/Add")]
-        public async Task<List<Notifies>> Add(CargoViewModel cargo)
+        public async Task<IActionResult> Add(CargoViewModel cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _IServiceCargo.Adicionar(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _IServiceCargo.Adicionar(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Cargo/Update")]
-        public async Task<List<Notifies>> Update(CargoViewModel cargo)
+        public async Task<IActionResult> Update(CargoDTO cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _IServiceCargo.Atualizar(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _IServiceCargo.Atualizar(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Cargo/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] CargoIdViewModel cargo)
+        public async Task<IActionResult> Delete([FromQuery] CargoIdViewModel cargo)
         {
-            var cargoMap = _Imapper.Map<Cargo>(cargo);
-            await _ICargo.Delete(cargoMap);
-            return cargoMap.Notitycoes;
+            try
+            {
+                var cargoMap = _Imapper.Map<Cargo>(cargo);
+                await _ICargo.Delete(cargoMap);
+                return Ok(cargoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Cargo/GetEntityById")]
-        public async Task<CargoViewModel> GetEntityById([FromQuery] CargoIdViewModel cargo)
+        public async Task<CargoDTO> GetEntityById([FromQuery] CargoIdViewModel cargo)
         {
             var cargos = await _ICargo.GetEntityById(cargo.IdCargo);
-            var cargoMap = _Imapper.Map<CargoViewModel>(cargos);
-            return cargoMap;
-        }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpGet("/api/Cargo/ListarCargoEmpresa")]
-        public async Task<List<CargoViewModel>> ListarCargoEmpresa([FromQuery] int idEmpresa)
-        {
-            var cargos = await _IServiceCargo.ListarCargoEmpresa(idEmpresa);
-            var cargoMap = _Imapper.Map<List<CargoViewModel>>(cargos);
+            var cargoMap = _Imapper.Map<CargoDTO>(cargos);
             return cargoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Cargo/List")]
-        public async Task<List<CargoViewModel>> List()
+        public async Task<List<CargoDTO>> List()
         {
             var cargo = await _ICargo.List();
-            var cargoMap = _Imapper.Map<List<CargoViewModel>>(cargo);
+            var cargoMap = _Imapper.Map<List<CargoDTO>>(cargo);
             return cargoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Cargo/ListarCargoAtivos")]
-        public async Task<List<CargoViewModel>> ListarCargoAtivos()
+        public async Task<List<CargoDTO>> ListarCargoAtivos()
         {
             var cargo = await _IServiceCargo.ListarCargoAtivo();
-            var cargoMap = _Imapper.Map<List<CargoViewModel>>(cargo);
+            var cargoMap = _Imapper.Map<List<CargoDTO>>(cargo);
+            return cargoMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Cargo/ListarCargoEmpresa")]
+        public async Task<List<CargoDTO>> ListarCargoEmpresa([FromQuery] int idEmpresa)
+        {
+            var cargos = await _IServiceCargo.ListarCargoEmpresa(idEmpresa);
+            var cargoMap = _Imapper.Map<List<CargoDTO>>(cargos);
             return cargoMap;
         }
     }

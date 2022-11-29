@@ -1,7 +1,4 @@
-﻿using Entities.Entities;
-using Entities.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using Entities.Enums;
 
 namespace WebAPIs.Models
 {
@@ -44,6 +41,11 @@ namespace WebAPIs.Models
         public TipoAtendimento StatusAtendimento { get; set; }
     }
 
+    public class AtendimentoIdViewModel
+    {
+        public int IdAtendimento { get; set; }
+    }
+
     public class AtendimentoDTO
     {
         public int IdAtendimento { get; set; }
@@ -84,15 +86,23 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAtendimento { get; set; }
 
-        public string DataCadastro { get; set; }
+        public string? DataCadastro { get; set; }
 
-        public string DataAlteracao { get; set; }
+        public string? DataAlteracao { get; set; }
 
     }
 
-    public class AtendimentoIdViewModel
+    public class AtendimentoGeralDTO 
     {
-        public int IdAtendimento { get; set; }
+        public AtendimentoViewModel Atendimento { get; set; } 
+
+        public EmpresaDTO Empresa { get; set; }
+
+        public FuncionarioDTO Funcionario { get; set; }
+
+        public List<RiscoDTO> Riscos { get; set; }
+
+        public List<ExameDTO> Exames { get; set; }
     }
 
     public class AgendamentoViewModel
@@ -110,6 +120,13 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAgendamento { get; set; }
 
+        public int IdFuncionario { get; set; }
+
+    }
+
+    public class AgendamentoIdViewModel
+    {
+        public int IdAgendamento { get; set; }
     }
 
     public class AgendamentoDTO
@@ -128,14 +145,16 @@ namespace WebAPIs.Models
 
         public TipoAtendimento StatusAgendamento { get; set; }
 
+        public int IdFuncionario { get; set; }
+
         public string DataCadastro { get; set; }
 
         public string DataAlteracao { get; set; }
     }
 
-    public class AgendamentoIdViewModel
+    public class AgendamentCount
     {
-        public int IdAgendamento { get; set; }
+        public int Count { get; set; }
     }
 }
 

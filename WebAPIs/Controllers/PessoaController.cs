@@ -27,7 +27,7 @@ namespace WebAPIs.Controllers
 
         private async Task<string> RetornaIdUsuarioLogado()
         {
-            if(User != null)
+            if (User != null)
             {
                 var idUsuario = User.FindFirst("idUsuario");
                 return idUsuario.Value;
@@ -39,60 +39,86 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Pessoa/Add")]
-        public async Task<List<Notifies>> Add(PessoaViewModel pessoa)
+        public async Task<IActionResult> Add(PessoaViewModel pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
-            await _IServicePessoa.Adicionar(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _IServicePessoa.Adicionar(pessoaMap);
+                return Ok(pessoaMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Pessoa/Update")]
-        public async Task<List<Notifies>> Update(PessoaViewModel pessoa)
+        public async Task<IActionResult> Update(PessoaDTO pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);            
-            await _IServicePessoa.Atualizar(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _IServicePessoa.Atualizar(pessoaMap);
+                return Ok(pessoaMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Pessoa/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] PessoaIdViewModel pessoa)
+        public async Task<IActionResult> Delete([FromQuery] PessoaIdViewModel pessoa)
         {
-            var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
-            await _Ipessoa.Delete(pessoaMap);
-            return pessoaMap.Notitycoes;
+            try
+            {
+                var pessoaMap = _Imapper.Map<Pessoa>(pessoa);
+                await _Ipessoa.Delete(pessoaMap);
+                return Ok(pessoaMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
-        [HttpGet("/api/Pessoa/GetEntityById")]        
-        public async Task<PessoaViewModel> GetEntityById([FromQuery] PessoaIdViewModel pessoa)
+        [HttpGet("/api/Pessoa/GetEntityById")]
+        public async Task<PessoaDTO> GetEntityById([FromQuery] PessoaIdViewModel pessoa)
         {
             var pessoas = await _Ipessoa.GetEntityById(pessoa.IdPessoas);
-            var pessoaMap = _Imapper.Map<PessoaViewModel>(pessoas);
+            var pessoaMap = _Imapper.Map<PessoaDTO>(pessoas);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/List")]
-        public async Task<List<PessoaViewModel>> List()
+        public async Task<List<PessoaDTO>> List()
         {
             var pessoa = await _Ipessoa.List();
-            var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);
+            var pessoaMap = _Imapper.Map<List<PessoaDTO>>(pessoa);
             return pessoaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Pessoa/ListarPessoasAtivas")]
-        public async Task<List<PessoaViewModel>> ListarMPessoaAtivas()
+        public async Task<List<PessoaDTO>> ListarMPessoaAtivas()
         {
             var pessoa = await _IServicePessoa.ListarPessoaAtivas();
-            var pessoaMap = _Imapper.Map<List<PessoaViewModel>>(pessoa);
+            var pessoaMap = _Imapper.Map<List<PessoaDTO>>(pessoa);
             return pessoaMap;
         }
     }

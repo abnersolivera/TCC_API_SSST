@@ -50,5 +50,7 @@ namespace Domain.Services
         {
             return await _IEmpresa.ListarEmpresa(n => n.SituacaoEmpresa);
         }
+
+        public async Task<List<Empresa>> ListarNomeEmpresaId(string? nome, int? id, string? cnpj, string? cpf) => await _IEmpresa.ListarNomeEmpresa(nome, id, cnpj, cpf);
     }
 }

@@ -23,5 +23,14 @@ namespace Infrastructure.Repository.Repositories
                 return await banco.Risco.Where(exRisco).AsNoTracking().ToListAsync();
             }
         }
+
+        public async Task<List<Risco>> RiscosNome(string nome)
+        {
+            using var banco = new ContextBase(_OptionsBuilder);
+
+            return await(from r in banco.Risco
+                         where r.NomeRisco.Contains(nome)
+                         select r).AsNoTracking().ToListAsync();
+        }
     }
 }

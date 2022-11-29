@@ -28,60 +28,85 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Endereco/Add")]
-        public async Task<List<Notifies>> Add(EnderecoViewModel endereco)
+        public async Task<IActionResult> Add(EnderecoViewModel endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IServiceEndereco.Adicionar(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IServiceEndereco.Adicionar(enderecoMap);
+                return Ok(enderecoMap);
+
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Endereco/Update")]
-        public async Task<List<Notifies>> Update(EnderecoViewModel endereco)
+        public async Task<IActionResult> Update(EnderecoDTO endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IServiceEndereco.Atualizar(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IServiceEndereco.Atualizar(enderecoMap);
+                return Ok(enderecoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Endereco/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] EnderecoIdViewModel endereco)
+        public async Task<IActionResult> Delete([FromQuery] EnderecoIdViewModel endereco)
         {
-            var enderecoMap = _Imapper.Map<Endereco>(endereco);
-            await _IEndereco.Delete(enderecoMap);
-            return enderecoMap.Notitycoes;
+            try
+            {
+                var enderecoMap = _Imapper.Map<Endereco>(endereco);
+                await _IEndereco.Delete(enderecoMap);
+                return Ok(enderecoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/GetEntityById")]
-        public async Task<EnderecoViewModel> GetEntityById([FromQuery] EnderecoIdViewModel endereco)
+        public async Task<EnderecoDTO> GetEntityById([FromQuery] EnderecoIdViewModel endereco)
         {
             var enderecos = await _IEndereco.GetEntityById(endereco.IdEndereco);
-            var enderecoMap = _Imapper.Map<EnderecoViewModel>(enderecos);
+            var enderecoMap = _Imapper.Map<EnderecoDTO>(enderecos);
             return enderecoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/List")]
-        public async Task<List<EnderecoViewModel>> List()
+        public async Task<List<EnderecoDTO>> List()
         {
             var endereco = await _IEndereco.List();
-            var enderecoMap = _Imapper.Map<List<EnderecoViewModel>>(endereco);
+            var enderecoMap = _Imapper.Map<List<EnderecoDTO>>(endereco);
             return enderecoMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Endereco/ListarEnderecoAtivos")]
-        public async Task<List<EnderecoViewModel>> ListarEnderecoAtivos()
+        public async Task<List<EnderecoDTO>> ListarEnderecoAtivos()
         {
             var endereco = await _IServiceEndereco.ListarEnderecoAtivas();
-            var enderecoMap = _Imapper.Map<List<EnderecoViewModel>>(endereco);
+            var enderecoMap = _Imapper.Map<List<EnderecoDTO>>(endereco);
             return enderecoMap;
         }
     }

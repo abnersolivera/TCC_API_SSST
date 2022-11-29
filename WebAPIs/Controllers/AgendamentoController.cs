@@ -36,7 +36,7 @@ namespace WebAPIs.Controllers
                 await _IServiceAgendamento.Adicionar(agendamentoMap);
                 return Ok(agendamentoMap);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 Response.StatusCode = 400;
                 return BadRequest(ex.Message);
@@ -46,30 +46,46 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPatch("/api/Agendamento/Update")]
-        public async Task<List<Notifies>> Update(AgendamentoViewModel agendamento)
+        public async Task<IActionResult> Update(AgendamentoDTO agendamento)
         {
-            var agendamentoMap = _IMapper.Map<Agendamento>(agendamento);
-            await _IServiceAgendamento.Atualizar(agendamentoMap);
-            return agendamentoMap.Notitycoes;
+            try
+            {
+                var agendamentoMap = _IMapper.Map<Agendamento>(agendamento);
+                await _IServiceAgendamento.Atualizar(agendamentoMap);
+                return Ok(agendamentoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpDelete("/api/Agendamento/Delete")]
-        public async Task<List<Notifies>> Delete([FromQuery] AgendamentoIdViewModel atendimento)
+        public async Task<IActionResult> Delete([FromQuery] AgendamentoIdViewModel atendimento)
         {
-            var agendamentoMap = _IMapper.Map<Agendamento>(atendimento);
-            await _IAgendamento.Delete(agendamentoMap);
-            return agendamentoMap.Notitycoes;
+            try
+            {
+                var agendamentoMap = _IMapper.Map<Agendamento>(atendimento);
+                await _IAgendamento.Delete(agendamentoMap);
+                return Ok(agendamentoMap);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 400;
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Agendamento/GetEntityById")]
-        public async Task<AgendamentoViewModel> GetEntityById([FromQuery] AgendamentoIdViewModel atendimento)
+        public async Task<AgendamentoDTO> GetEntityById([FromQuery] AgendamentoIdViewModel atendimento)
         {
             var agendamentos = await _IAgendamento.GetEntityById(atendimento.IdAgendamento);
-            var agendamentoMap = _IMapper.Map<AgendamentoViewModel>(agendamentos);
+            var agendamentoMap = _IMapper.Map<AgendamentoDTO>(agendamentos);
             return agendamentoMap;
         }
 
@@ -81,6 +97,15 @@ namespace WebAPIs.Controllers
             var agendamento = await _IAgendamento.List();
             var agendamentoMap = _IMapper.Map<List<AgendamentoDTO>>(agendamento);
             return agendamentoMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Agendamento/Count")]
+        public async Task<IActionResult> Count()
+        {
+            var agendamento = await _IAgendamento.CountAtendimento();
+            return Ok(agendamento);
         }
     }
 }

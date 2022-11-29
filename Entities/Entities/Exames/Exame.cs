@@ -37,6 +37,8 @@ namespace Entities.Entities.Exames
 
         public List<Exame> Exame { get; set; }
 
-        public Details Details { get; set; } 
+        public Details Details { get; set; }
     }
+
+
 }

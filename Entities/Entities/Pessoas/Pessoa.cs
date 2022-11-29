@@ -47,11 +47,11 @@ namespace Entities.Entities.Pessoas
         public string? CepPessoas { get; set; }
 
         [Column("rg_Pessoas")]
-        [MaxLength(20)]
+        [MaxLength(25)]
         public string? RGPessoas { get; set; }
 
         [Column("cpf_Pessoas")]
-        [MaxLength(15)]
+        [MaxLength(25)]
         public string? CPFPessoas { get; set; }
 
         [Column("email_Pessoas")]
@@ -59,7 +59,7 @@ namespace Entities.Entities.Pessoas
         public string? EmailPessoas { get; set; }
 
         [Column("pis_Pessoas")]
-        [MaxLength(20)]
+        [MaxLength(25)]
         public string? PISPessoas { get; set; }
 
         [Column("rqe_Pessoas")]
@@ -71,7 +71,7 @@ namespace Entities.Entities.Pessoas
         public string? SiglaConselhoDeClassePessoas { get; set; }
 
         [Column("conselhoDeClasse_Pessoas")]
-        [MaxLength(15)]
+        [MaxLength(25)]
         public string? ConselhoDeClassePessoas { get; set; }
 
         [Column("conselhoDeClasseEstado_Pessoas")]

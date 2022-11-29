@@ -69,30 +69,40 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Empresa/GetEntityById")]
-        public async Task<EmpresaViewModel> GetEntityById([FromQuery] EmpresaIdViewModel empresa)
+        public async Task<EmpresaDTO> GetEntityById([FromQuery] EmpresaIdViewModel empresa)
         {
             var empresas = await _IEmpresa.GetEntityById(empresa.IdEmpresa);
-            var empresaMap = _Imapper.Map<EmpresaViewModel>(empresas);
+            var empresaMap = _Imapper.Map<EmpresaDTO>(empresas);
             return empresaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Empresa/List")]
-        public async Task<List<EmpresaViewModel>> List()
+        public async Task<List<EmpresaDTO>> List()
         {
             var empresa = await _IEmpresa.List();
-            var empresaMap = _Imapper.Map<List<EmpresaViewModel>>(empresa);
+            var empresaMap = _Imapper.Map<List<EmpresaDTO>>(empresa);
             return empresaMap;
         }
 
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Empresa/ListarEmpresaAtivas")]
-        public async Task<List<EmpresaViewModel>> ListarEmpresaAtivas()
+        public async Task<List<EmpresaDTO>> ListarEmpresaAtivas()
         {
             var empresa = await _IServiceEmpresa.ListarEmpresaAtivas();
-            var empresaMap = _Imapper.Map<List<EmpresaViewModel>>(empresa);
+            var empresaMap = _Imapper.Map<List<EmpresaDTO>>(empresa);
+            return empresaMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Empresa/ListarNomeEmpresa")]
+        public async Task<List<EmpresaDTO>> ListarNomeEmpresa(string? nome, int? id, string? cnpj, string? cpf)
+        {
+            var empresa = await _IServiceEmpresa.ListarNomeEmpresaId(nome, id, cnpj, cpf);
+            var empresaMap = _Imapper.Map<List<EmpresaDTO>>(empresa);
             return empresaMap;
         }
     }

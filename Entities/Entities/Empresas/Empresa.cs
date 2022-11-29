@@ -21,6 +21,9 @@ namespace Entities.Entities.Empresas
         [Column("tipoCliente_Empresa")]
         public TipoCliente? TipoCliente { get; set; }
 
+        [Column("tipoPessoa_Empresa")]
+        public TipoPessoa? TipoPessoa { get; set; }
+
         [Column("nomeAbreviado_Empresa")]
         [MaxLength(255)]
         public string NomeAbreviadoEmpresa { get; set; }
