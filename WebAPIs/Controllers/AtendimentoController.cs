@@ -142,5 +142,14 @@ namespace WebAPIs.Controllers
             return atendimentoMap;
         }
 
+        //[Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Atendimento/CountAtendimentoExames")]
+        public async Task<IActionResult> CountAtendimentoExames()
+        {
+            var funcionarioExames = await _IAtendimento.CountAtendimentoExames();
+            return Ok(funcionarioExames);
+        }
+
     }
 }

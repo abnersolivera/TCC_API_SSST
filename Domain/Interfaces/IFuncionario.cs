@@ -16,6 +16,6 @@ namespace Domain.Interfaces
 
         Task<List<FuncionarioAtendimento>> FuncionarioAtendimento(int? idAtendimento, int? idFuncionario, int? idEmpresa);
 
-        Task<object> CountAtendimentoExames();
+        
     }
 }

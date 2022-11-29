@@ -15,5 +15,6 @@ namespace Domain.Interfaces
 
         Task<Atendimento> Atendimentos(Atendimento atendimento, Empresa empresa, Funcionario funcionario, List<Risco> risco, List<Exame> exame);
 
+        Task<object> CountAtendimentoExames();
     }
 }
