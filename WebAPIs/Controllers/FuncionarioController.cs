@@ -114,6 +114,16 @@ namespace WebAPIs.Controllers
 
         [Authorize]
         [Produces("application/json")]
+        [HttpGet("/api/Funcionario/ListarEmpresa")]
+        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresa()
+        {
+            var funcionario = await _IFuncionario.ListarEmpresa();
+            var funcionarioMap = _IMapper.Map<List<FuncionarioEmpCarSerDTO>>(funcionario);
+            return funcionarioMap;
+        }
+
+        [Authorize]
+        [Produces("application/json")]
         [HttpGet("/api/Funcionario/ListarFuncionarioAtivas")]
         public async Task<List<FuncionarioDTO>> ListarFuncionarioAtivas()
         {
@@ -135,9 +145,9 @@ namespace WebAPIs.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Funcionario/ListarEmpresaCargoSetor")]
-        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresaCargoSetor([FromQuery] int? idEmpresa, int? idFuncionario)
+        public async Task<List<FuncionarioEmpCarSerDTO>> ListarEmpresaCargoSetor([FromQuery] int? idEmpresa, int? idFuncionario, string? nome, string? empresa, string? unidade)
         {
-            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresaCargoSetor(idEmpresa, idFuncionario);
+            var funcionario = await _IServiceFuncionario.ListarFuncionarioEmpresaCargoSetor(idEmpresa, idFuncionario, nome, empresa, unidade);
             var funcionarioMap = _IMapper.Map<List<FuncionarioEmpCarSerDTO>>(funcionario);
             return funcionarioMap;
         }

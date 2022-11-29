@@ -142,7 +142,7 @@ namespace WebAPIs.Controllers
             return atendimentoMap;
         }
 
-        //[Authorize]
+        [Authorize]
         [Produces("application/json")]
         [HttpGet("/api/Atendimento/CountAtendimentoExames")]
         public async Task<IActionResult> CountAtendimentoExames()
