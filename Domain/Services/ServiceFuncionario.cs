@@ -47,7 +47,7 @@ namespace Domain.Services
 
         public async Task<List<Funcionario>> ListarFuncionarioEmpresa(int id) => await _IFuncionario.Listar(id);
 
-        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int? id, int? idFuncionario) => await _IFuncionario.ListarEmpresaCargoSetor(id, idFuncionario);
+        public async Task<List<FuncionarioEmpresaCargoSetor>> ListarFuncionarioEmpresaCargoSetor(int? id, int? idFuncionario, string? nome, string? empresa, string? unidade) => await _IFuncionario.ListarEmpresaCargoSetor(id, idFuncionario, nome, empresa, unidade);
 
         public async Task<List<FuncionarioEmpresaCargoSetor>> ListarNomeFuncionarioEmpresaCargoSetor(string nome) => await _IFuncionario.ListarFuncionarioCargoSetor(nome);
 

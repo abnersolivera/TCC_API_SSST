@@ -82,7 +82,7 @@ namespace Entities.Entities.Pessoas
         public TipoEspecialidade? EspecialidadePessoas { get; set; }
 
         [Column("telelefoneCelular_Pessoas")]
-        [MaxLength(15)]
+        [MaxLength(25)]
         public string? TelelefoneCelularPessoas { get; set; }
 
         [Column("tipo_Pessoas")]
