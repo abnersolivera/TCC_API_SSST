@@ -20,22 +20,7 @@ namespace Infrastructure.Repository.Repositories
         public RepositoryFuncionario()
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
-        }
-
-        public async Task<object> CountAtendimentoExames()
-        {
-            using var banco = new ContextBase(_OptionsBuilder);
-
-            #region QueryExame
-            var queryExame = await(from ae in banco.AtendimentoExames
-                                   join e in banco.Exame on ae.IdExame equals e.IdExame
-                                   select new Exame{ IdExame = e.IdExame, NomeExame = e.NomeExame }).AsNoTracking().ToListAsync();
-            #endregion
-
-            var count = queryExame.GroupBy(e => e.NomeExame).Select(g => g.Select(g => new { NomeExames = g.NomeExame, Counts = g.NomeExame.Count() }).Distinct()).ToList();
-
-            return count;
-        }
+        }        
 
         public async Task<List<FuncionarioAtendimento>> FuncionarioAtendimento(int? idAtendimento, int? idFuncionario, int? idEmpresa)
         {

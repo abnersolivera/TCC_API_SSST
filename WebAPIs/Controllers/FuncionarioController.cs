@@ -161,14 +161,5 @@ namespace WebAPIs.Controllers
             var funcionarioMap = _IMapper.Map<List<FuncionarioAtendimentoDTO>>(funcionario);
             return funcionarioMap;
         }
-
-        [Authorize]
-        [Produces("application/json")]
-        [HttpGet("/api/Funcionario/CountAtendimentoExames")]
-        public async Task<IActionResult> CountAtendimentoExames()
-        {
-            var funcionarioExames = await _IFuncionario.CountAtendimentoExames();
-            return Ok(funcionarioExames);
-        }
     }
 }
