@@ -1,4 +1,8 @@
-﻿using Entities.Enums;
+﻿using Entities.Entities.Cargos;
+using Entities.Entities.Empresas;
+using Entities.Entities.Funcionarios;
+using Entities.Entities.Setores;
+using Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,6 +35,9 @@ namespace Entities.Entities.Atendimentos
         [Column("idFuncionario_Agendamento")]
         public int IdFuncionario { get; set; }
 
+        [Column("idEmpresa_Agendamento")]
+        public int IdEmpresa { get; set; }
+
         [Column("razaoSocial_Agendamento")]
         [MaxLength(250, ErrorMessage = "Permitido 250 Caracteres")]
         public string? RazaoSocialAgendamento { get; set; }
@@ -49,5 +56,20 @@ namespace Entities.Entities.Atendimentos
         [Column("dataAlteracao_Agendamento")]
         public DateTime DataAlteracao { get; set; }
 
+    }
+
+    public class AgendamentoFuncionario
+    {
+        public Agendamento Agendamento { get; set; }
+
+        public Funcionario Funcionario { get; set; }
+
+        public Empresa EmpresaFun { get; set; }
+
+        public Unidade UnidadeFun { get; set; }
+
+        public Cargo CargoFun { get; set; }
+
+        public Setor SetorFun { get; set; }
     }
 }

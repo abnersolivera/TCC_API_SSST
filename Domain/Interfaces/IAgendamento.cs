@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces.Generics;
 using Entities.Entities.Atendimentos;
+using Entities.Entities.Funcionarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Domain.Interfaces
     public interface IAgendamento : IGeneric<Agendamento>
     {
         Task<int> CountAtendimento();
+
+        Task<List<AgendamentoFuncionario>> ListarAgendamentoFuncionario(int? idFuncionario, int? idEmpresa, int? idAgendamento);
     }
 }

@@ -152,6 +152,7 @@ var config = new AutoMapper.MapperConfiguration(cfg =>
     cfg.CreateMap<Agendamento, AgendamentoViewModel>().ReverseMap();
     cfg.CreateMap<Agendamento, AgendamentoIdViewModel>().ReverseMap();
     cfg.CreateMap<Agendamento, AgendamentoDTO>().ReverseMap();
+    cfg.CreateMap<AgendamentoFuncionario, AgendamentoFuncionarioDTO>().ReverseMap();
 
     cfg.CreateMap<Atendimento, AtendimentoViewModel>().ReverseMap();
     cfg.CreateMap<Atendimento, AtendimentoIdViewModel>().ReverseMap();

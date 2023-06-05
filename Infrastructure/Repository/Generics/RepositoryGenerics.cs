@@ -61,6 +61,7 @@ namespace Infrastructure.Repository.Generics
         {
             using (var data = new ContextBase(_OptionsBuilder))
             {
+                var a = await data.Set<T>().ToListAsync();
 
                 return await data.Set<T>().ToListAsync();
 

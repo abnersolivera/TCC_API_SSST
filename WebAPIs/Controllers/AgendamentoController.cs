@@ -107,5 +107,15 @@ namespace WebAPIs.Controllers
             var agendamento = await _IAgendamento.CountAtendimento();
             return Ok(agendamento);
         }
+
+        [Authorize]
+        [Produces("application/json")]
+        [HttpGet("/api/Agendamento/ListarAgendamentoFuncionario")]
+        public async Task<List<AgendamentoFuncionarioDTO>> ListarAgendamentoFuncionario([FromQuery] int? idFuncionario, int? idEmpresa, int? idAgendamento)
+        {
+            var agendamento = await _IAgendamento.ListarAgendamentoFuncionario(idFuncionario, idEmpresa, idAgendamento);
+            var agendamentoMap = _IMapper.Map<List<AgendamentoFuncionarioDTO>>(agendamento);
+            return agendamentoMap;
+        }
     }
 }

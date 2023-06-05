@@ -122,6 +122,10 @@ namespace WebAPIs.Models
 
         public int IdFuncionario { get; set; }
 
+        public int IdEmpresa { get; set; }
+
+
+
     }
 
     public class AgendamentoIdViewModel
@@ -147,6 +151,8 @@ namespace WebAPIs.Models
 
         public int IdFuncionario { get; set; }
 
+        public int IdEmpresa { get; set; }
+
         public string DataCadastro { get; set; }
 
         public string DataAlteracao { get; set; }
@@ -155,6 +161,21 @@ namespace WebAPIs.Models
     public class AgendamentCount
     {
         public int Count { get; set; }
+    }
+
+    public class AgendamentoFuncionarioDTO 
+    {
+        public AgendamentoDTO Agendamento { get; set; }
+
+        public FuncionarioDTO Funcionario { get; set; }
+
+        public CargoFuncionarioDTO Cargo { get; set; }
+
+        public SetorFuncionarioDTO Setor { get; set; }
+
+        public EmpresaFuncionarioDTO Empresa { get; set; }
+
+        public UnidadeFuncionarioDTO Unidade { get; set; }
     }
 }
 
