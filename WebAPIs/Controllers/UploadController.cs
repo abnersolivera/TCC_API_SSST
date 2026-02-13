@@ -6,34 +6,28 @@ using WebAPIs.Models;
 using Domain.Services;
 using Domain.Interfaces;
 using Azure;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace WebAPIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UploadController : ControllerBase
+    public class UploadController(IUpload iUpload) : ControllerBase
     {
-        private readonly IUpload _IUpload;
-
-        public UploadController(IUpload iUpload)
-        {
-            _IUpload = iUpload;
-        }
-
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/Upload/Add")]
-        public async Task<string> Add(UploadViewModel image)
+        public async Task<IActionResult> Add(UploadViewModel image)
         {
             try
             {
-                return await _IUpload.UploadBase64(image.Image, "user");
+                return Created(HttpContext.Request.GetDisplayUrl(),await iUpload.UploadBase64(image.Image));
 
             }
             catch(RequestFailedException e)
             {
                 Response.StatusCode = 400;
-                return BadRequest(e.ErrorCode).ToString()!;
+                return BadRequest(e.ErrorCode);
             }
 
 

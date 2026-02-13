@@ -9,11 +9,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryRisco : RepositoryGenerics<Risco>, IRisco
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryRisco()
+        public RepositoryRisco(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Risco>> ListarRiscos(Expression<Func<Risco, bool>> exRisco)

@@ -13,11 +13,11 @@ namespace Infrastructure.Repository.Generics
 {
     public class RepositoryGenerics<T> : IGeneric<T>, IDisposable where T : class
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
+        protected readonly DbContextOptions<ContextBase> _OptionsBuilder;
 
-        public RepositoryGenerics()
+        public RepositoryGenerics(DbContextOptions<ContextBase> optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
+            _OptionsBuilder = optionsBuilder;
         }
 
         public async Task Add(T Objeto)

@@ -13,11 +13,8 @@ namespace Infrastructure.Repository.Repositories
     /// </summary>
     public class RepositoryPrestador : RepositoryGenerics<Prestador>, IPrestador
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryPrestador()
+        public RepositoryPrestador(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Prestador>> ListarPrestador(Expression<Func<Prestador, bool>> exPrestador)

@@ -15,11 +15,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryUser : RepositoryGenerics<ApplicationUser>, IUser
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryUser()
+        public RepositoryUser(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }        
 
         public async Task<List<ApplicationUser>> ListarUser(Expression<Func<ApplicationUser, bool>> exUser)

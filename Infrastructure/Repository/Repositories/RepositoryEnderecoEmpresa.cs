@@ -8,11 +8,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryEnderecoEmpresa : RepositoryGenerics<EnderecoEmpresa>, IEnderecoEmpresa
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryEnderecoEmpresa()
+        public RepositoryEnderecoEmpresa(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
     }
 }

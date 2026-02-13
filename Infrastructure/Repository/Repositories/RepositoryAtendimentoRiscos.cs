@@ -8,11 +8,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryAtendimentoRiscos : RepositoryGenerics<AtendimentoRiscos>, IAtendimentoRiscos
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryAtendimentoRiscos()
+        public RepositoryAtendimentoRiscos(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
     }
 }

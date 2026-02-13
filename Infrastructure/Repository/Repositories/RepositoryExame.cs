@@ -18,11 +18,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryExame : RepositoryGenerics<Exame>, IExame
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryExame()
+        public RepositoryExame(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Exame>> ExamesNome(string nome)

@@ -15,11 +15,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryFuncionario : RepositoryGenerics<Funcionario>, IFuncionario
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryFuncionario()
+        public RepositoryFuncionario(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }        
 
         public async Task<List<FuncionarioAtendimento>> FuncionarioAtendimento(int? idAtendimento, int? idFuncionario, int? idEmpresa)
