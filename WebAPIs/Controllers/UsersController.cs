@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
 using Domain.Interfaces;
 using Entities.Entities;
-using Entities.Entities.Empresas;
-using Entities.Entities.Pessoas;
 using Entities.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Linq.Expressions;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using WebAPIs.Models;
 using WebAPIs.Token;
 
@@ -27,12 +25,15 @@ namespace WebAPIs.Controllers
 
         private readonly IUser _IUser;
 
-        public UsersController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManager, IMapper iMapper, IUser iUser)
+        private readonly IConfiguration _configuration;
+
+        public UsersController(UserManager<ApplicationUser> userManger, SignInManager<ApplicationUser> signInManager, IMapper iMapper, IUser iUser, IConfiguration configuration)
         {
             _UserManger = userManger;
             _SignInManager = signInManager;
             _Imapper = iMapper;
             _IUser = iUser;
+            _configuration = configuration;
         }
 
         [AllowAnonymous]
@@ -48,26 +49,22 @@ namespace WebAPIs.Controllers
             var resultado =
                 await _SignInManager.PasswordSignInAsync(login.Email, login.Senha, false, lockoutOnFailure: false);
 
-            if (resultado.Succeeded)
-            {
-                //Recuperar Usuario Logado
-                var userCurrent = await _UserManger.FindByEmailAsync(login.Email);
-                var idUsuario = userCurrent.Id;
+            if (!resultado.Succeeded) return Unauthorized();
+            
+            //Recuperar Usuario Logado
+            var userCurrent = await _UserManger.FindByEmailAsync(login.Email);
+            var idUsuario = userCurrent!.Id;
 
-                var token = new TokenJWTBuilder().AddSecurityKey(JwtSecurityKey.Create("G4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"))
-                    .AddSubject("SSST")
-                    .AddIssuer("SSST.Securiry.Bearer")
-                    .AddAudience("SSST.Securiry.Bearer")
-                    .AddClaim("idUsuario", idUsuario)
-                    .AddExpiry(5)
-                    .Builder();
+            var token = new TokenJwtBuilder().AddSecurityKey(JwtSecurityKey.Create(_configuration["Jwt:Key"] ?? string.Empty))
+                .AddSubject("SSST")
+                .AddIssuer(_configuration["Jwt:Issuer"]!)
+                .AddAudience(_configuration["Jwt:Audience"]!)
+                .AddClaim("idUsuario", idUsuario)
+                .AddExpiry(5)
+                .Builder();
 
-                return Ok(token.Value);
-            }
-            else
-            {
-                return Unauthorized();
-            }
+            return Ok(token.Value);
+
         }
 
         [AllowAnonymous]

@@ -1,0 +1,52 @@
+﻿version: "3.9"
+
+services:
+  ssst.api:
+    image: ssst.api
+    build:
+      context: .
+      dockerfile: WebAPIs/Dockerfile
+    container_name: ssst.api
+    depends_on:
+      - db
+      - azurite
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=SsstDb;User Id=sa;Password=S0m3Str0ngP@ssw0rd!"
+      ConnectionStrings__AzureBlob: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFeqCnf2YfAft2hCFEt8Z8Zdt0qJK==;BlobEndpoint=http://azurite:10000/devstoreaccount1;"
+    ports:
+      - "5000:5000"
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sst_sql_server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "S0m3Str0ngP@ssw0rd!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P \"$SA_PASSWORD\" -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+  
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: ssst_azurite_blob
+    command: "azurite-blob --blobHost 0.0.0.0 --location /data --debug /data/debug.log"
+    ports:
+      - "10000:10000"
+    volumes:
+      - azurite_data:/data
+    restart: unless-stopped
+
+volumes:
+  mssql_data:
+    driver: local
+  azurite_data:
+    driver: local

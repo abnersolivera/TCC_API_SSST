@@ -16,21 +16,25 @@ using Entities.Entities.Pessoas;
 using Entities.Entities.Prestadores;
 using Entities.Entities.Riscos;
 using Entities.Entities.Setores;
-using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Infrastructure.Repository.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Azure;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Globalization;
+using System.Text;
+using Infrastructure;
+using WebAPIs.Configurations;
 using WebAPIs.Converters;
 using WebAPIs.Models;
 using WebAPIs.Token;
+
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.Services.AddIoC(builder.Configuration);
 
 var cultureInfo = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name).DateTimeFormat;
 
@@ -55,60 +59,56 @@ builder.Services.AddSwaggerGen(op =>
 #endregion
 
 #region ConfigService
-builder.Services.AddDbContext<ContextBase>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ContextBase>();
+
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 #endregion
 
 #region Interface e Repositorio
-builder.Services.AddSingleton(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
-builder.Services.AddSingleton<IPessoa, RepositoryPessoa>();
-builder.Services.AddSingleton<IPrestador, RepositoryPrestador>();
-builder.Services.AddSingleton<IEmpresa, RepositoryEmpresa>();
-builder.Services.AddSingleton<IEndereco, RepositoryEndereco>();
-builder.Services.AddSingleton<IUnidade, RepositoryUnidade>();
-builder.Services.AddSingleton<IFuncionario, RepositoryFuncionario>();
-builder.Services.AddSingleton<ICargo, RepositoryCargo>();
-builder.Services.AddSingleton<ISetor, RepositorySetor>();
-builder.Services.AddSingleton<IExame, RepositoryExame>();
-builder.Services.AddSingleton<IRisco, RepositoryRisco>();
-builder.Services.AddSingleton<IUsuarioEmpresa, RepositoryUsuarioEmpresa>();
-builder.Services.AddSingleton<IPessoaEmpresa, RepositoryPessoaEmpresa>();
-builder.Services.AddSingleton<IPrestadorEmpresa, RepositoryPrestadorEmpresa>();
-builder.Services.AddSingleton<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
-builder.Services.AddSingleton<IEnderecoUnidade, RepositoryEnderecoUnidade>();
-builder.Services.AddSingleton<IFuncionarioExames, RepositoryFuncionarioExames>();
-builder.Services.AddSingleton<IUser, RepositoryUser>();
-builder.Services.AddSingleton<IFuncionarioRisco, RepositoryFuncionarioRisco>();
-builder.Services.AddSingleton<IAtendimento, RepositoryAtendimento>();
-builder.Services.AddSingleton<IAgendamento, RepositoryAgendamento>();
-builder.Services.AddSingleton<IAtendimentoEmpresa, RepositoryAtendimentoEmpresa>();
-builder.Services.AddSingleton<IAtendimentoExames, RepositoryAtendimentoExames>();
-builder.Services.AddSingleton<IAtendimentoFuncionario, RepositoryAtendimentoFuncionario>();
-builder.Services.AddSingleton<IAtendimentoRiscos, RepositoryAtendimentoRiscos>();
-builder.Services.AddSingleton<IUpload, RepositoryUpload>();
+builder.Services.AddScoped(typeof(IGeneric<>), typeof(RepositoryGenerics<>));
+builder.Services.AddScoped<IPessoa, RepositoryPessoa>();
+builder.Services.AddScoped<IPrestador, RepositoryPrestador>();
+builder.Services.AddScoped<IEmpresa, RepositoryEmpresa>();
+builder.Services.AddScoped<IEndereco, RepositoryEndereco>();
+builder.Services.AddScoped<IUnidade, RepositoryUnidade>();
+builder.Services.AddScoped<IFuncionario, RepositoryFuncionario>();
+builder.Services.AddScoped<ICargo, RepositoryCargo>();
+builder.Services.AddScoped<ISetor, RepositorySetor>();
+builder.Services.AddScoped<IExame, RepositoryExame>();
+builder.Services.AddScoped<IRisco, RepositoryRisco>();
+builder.Services.AddScoped<IUsuarioEmpresa, RepositoryUsuarioEmpresa>();
+builder.Services.AddScoped<IPessoaEmpresa, RepositoryPessoaEmpresa>();
+builder.Services.AddScoped<IPrestadorEmpresa, RepositoryPrestadorEmpresa>();
+builder.Services.AddScoped<IEnderecoEmpresa, RepositoryEnderecoEmpresa>();
+builder.Services.AddScoped<IEnderecoUnidade, RepositoryEnderecoUnidade>();
+builder.Services.AddScoped<IFuncionarioExames, RepositoryFuncionarioExames>();
+builder.Services.AddScoped<IUser, RepositoryUser>();
+builder.Services.AddScoped<IFuncionarioRisco, RepositoryFuncionarioRisco>();
+builder.Services.AddScoped<IAtendimento, RepositoryAtendimento>();
+builder.Services.AddScoped<IAgendamento, RepositoryAgendamento>();
+builder.Services.AddScoped<IAtendimentoEmpresa, RepositoryAtendimentoEmpresa>();
+builder.Services.AddScoped<IAtendimentoExames, RepositoryAtendimentoExames>();
+builder.Services.AddScoped<IAtendimentoFuncionario, RepositoryAtendimentoFuncionario>();
+builder.Services.AddScoped<IAtendimentoRiscos, RepositoryAtendimentoRiscos>();
+builder.Services.AddScoped<IUpload, RepositoryUpload>();
 #endregion
 
-#region Serviço Dominio
-builder.Services.AddSingleton<IServicePessoa, ServicePessoa>();
-builder.Services.AddSingleton<IServicePrestador, ServicePrestador>();
-builder.Services.AddSingleton<IServiceEmpresa, ServiceEmpresa>();
-builder.Services.AddSingleton<IServiceEndereco, ServiceEndereco>();
-builder.Services.AddSingleton<IServiceUnidade, ServiceUnidade>();
-builder.Services.AddSingleton<IServiceFuncionario, ServiceFuncionario>();
-builder.Services.AddSingleton<IServiceCargo, ServiceCargo>();
-builder.Services.AddSingleton<IServiceSetor, ServiceSetor>();
-builder.Services.AddSingleton<IServiceExame, ServiceExame>();
-builder.Services.AddSingleton<IServiceRisco, ServiceRisco>();
-builder.Services.AddSingleton<IServiceUser, ServiceUser>();
-builder.Services.AddSingleton<IServiceAtendimento, ServiceAtendimento>();
-builder.Services.AddSingleton<IServiceAgendamento, ServiceAgendamento>();
+#region Servico Dominio
+builder.Services.AddScoped<IServicePessoa, ServicePessoa>();
+builder.Services.AddScoped<IServicePrestador, ServicePrestador>();
+builder.Services.AddScoped<IServiceEmpresa, ServiceEmpresa>();
+builder.Services.AddScoped<IServiceEndereco, ServiceEndereco>();
+builder.Services.AddScoped<IServiceUnidade, ServiceUnidade>();
+builder.Services.AddScoped<IServiceFuncionario, ServiceFuncionario>();
+builder.Services.AddScoped<IServiceCargo, ServiceCargo>();
+builder.Services.AddScoped<IServiceSetor, ServiceSetor>();
+builder.Services.AddScoped<IServiceExame, ServiceExame>();
+builder.Services.AddScoped<IServiceRisco, ServiceRisco>();
+builder.Services.AddScoped<IServiceUser, ServiceUser>();
+builder.Services.AddScoped<IServiceAtendimento, ServiceAtendimento>();
+builder.Services.AddScoped<IServiceAgendamento, ServiceAgendamento>();
 #endregion
 
 #region JWT
@@ -122,9 +122,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
 
-            ValidIssuer = "SSST.Securiry.Bearer",
-            ValidAudience = "SSST.Securiry.Bearer",
-            IssuerSigningKey = JwtSecurityKey.Create("G4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ")
+            ValidIssuer = configuration["Jwt:Issuer"],
+            ValidAudience = configuration["Jwt:Audience"],
+            IssuerSigningKey = JwtSecurityKey.Create(configuration["Jwt:Key"] ?? string.Empty)
         };
 
         option.Events = new JwtBearerEvents
@@ -274,5 +274,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UpdateMigrations();
 
 app.Run();

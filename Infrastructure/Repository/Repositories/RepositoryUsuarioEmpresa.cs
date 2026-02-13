@@ -8,11 +8,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryUsuarioEmpresa : RepositoryGenerics<UsuarioEmpresa>, IUsuarioEmpresa
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder; 
-        
-        public RepositoryUsuarioEmpresa()
+        public RepositoryUsuarioEmpresa(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
     }
 }

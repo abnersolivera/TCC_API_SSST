@@ -14,11 +14,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositorySetor : RepositoryGenerics<Setor>, ISetor
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositorySetor()
+        public RepositorySetor(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Setor>> Listar(int id)

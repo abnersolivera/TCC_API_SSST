@@ -16,11 +16,8 @@ namespace Infrastructure.Repository.Repositories
 
     public class RepositoryAtendimento : RepositoryGenerics<Atendimento>, IAtendimento
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryAtendimento()
+        public RepositoryAtendimento(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<object> CountAtendimentoExames()

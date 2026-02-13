@@ -9,11 +9,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryCargo : RepositoryGenerics<Cargo>, ICargo
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryCargo()
+        public RepositoryCargo(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Cargo>> Listar(int id)

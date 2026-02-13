@@ -2,17 +2,17 @@
 
 namespace WebAPIs.Token
 {
-    public class TokenJWT
+    public class TokenJwt
     {
-        private JwtSecurityToken Token;
+        private readonly JwtSecurityToken _token;
 
-        public DateTime ValidTo => Token.ValidTo;
+        public DateTime ValidTo => _token.ValidTo;
 
-        public string Value => new JwtSecurityTokenHandler().WriteToken(Token);
+        public string Value => new JwtSecurityTokenHandler().WriteToken(_token);
 
-        internal TokenJWT(JwtSecurityToken token)
+        internal TokenJwt(JwtSecurityToken token)
         {
-            Token = token;
+            _token = token;
         }
     }
 }

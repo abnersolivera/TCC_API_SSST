@@ -10,13 +10,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryPessoa : RepositoryGenerics<Pessoa>, IPessoa
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        
-
-        public RepositoryPessoa()
+        public RepositoryPessoa(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Pessoa>> ListarPessoa(Expression<Func<Pessoa, bool>> exPessoa)

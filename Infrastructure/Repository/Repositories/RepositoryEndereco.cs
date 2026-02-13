@@ -9,11 +9,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryEndereco : RepositoryGenerics<Endereco>, IEndereco
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryEndereco()
+        public RepositoryEndereco(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Endereco>> ListarEndereco(Expression<Func<Endereco, bool>> exEndereco)

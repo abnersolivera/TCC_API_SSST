@@ -9,11 +9,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryUnidade : RepositoryGenerics<Unidade>, IUnidade
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryUnidade()
+        public RepositoryUnidade(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
         public async Task<List<Unidade>> Listar(int id)

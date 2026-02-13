@@ -13,11 +13,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryPrestadorEmpresa : RepositoryGenerics<PrestadorEmpresa>, IPrestadorEmpresa
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder; 
-        
-        public RepositoryPrestadorEmpresa()
+        public RepositoryPrestadorEmpresa(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
     }
 }

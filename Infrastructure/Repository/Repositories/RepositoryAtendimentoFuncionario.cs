@@ -8,11 +8,8 @@ namespace Infrastructure.Repository.Repositories
 {
     public class RepositoryAtendimentoFuncionario : RepositoryGenerics<AtendimentoFuncionario>, IAtendimentoFuncionario
     {
-        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
-
-        public RepositoryAtendimentoFuncionario()
+        public RepositoryAtendimentoFuncionario(DbContextOptions<ContextBase> optionsBuilder) : base(optionsBuilder)
         {
-            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
     }
 }

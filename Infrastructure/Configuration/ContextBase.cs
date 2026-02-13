@@ -14,10 +14,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Configuration
 {
-    public class ContextBase : IdentityDbContext<ApplicationUser>
+    public class ContextBase(DbContextOptions<ContextBase> options) : IdentityDbContext<ApplicationUser>(options)
     {
-        public ContextBase(DbContextOptions<ContextBase> options) : base(options){}
-
         public DbSet<AtendimentoExames> AtendimentoExames { get; set; }
         public DbSet<AtendimentoFuncionario> AtendimentoFuncionario { get; set; }
         public DbSet<AtendimentoRiscos> AtendimentoRiscos { get; set; }
@@ -42,20 +40,6 @@ namespace Infrastructure.Configuration
         public DbSet<Prestador> Prestador { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-
-        public string ObterStringConexao()
-        {
-            return "Data Source=mysqlserver1234567891.database.windows.net;Initial Catalog=mySampleDatabase;Integrated Security=False;User ID=azureuser;Password=123Email@25;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(ObterStringConexao());
-                base.OnConfiguring(optionsBuilder);
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
